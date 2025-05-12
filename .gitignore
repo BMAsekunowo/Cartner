@@ -1,0 +1,27 @@
+#All to be exc.
+
+# Dependencies
+node_modules/
+
+# Hot-Hush Pagush
+.env
+
+# Build and runtime 
+/dist
+*.pid
+
+# Logs
+/logs
+*.log
+npm-debug.log*
+
+# Editor & system
+.DS_Store
+.vscode/
+.idea/
+
+# Project-diagnosis:
+# seed , exports, LTD 
+/seeds/
+/exports/
+/tmp/
