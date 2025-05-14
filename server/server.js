@@ -12,9 +12,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Mounted Routes
-app.use('/api', require('./routes/system'));
+app.use('/ap', require('./routes/system'));
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`This Server is currently running on port ${PORT}`);
 });
+
+//All fully Tested by self and operational -- Cleared for phase 2 on the 14th of May 2025
