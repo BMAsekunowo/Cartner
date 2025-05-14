@@ -3,7 +3,7 @@ const cors = require('cors');   //Communication between client and server
 const dotenv = require('dotenv');   //Hot-Hush Pagush
 const connectDB = require('./config/db.js'); //Database MVC
 const app = express(); //Express app Init
-const errorHandler = require('./middleware/errorMiddleware'); //Global Error Handler
+const errorHandler = require('./middleware/errorHandler'); //Global Error Handler
 
 // Middleware
 dotenv.config(); // Load Environment Var
