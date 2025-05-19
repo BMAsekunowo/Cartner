@@ -1,4 +1,4 @@
-const User = require('../models/User'); //User Model
+const User = require('../models/user'); //User Model
 const JWT = require('jsonwebtoken'); //Handling Authentication
 const bcrypt = require('bcryptjs'); //Hashing and Comparison
 
@@ -22,12 +22,12 @@ exports.registerUser = async (req, res) => { const { name, email, password } = r
         
         //Creating && Saving the new user
         const newUser = new User({
-            name,
-            email,
+            name: name.trim(),
+            email: email.trim(),
             password: hashedPassword,
         });
         await newUser.save();
-        console.log('A New user added to databas ✅ :', newUser);
+        console.log('A New user added to database ✅ :', newUser);
         res.status(201).json({message: 'Congratulations You have been registered successfully'});
     }
     catch (error) {
@@ -72,3 +72,4 @@ exports.loginUser = async (req, res) => { const { email, password } = req.body; 
         res.status(500).json({ message: 'oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up' });
     }
 };
+

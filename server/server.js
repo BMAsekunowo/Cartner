@@ -15,8 +15,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Mounted Routes
-app.use('/api', require('./routes/system'));
-app.use('/api/auth', require('./routes/auth'));
+app.use('/api', require('./routes/system')); //Basic System Routes
+app.use('/api/auth', require('./routes/auth'));  //Auth Routes
+app.use('/api/products', require('./routes/product')); //Product Routes
+app.use('/api/carts', require('./routes/cart'));  //Cart Routes
+app.use('/api/sessions', require('./routes/session')); //Session Routes
 
 // Global Error Handler (should come after all routes)
 app.use(errorHandler);
