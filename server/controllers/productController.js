@@ -2,7 +2,7 @@ const Product = require('../models/product'); //Product Model
 const mongoose = require('mongoose'); //Database
 
 exports.createProduct = async (req, res) => { 
-    const { name, description, price, stock, category } = req.body; //Destructuring the request body
+    const { name, description, price, stock, category,imageUrl } = req.body; //Destructuring the request body
     //Validation of Prospective new product input
     if (!name || !description || !price || !stock || !category) {
         return res.status(400).json({ message: 'All Products details must be duly inputed' });
@@ -21,6 +21,7 @@ exports.createProduct = async (req, res) => {
             price,
             stock,
             category: category.trim(), 
+            imageUrl
         });
         await newProduct.save();
         console.log(`A New product added to database ✅:`, newProduct);
@@ -49,13 +50,14 @@ exports.getAllProducts = async (req, res) => {
 
 exports.getProductById = async (req, res) => { 
         //Check if the ID is a valid ObjectId in MongoDB
+    const id = req.params.id; //Destructuring req.body and extracting UserID
+    // Validate MongoDB ObjectId
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ message: 'Invalid product ID format' });
     }
 
     //Proper Error Handling, standard
     try {
-        const id = req.params.id; //Destructuring the request body
         const product = await Product.findById(id);
         if (!product) {
             return res.status(404).json({ message: `Product with ID ${id} was not found, Enter correct ID` });
@@ -95,6 +97,7 @@ exports.updateProduct = async (req, res) => {
         message: 'Product updated successfully',
         product: updatedProduct
       });
+      console.log(`Product with ID ${id} updated successfully ✅:`, updatedProduct);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Oops, something went wrong. Please try again.' });

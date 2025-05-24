@@ -9,7 +9,8 @@ const cartSchema = new mongoose.Schema({
 
     sessionId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Session'
+        ref: 'Session',
+        required: false
     },
 
     sessionUsers: [

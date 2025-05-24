@@ -43,7 +43,7 @@ const sessionSchema = new mongoose.Schema({
       },
       role: {
         type: String,
-        enum: ['creator', 'participant'],
+        enum: ['creator', 'participant', 'pending'],
         default: 'participant'
       }
     }
