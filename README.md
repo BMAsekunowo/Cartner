@@ -95,7 +95,11 @@ npm run dev
 
 ## 👤 Author
 
-- **Boluwatife Asekunowo** – [GitHub](https://github.com/BMAsekunowo)
+Hey there 👋, I'm **Boluwatife Asekunowo** — a passionate software developer building Cartner to make collaborative shopping seamless. 
+
+– [GitHub](https://github.com/BMAsekunowo)
+– [X](https://x.com/BMAsekunowo)
+– [LinkedIn](https://www.linkedin.com/in/boluwatife-asekunowo-60956133a/)
 
 ---
 
