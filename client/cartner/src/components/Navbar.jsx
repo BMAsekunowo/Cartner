@@ -4,7 +4,6 @@ import '../styles/Navbar.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
-import { Routes, Route, useNavigate} from 'react-router-dom'
 import Error404 from '../pages/Error404'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
@@ -19,7 +18,7 @@ import { handleLogout } from '../utils/auth';
 
 const Navbar = () => {
     // Simulate login state (getting this from context or auth state)
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div>
         <ToastContainer />
@@ -49,13 +48,6 @@ const Navbar = () => {
                 </ul> 
             </div>
         </nav>
-        <Routes>
-          <Route path="/" element={ <Home />} />
-          <Route path="/login" element={ <Login />} />
-          <Route path="/register" element={ <Register />} />
-          {/* Route for client side invalid path Error */}
-          <Route path="*" element={ <Error404 />} />
-        </Routes>
     </div>
   )
 }
