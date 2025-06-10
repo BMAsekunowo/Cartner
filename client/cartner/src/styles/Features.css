@@ -61,3 +61,96 @@
   color: #64748B;
   text-align: center;
 }
+
+/* ===============================
+   Tablet View (1024px and below)
+   =============================== */
+   @media (max-width: 1024px) {
+    .features-allwrap {
+      padding: 80px 60px;
+    }
+  
+    .features-container {
+      padding: 40px 0;
+      gap: 24px;
+    }
+  
+    .feature-wrap {
+      max-width: 28%;
+    }
+  
+    .feature-icon {
+      width: 160px;
+      height: 160px;
+    }
+  
+    .features-header {
+      font-size: 1.5em;
+    }
+  }
+  
+  /* ===============================
+     Mobile View (768px and below)
+     =============================== */
+  @media (max-width: 768px) {
+    .features-allwrap {
+      padding: 60px 30px;
+    }
+  
+    .features-container {
+      flex-direction: column;
+      align-items: center;
+      height: auto;
+      gap: 40px;
+    }
+  
+    .feature-wrap {
+      max-width: 100%;
+      height: auto;
+    }
+  
+    .feature-icon {
+      width: 140px;
+      height: 140px;
+    }
+  
+    .features-header {
+      font-size: 1.3em;
+      gap: 16px;
+    }
+  
+    .feature-wrap h3 {
+      font-size: 1.1rem;
+    }
+  
+    .feature-wrap p {
+      font-size: 0.95rem;
+    }
+  }
+  
+  /* ===============================
+     Extra Small Devices (480px and below)
+     =============================== */
+  @media (max-width: 480px) {
+    .features-allwrap {
+      padding: 40px 16px;
+    }
+  
+    .features-header {
+      font-size: 1.1em;
+      gap: 12px;
+    }
+  
+    .feature-icon {
+      width: 120px;
+      height: 120px;
+    }
+  
+    .feature-wrap h3 {
+      font-size: 1rem;
+    }
+  
+    .feature-wrap p {
+      font-size: 0.9rem;
+    }
+  }

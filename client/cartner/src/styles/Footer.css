@@ -22,7 +22,7 @@
   }
 
   .footer-logo h3 {
-    font-family: 'Sora', serif;
+    font-family: 'Sora', sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
     color: #6366F1;
@@ -36,7 +36,7 @@
   }
 
   .footer-div span {
-    font-family: 'Cinzel', serif;
+    font-family: 'Sora', sans-serif;
     margin-bottom: 10px;;
     font-size: 1rem;
     font-weight: 600;
@@ -62,6 +62,97 @@
     justify-content: center;
     align-items: center;
     margin-top: 30px;
+    font-family: 'Sora', sans-serif;
     font-size: 0.95rem;
     color: #94a3b8;
   }
+
+
+
+  /* ===============================
+   Responsive: Tablet (1024px and below)
+   =============================== */
+@media (max-width: 1024px) {
+  .footer-container {
+    padding: 50px 60px 30px 60px;
+  }
+
+  .footer-logo h3 {
+    font-size: 1.3rem;
+  }
+
+  .footer-div {
+    width: 25%;
+  }
+
+  .footer-div span {
+    font-size: 0.95rem;
+  }
+
+  .navlinks, .support-links, .social-links {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===============================
+   Responsive: Mobile (768px and below)
+   =============================== */
+@media (max-width: 768px) {
+  .footer-section {
+    flex-direction: column;
+    gap: 40px;
+    align-items: flex-start;
+    padding-bottom: 30px;
+  }
+
+  .footer-container {
+    padding: 40px 30px 20px 30px;
+  }
+
+  .footer-logo {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .footer-div {
+    width: 100%;
+  }
+
+  .footer-div span {
+    font-size: 1rem;
+  }
+
+  .navlinks, .support-links, .social-links {
+    font-size: 0.9rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+}
+
+/* ===============================
+   Responsive: Extra Small Devices (480px and below)
+   =============================== */
+@media (max-width: 480px) {
+  .footer-container {
+    padding: 30px 20px 20px 20px;
+  }
+
+  .footer-logo h3 {
+    font-size: 1.1rem;
+  }
+
+  .footer-div span {
+    font-size: 0.95rem;
+  }
+
+  .navlinks, .support-links, .social-links {
+    font-size: 0.85rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.8rem;
+  }
+}

@@ -62,3 +62,99 @@
   border-radius: 20px;
   object-fit: contain;
 }
+
+
+
+/* ===============================
+   Tablet View (1024px and below)
+   =============================== */
+   @media (max-width: 1024px) {
+    .easier-container {
+      flex-direction: column;
+      padding: 60px 60px;
+      gap: 40px;
+      text-align: center;
+    }
+  
+    .easier-left,
+    .easier-right {
+      width: 100%;
+    }
+  
+    .easier-heading {
+      font-size: 1.6em;
+    }
+  
+    .easier-text {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+  
+    .easier-list li {
+      justify-content: center;
+      font-size: 0.95rem;
+    }
+  }
+  
+  
+  /* ===============================
+     Mobile View (768px and below)
+     =============================== */
+  @media (max-width: 768px) {
+    .easier-container {
+      padding: 50px 30px;
+      gap: 30px;
+    }
+  
+    .easier-heading {
+      font-size: 1.5em;
+    }
+  
+    .easier-text {
+      font-size: 0.95rem;
+    }
+  
+    .check-icon {
+      font-size: 1.1rem;
+      margin-right: 8px;
+    }
+  
+    .easier-list li {
+      font-size: 0.9rem;
+    }
+  
+    .easier-image {
+      max-height: 400px;
+    }
+  }
+  
+  
+  /* ===============================
+     Extra Small Devices (480px and below)
+     =============================== */
+  @media (max-width: 480px) {
+    .easier-container {
+      padding: 40px 20px;
+      gap: 24px;
+    }
+  
+    .easier-heading {
+      font-size: 1.4em;
+    }
+  
+    .easier-text {
+      font-size: 0.9rem;
+    }
+  
+    .easier-list li {
+      font-size: 0.85rem;
+    }
+  
+    .check-icon {
+      font-size: 1rem;
+    }
+  
+    .easier-image {
+      max-height: 300px;
+    }
+  }

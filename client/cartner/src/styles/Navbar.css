@@ -92,3 +92,89 @@ nav {
     font-weight: bold;
     font-size: 14px;
 }
+
+
+/* ===============================
+   Responsive: Tablet and Down
+   =============================== */
+   @media (max-width: 1024px) {
+    nav {
+      padding: 0 60px;
+    }
+  
+    .logo-text {
+      font-size: 1rem;
+    }
+  
+    .nav-container ul {
+      gap: 16px;
+    }
+  
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      font-size: 16px;
+    }
+  }
+  
+  /* ===============================
+     Responsive: Mobile
+     =============================== */
+  @media (max-width: 768px) {
+    nav {
+      padding: 0 30px;
+      height: auto;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .nav-container {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      gap: 16px;
+      padding-top: 10px;
+    }
+  
+    .nav-container ul {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      gap: 12px;
+    }
+  
+    .linkto {
+      font-size: 13px;
+    }
+  
+    .logo-text {
+      font-size: 1rem;
+    }
+  }
+  
+  /* ===============================
+     Responsive: Extra Small Devices
+     =============================== */
+  @media (max-width: 480px) {
+    nav {
+      padding: 0 16px;
+    }
+  
+    .logo-icon {
+      width: 24px;
+      height: 24px;
+      font-size: 14px;
+    }
+  
+    .logo-text {
+      font-size: 0.9rem;
+    }
+  
+    .nav-container ul {
+      gap: 10px;
+    }
+  
+    .linkto {
+      font-size: 12px;
+    }
+  }

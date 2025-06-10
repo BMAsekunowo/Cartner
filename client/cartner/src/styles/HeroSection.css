@@ -144,62 +144,104 @@
   border: 2px solid #E0F2FE;
 }
 
-@media (max-width: 600px) {
-  .hero-section {
-    display: flex;
-    padding: 20px;
-    flex-direction: column-reverse;
-    align-items: normal;
-    background: #F9FAFB;
-    width: 100%;
-    height: auto;
-    position: relative;
-    gap: 20px;
+
+
+/* ===============================
+   Responsive: Tablet (1024px and below)
+   =============================== */
+   @media (max-width: 1024px) {
+    .hero-section {
+      flex-direction: column-reverse;
+      padding: 60px 60px;
+      height: auto;
+    }
+  
+    .session-card {
+      width: 100%;
+      height: auto;
+      margin: 40px 0;
+    }
+  
+    .hero-image {
+      position: static;
+      margin: 0 auto;
+      width: 100%;
+    }
+  
+    .hero-image img {
+      max-height: 500px;
+      width: 100%;
+    }
+  
+    .form-group2 {
+      width: 48%;
+    }
   }
   
-  .session-card {
-    background: transparent;
-    border-radius: 10px;
-    padding: 20px 0;
-    width: 100%;
-    height: 82%;
-    margin: 11% 0;
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
-    z-index: 2;
-  }
-
-  .session-form {
-    background: transparent;
-    border-radius: 20px;
-    width: 100%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .session-card h1 {
-    font-size: 1.5rem;
+  /* ===============================
+     Responsive: Mobile (768px and below)
+     =============================== */
+  @media (max-width: 768px) {
+    .hero-section {
+      padding: 40px 30px;
+      height: auto;
+    }
+  
+    .session-card h1 {
+      font-size: 1.5rem;
+    }
+  
+    .session-card {
+      padding: 20px;
+    }
+  
+    .hero-image img {
+      max-height: 400px;
+    }
+  
+    .little {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .form-group2 {
+      width: 100%;
+    }
+  
+    .submit-btn {
+      font-size: 0.95rem;
+      padding: 14px;
+    }
   }
   
-  .session-card p {
-    margin-bottom: 20px;
-    color: #64748B;
-  }
-
-  .hero-image {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    border-radius: 50px;
-    z-index: 1;
-    margin-left: 0;
-  }
+  /* ===============================
+     Responsive: Extra Small Devices (480px and below)
+     =============================== */
+  @media (max-width: 480px) {
+    .hero-section {
+      padding: 30px 20px;
+    }
   
-  .hero-image img {
-    max-width: 100%;
-    max-height: 620px;
-    border-radius: 20px;
-    border: 0;
+    .session-card h1 {
+      font-size: 1.3rem;
+    }
+  
+    .form-group label,
+    .form-group2 label {
+      font-size: 0.8rem;
+    }
+  
+    .form-input,
+    .form-input2 {
+      font-size: 0.9rem;
+    }
+  
+    .submit-btn {
+      font-size: 0.9rem;
+      padding: 12px;
+    }
+  
+    .hero-image img {
+      max-height: 300px;
+    }
   }
-}
