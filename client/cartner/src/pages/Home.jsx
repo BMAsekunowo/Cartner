@@ -1,7 +1,7 @@
 import React from 'react'
 import HeroSection from '../components/HeroSection'
 import Features from '../components/Features'
-import BetterExperience from '../components/BetterExperience'
+import EasierExperience from '../components/EasierExperience'
 import Footer from '../components/Footer'
 import Testimonials from '../components/Testimonials'
 
@@ -10,9 +10,8 @@ const Home = () => {
     <>
       <HeroSection />
       <Features />
-      <BetterExperience />
+      <EasierExperience />
       <Testimonials />
-      <Footer />
     </>
   )
 }

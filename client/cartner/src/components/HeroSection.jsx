@@ -1,10 +1,10 @@
 import React from 'react';
 import '../styles/HeroSection.css'; // Assuming you have a CSS file for styling
-import HeroImage from '../assets/cartner-hero.png'; // Adjust the path as necessary
+import HeroImage from '../assets/home/cartner-hero.png'; // Adjust the path as necessary
 
 const HeroSection = () => {
   return (
-    <section className="hero-section">
+    <div className="hero-section">
       <div className="session-card">
         <h1>Plan Smarter, Shop Better, <br />Together.</h1>
         <p>Explore curated collections and shop collaboratively with friends and or family in real time with Cartner.</p>
@@ -57,7 +57,7 @@ const HeroSection = () => {
       <div className="hero-image">
         <img src={HeroImage} alt="Group shopping illustration" />
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -4,13 +4,6 @@ import '../styles/Navbar.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
-import Error404 from '../pages/Error404'
-import Home from '../pages/Home'
-import Login from '../pages/Login'
-import Register from '../pages/Register'
-import Cart from '../pages/Cart'
-import Sessions from '../pages/Sessions'
-import Profile from '../pages/Profile';
 import { handleLogout } from '../utils/auth';
 
 

@@ -11,6 +11,7 @@ import Cart from './pages/Cart'
 import Sessions from './pages/Sessions'
 import Profile from './pages/Profile';
 import './styles/index.css'; // Importing global styles
+import Footer from './components/Footer';
 
 function App() {
   //Checking token validity
@@ -53,6 +54,7 @@ function App() {
           <Route path="*" element={ <Error404 />} />
       </Routes>
       {/* <Home /> */}
+      <Footer />
     </>
   )
 }

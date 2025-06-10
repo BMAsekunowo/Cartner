@@ -4,42 +4,52 @@ import Logo from "./Logo";
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <>
       <div className="footer-container">
-        <div className="footer-brand">
-          <h3><Logo /></h3>
-          <p>Buy Better, Together.</p>
-        </div>
+        <div className="footer-section">
+          <div className="footer-logo">
+            <Logo />
+            <h3>Plan Smarter, Shop Better,<br /> Together. </h3>
+          </div>
 
-        <div className="footer-links">
-          <div>
-            <h4>Explore</h4>
+          <div className="footer-div">
+            <span>Navigation Links</span>
             <ul>
-              <li><a href="#">Features</a></li>
-              <li><a href="#">Smart Splitting</a></li>
-              <li><a href="#">Session Mode</a></li>
+             <li className="navlinks">Explore</li>
+             <li className="navlinks">How It Works</li>
+             <li className="navlinks">Features</li>
+             <li className="navlinks">Testimonials</li>
+             <li className="navlinks">Careers</li>
+             <li className="navlinks">Become a Cartner Today</li>
             </ul>
           </div>
-          <div>
-            <h4>Support</h4>
+
+          <div className="footer-div">
+          <span>Legal & Support</span>
             <ul>
-              <li><a href="#">Help Center</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Privacy Policy</a></li>
+              <li className="support-links">Privacy Policy</li>
+              <li className="support-links">Terms of Service</li>
+              <li className="support-links">Support / Help Center</li>
+              <li className="support-links"> FAQs </li>
+            </ul>
+          </div>
+
+          <div className="footer-div">
+            <span>Follow Us</span>
+            <ul>
+              <li className="social-links">Facebook</li>
+              <li className="social-links">Instagram</li>
+              <li className="social-links">Twitter</li>
+              <li className="social-links">LinkedIn</li>
             </ul>
           </div>
         </div>
 
-        <div className="footer-cta">
-          <h4>Become a Cartner today</h4>
-          <button>Get Started</button>
+        <div className="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} Cartner. All rights reserved.</p>
         </div>
       </div>
-
-      <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Cartner. All rights reserved.</p>
-      </div>
-    </footer>
+    </>
   );
 };
 

@@ -1,0 +1,64 @@
+.easier-container {
+  width: 100%;
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #F9FAFB;
+  padding: 50px 100px;
+}
+
+.easier-left {
+  width: 40%;
+}
+
+.easier-heading {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 20px;
+}
+
+.easier-text {
+  font-size: 1.05rem;
+  color: #64748B;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.easier-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #0F172A;
+}
+
+.easier-list li {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: #1f2937;
+}
+
+.check-icon {
+  color: #6366F1; /* Blue tone consistent with your brand */
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.easier-right {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+  border: 2px solid #E0F2FE; 
+}
+
+.easier-image {
+  width: 100%;
+  max-height: 600px;
+  border-radius: 20px;
+  object-fit: contain;
+}
