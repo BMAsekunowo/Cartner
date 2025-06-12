@@ -9,23 +9,26 @@ const Footer = () => {
         <div className="footer-section">
           <div className="footer-logo">
             <Logo />
-            <h3>Plan Smarter, Shop Better,<br /> Together. </h3>
+            <h3>
+              Plan Smarter, Shop Better,
+              <br /> Together.{" "}
+            </h3>
           </div>
 
           <div className="footer-div">
             <span>Navigation Links</span>
             <ul>
-             <li className="navlinks">Explore</li>
-             <li className="navlinks">How It Works</li>
-             <li className="navlinks">Features</li>
-             <li className="navlinks">Testimonials</li>
-             <li className="navlinks">Careers</li>
-             <li className="navlinks">Become a Cartner Today</li>
+              <li className="navlinks">Explore</li>
+              <li className="navlinks">How It Works</li>
+              <li className="navlinks">Features</li>
+              <li className="navlinks">Testimonials</li>
+              <li className="navlinks">Careers</li>
+              <li className="navlinks">Become a Cartner Today</li>
             </ul>
           </div>
 
           <div className="footer-div">
-          <span>Legal & Support</span>
+            <span>Legal & Support</span>
             <ul>
               <li className="support-links">Privacy Policy</li>
               <li className="support-links">Terms of Service</li>

@@ -1,13 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import LoginForm from "../components/Login/LoginForm";
 
 const Login = () => {
   return (
     <div>
-      <h2>Login Page</h2>
-      <Link to="/register">Don't have an account? Register</Link>
+      <LoginForm />
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

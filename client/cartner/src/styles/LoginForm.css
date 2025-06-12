@@ -1,0 +1,283 @@
+.login-wrapper {
+  height: 70vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 650px;
+  height: 580px;
+  border: 1px solid #e0f2fe;
+  border-radius: 20px;
+}
+
+.title {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.feedback-message {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  display: none;
+}
+
+.feedback-text {
+  font-size: 0.95rem;
+  font-family: "Sora", sans-serif;
+  font-weight: 500;
+  color: #ef4444; /* Error red */
+  text-align: center;
+}
+
+.form-wrap {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  height: 340px;
+}
+
+.img-wrap {
+  width: 50%;
+  height: 100%;
+}
+
+.signin-image {
+  width: 100%;
+  height: 100%;
+}
+
+.form-l {
+  width: 49%;
+  height: 100%;
+  margin: 0 0 0 1%;
+  padding: 20px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid #E2E8F0; */
+  border-radius: 10px;
+}
+
+.subtitle {
+  width: 100%;
+  height: 60px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #6366F1; */
+}
+
+.subtitle p {
+  font-family: "Sora", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: #0f172a;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.input-group label {
+  padding: 0 5px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+}
+
+.input-field-with-icon {
+  position: relative;
+  width: 100%;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  transform: translateY(-50%);
+  color: #0f172a;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.form-input {
+  padding-left: 27px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+
+.input-group:has(.form-input:focus) {
+  border-color: #0f172a;
+}
+
+.oauth-section {
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #e0f2fe;
+}
+
+.oauth-text {
+  font-family: "Sora", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: #64748b;
+}
+
+.oauth-icons-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  height: 60px;
+}
+
+.oauth-icon-btn {
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.oauth-icon-btn:hover {
+  background-color: #e0f2fe;
+}
+
+/* ===============================
+   Tablet View (1024px and below)
+=============================== */
+@media (max-width: 1024px) {
+  .login-wrapper {
+    height: auto;
+    padding: 40px 20px;
+    align-items: flex-start;
+  }
+
+  .login-form {
+    width: 90%;
+    height: auto;
+  }
+
+  .form-wrap {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .img-wrap {
+    width: 100%;
+    height: 250px;
+  }
+
+  .signin-image {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  .form-l {
+    width: 100%;
+    height: auto;
+    margin: 20px 0 0 0;
+    padding: 20px 10px;
+  }
+}
+
+/* ===============================
+     Mobile View (768px and below)
+     =============================== */
+@media (max-width: 768px) {
+  .title {
+    height: auto;
+    padding: 10px 0;
+  }
+
+  .subtitle p {
+    font-size: 0.95rem;
+  }
+
+  .input-group label {
+    font-size: 0.8rem;
+  }
+
+  .form-input {
+    font-size: 0.95rem;
+  }
+
+  .oauth-icons-row {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .oauth-icon-btn {
+    padding: 8px;
+  }
+}
+
+/* ===============================
+     Extra Small Devices (480px and below)
+     =============================== */
+@media (max-width: 480px) {
+  .login-form {
+    width: 100%;
+    border-radius: 0;
+    border: none;
+  }
+
+  .form-l {
+    padding: 10px;
+  }
+
+  .subtitle p {
+    font-size: 0.9rem;
+  }
+
+  .feedback-text {
+    font-size: 0.85rem;
+  }
+
+  .form-input {
+    font-size: 0.9rem;
+  }
+
+  .oauth-text {
+    font-size: 0.9rem;
+  }
+
+  .oauth-icons-row {
+    gap: 10px;
+  }
+
+  .oauth-icon-btn {
+    padding: 8px;
+    font-size: 20px;
+  }
+}

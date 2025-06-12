@@ -1,9 +1,9 @@
-import React from 'react'
-import HeroSection from '../components/HeroSection'
-import Features from '../components/Features'
-import EasierExperience from '../components/EasierExperience'
-import Footer from '../components/Footer'
-import Testimonials from '../components/Testimonials'
+import React from "react";
+import HeroSection from "../components/Landing/HeroSection";
+import Features from "../components/Landing/Features";
+import EasierExperience from "../components/Landing/EasierExperience";
+import Footer from "../components/Footer";
+import Testimonials from "../components/Landing/Testimonials";
 
 const Home = () => {
   return (
@@ -13,7 +13,7 @@ const Home = () => {
       <EasierExperience />
       <Testimonials />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

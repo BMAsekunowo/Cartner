@@ -1,13 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import RegisterForm from "../components/Register/RegisterForm.jsx";
 
 const Register = () => {
   return (
     <div>
-      <h2>Register Page</h2>
-      <Link to="/login">Already have an account? Login</Link>
+      <RegisterForm />
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

@@ -1,24 +1,41 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f9fafb;
 }
 
 ::selection {
-    background-color: #E0F2FE;
-    color: #0F172A;
+  background-color: #e0f2fe;
+  color: #0f172a;
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #E0F2FE;
-    border-radius: 10px;
+  background-color: #e0f2fe;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #fff;
+  background-color: #fff;
+}
+
+.outer-wrapper {
+  background-color: #f9fafb;
+}
+
+.app-wrapper {
+  background-color: #f9fafb;
+  max-width: 1500px;
+  margin: 0 auto;
+  width: 100%;
+  border-left: 1px solid #e0f2fe;
+  border-right: 1px solid #e0f2fe;
 }

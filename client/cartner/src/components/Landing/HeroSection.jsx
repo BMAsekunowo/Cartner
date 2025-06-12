@@ -1,17 +1,23 @@
-import React from 'react';
-import '../styles/HeroSection.css'; // Assuming you have a CSS file for styling
-import HeroImage from '../assets/home/cartner-hero.png'; // Adjust the path as necessary
+import React from "react";
+import "../../styles/HeroSection.css";
+import HeroImage from "../../assets/landing/cartner-hero.png";
 
 const HeroSection = () => {
   return (
     <div className="hero-section">
       <div className="session-card">
-        <h1>Plan Smarter, Shop Better, <br />Together.</h1>
-        <p>Explore curated collections and shop collaboratively with friends and or family in real time with Cartner.</p>
+        <h1>
+          Plan Smarter, Shop Better, <br />
+          Together.
+        </h1>
+        <p>
+          Explore curated collections and shop collaboratively with friends and
+          or family in real time with Cartner.
+        </p>
 
         <form className="session-form">
-        <div className="form-group">
-          <label htmlFor="sessionName">Session Name</label>
+          <div className="form-group">
+            <label htmlFor="sessionName">Session Name</label>
             <input
               type="text"
               id="sessionName"
@@ -42,7 +48,7 @@ const HeroSection = () => {
           </div>
 
           <div className="form-group">
-          <label htmlFor="sessionPasscode">Session Passcode</label>
+            <label htmlFor="sessionPasscode">Session Passcode</label>
             <input
               type="text"
               id="sessionPasscode"
@@ -50,7 +56,9 @@ const HeroSection = () => {
               className="form-input"
             />
           </div>
-          <button type="submit" className="submit-btn">Start Session</button>
+          <button type="submit" className="submit-btn">
+            Start Session
+          </button>
         </form>
       </div>
 

@@ -4,7 +4,7 @@
   gap: 60px;
   align-items: center;
   justify-content: space-between;
-  background-color: #F9FAFB;
+  background-color: #f9fafb;
   padding: 50px 100px;
 }
 
@@ -13,16 +13,16 @@
 }
 
 .easier-heading {
-  font-family: 'Sora', sans-serif;
+  font-family: "Sora", sans-serif;
   font-size: 1.8em;
   font-weight: 700;
-  color: #0F172A;
+  color: #0f172a;
   margin-bottom: 20px;
 }
 
 .easier-text {
   font-size: 1.05rem;
-  color: #64748B;
+  color: #64748b;
   line-height: 1.6;
   margin-bottom: 25px;
 }
@@ -31,7 +31,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  color: #0F172A;
+  color: #0f172a;
 }
 
 .easier-list li {
@@ -43,7 +43,7 @@
 }
 
 .check-icon {
-  color: #6366F1; /* Blue tone consistent with your brand */
+  color: #6366f1; /* Blue tone consistent with your brand */
   margin-right: 10px;
   font-size: 1.2rem;
 }
@@ -53,7 +53,7 @@
   display: flex;
   justify-content: center;
   border-radius: 20px;
-  border: 2px solid #E0F2FE; 
+  border: 2px solid #e0f2fe;
 }
 
 .easier-image {
@@ -63,98 +63,94 @@
   object-fit: contain;
 }
 
-
-
 /* ===============================
    Tablet View (1024px and below)
-   =============================== */
-   @media (max-width: 1024px) {
-    .easier-container {
-      flex-direction: column;
-      padding: 60px 60px;
-      gap: 40px;
-      text-align: center;
-    }
-  
-    .easier-left,
-    .easier-right {
-      width: 100%;
-    }
-  
-    .easier-heading {
-      font-size: 1.6em;
-    }
-  
-    .easier-text {
-      font-size: 1rem;
-      margin-bottom: 20px;
-    }
-  
-    .easier-list li {
-      justify-content: center;
-      font-size: 0.95rem;
-    }
+=============================== */
+@media (max-width: 1024px) {
+  .easier-container {
+    flex-direction: column;
+    padding: 60px 60px;
+    gap: 40px;
+    text-align: center;
   }
-  
-  
-  /* ===============================
+
+  .easier-left,
+  .easier-right {
+    width: 100%;
+  }
+
+  .easier-heading {
+    font-size: 1.6em;
+  }
+
+  .easier-text {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .easier-list li {
+    justify-content: center;
+    font-size: 0.95rem;
+  }
+}
+
+/* ===============================
      Mobile View (768px and below)
      =============================== */
-  @media (max-width: 768px) {
-    .easier-container {
-      padding: 50px 30px;
-      gap: 30px;
-    }
-  
-    .easier-heading {
-      font-size: 1.5em;
-    }
-  
-    .easier-text {
-      font-size: 0.95rem;
-    }
-  
-    .check-icon {
-      font-size: 1.1rem;
-      margin-right: 8px;
-    }
-  
-    .easier-list li {
-      font-size: 0.9rem;
-    }
-  
-    .easier-image {
-      max-height: 400px;
-    }
+@media (max-width: 768px) {
+  .easier-container {
+    padding: 50px 30px;
+    gap: 30px;
   }
-  
-  
-  /* ===============================
+
+  .easier-heading {
+    font-size: 1.5em;
+  }
+
+  .easier-text {
+    font-size: 0.95rem;
+  }
+
+  .check-icon {
+    font-size: 1.1rem;
+    margin-right: 8px;
+  }
+
+  .easier-list li {
+    font-size: 0.9rem;
+  }
+
+  .easier-image {
+    max-height: 400px;
+  }
+}
+
+/* ===============================
      Extra Small Devices (480px and below)
      =============================== */
-  @media (max-width: 480px) {
-    .easier-container {
-      padding: 40px 20px;
-      gap: 24px;
-    }
-  
-    .easier-heading {
-      font-size: 1.4em;
-    }
-  
-    .easier-text {
-      font-size: 0.9rem;
-    }
-  
-    .easier-list li {
-      font-size: 0.85rem;
-    }
-  
-    .check-icon {
-      font-size: 1rem;
-    }
-  
-    .easier-image {
-      max-height: 300px;
-    }
+@media (max-width: 480px) {
+  .easier-container {
+    padding: 40px 20px;
+    gap: 24px;
   }
+
+  .easier-heading {
+    font-size: 1.4em;
+  }
+
+  .easier-text {
+    font-size: 0.9rem;
+  }
+
+  .easier-list li {
+    font-size: 0.85rem;
+  }
+
+  .check-icon {
+    font-size: 1rem;
+  }
+
+  .easier-image {
+    max-height: 300px;
+  }
+}

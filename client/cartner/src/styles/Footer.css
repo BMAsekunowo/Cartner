@@ -1,75 +1,75 @@
-  .footer-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-top: 1px solid #6366F1;
-    background-color: #F9FAFB;
-    padding: 50px 100px 30px 100px;
-    min-height: 300px;
-  }
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 1px solid #6366f1;
+  background-color: #f9fafb;
+  padding: 50px 100px 30px 100px;
+  min-height: 300px;
+}
 
-  .footer-section {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #6366F1;
-    padding: 0 0 10px 0;
-  }
+.footer-section {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #6366f1;
+  padding: 0 0 10px 0;
+}
 
-  .footer-logo {
-    width: 30%;
-    height: 100%;
-    margin-bottom: 20px;
-  }
+.footer-logo {
+  width: 30%;
+  height: 100%;
+  margin-bottom: 20px;
+}
 
-  .footer-logo h3 {
-    font-family: 'Sora', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #6366F1;
-    margin-bottom: 10px;
-  }
-  
-  .footer-div {
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-  }
+.footer-logo h3 {
+  font-family: "Sora", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #6366f1;
+  margin-bottom: 10px;
+}
 
-  .footer-div span {
-    font-family: 'Sora', sans-serif;
-    margin-bottom: 10px;;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #6366F1;
-  }
+.footer-div {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
 
-  .footer-div ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    justify-content: space-between;
-  }
+.footer-div span {
+  font-family: "Sora", sans-serif;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6366f1;
+}
 
-  .navlinks, .support-links, .social-links {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
-    color: #0F172A;
-    margin-bottom: 10px;
-  }
-  
-  .footer-bottom {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-    font-family: 'Sora', sans-serif;
-    font-size: 0.95rem;
-    color: #94a3b8;
-  }
+.footer-div ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: space-between;
+}
 
+.navlinks,
+.support-links,
+.social-links {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.95rem;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
 
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  font-family: "Sora", sans-serif;
+  font-size: 0.95rem;
+  color: #94a3b8;
+}
 
-  /* ===============================
+/* ===============================
    Responsive: Tablet (1024px and below)
    =============================== */
 @media (max-width: 1024px) {
@@ -89,7 +89,9 @@
     font-size: 0.95rem;
   }
 
-  .navlinks, .support-links, .social-links {
+  .navlinks,
+  .support-links,
+  .social-links {
     font-size: 0.9rem;
   }
 }
@@ -122,7 +124,9 @@
     font-size: 1rem;
   }
 
-  .navlinks, .support-links, .social-links {
+  .navlinks,
+  .support-links,
+  .social-links {
     font-size: 0.9rem;
   }
 
@@ -148,7 +152,9 @@
     font-size: 0.95rem;
   }
 
-  .navlinks, .support-links, .social-links {
+  .navlinks,
+  .support-links,
+  .social-links {
     font-size: 0.85rem;
   }
 
