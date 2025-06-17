@@ -8,7 +8,7 @@ import {
   FaXTwitter,
   FaFacebookF,
 } from "react-icons/fa6";
-import SignInImage from "../../assets/login/signinn.png";
+import SignInImage from "../../assets/login/signinn.jpeg";
 import "../../styles/LoginForm.css";
 import Logo from "../Logo";
 

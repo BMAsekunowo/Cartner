@@ -7,6 +7,7 @@ import Error404 from "./pages/Error404";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import Sessions from "./pages/Sessions";
 import Profile from "./pages/Profile";
@@ -48,6 +49,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/products" element={<Products />} /> 
           <Route path="/cart" element={<Cart />} />
           <Route path="/sessions" element={<Sessions />} />
           <Route path="/profile" element={<Profile />} />

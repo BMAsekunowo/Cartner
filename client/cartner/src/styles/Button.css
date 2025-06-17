@@ -1,0 +1,35 @@
+.submit-btn {
+    display: inline-block;               /* ensures button wraps content properly */
+    width: fit-content;                  /* lets it grow based on content */
+    padding: 14px 24px;                  /* balanced padding */
+    background-color: #6366f1;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: 'Sora', sans-serif;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+  }
+  
+  .submit-btn:hover {
+    background-color: #4a4dec;
+    transform: translateY(-1px);
+  }
+  
+  .submit-btn.sm {
+    padding: 10px 18px;
+    font-size: 0.85rem;
+  }
+  
+  .submit-btn.md {
+    padding: 14px 24px;
+    font-size: 1rem;
+  }
+  
+  .submit-btn.lg {
+    padding: 18px 32px;
+    font-size: 1.1rem;
+  }

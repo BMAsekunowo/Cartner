@@ -85,6 +85,24 @@ nav {
   position: relative;
 }
 
+.nav-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-logout-btn {
+  margin-left: 10px;
+}
+
 .linkto {
   color: #0f172a;
   text-decoration: underline;
@@ -113,6 +131,15 @@ nav {
     width: 28px;
     height: 28px;
     font-size: 16px;
+  }
+
+  .nav-main {
+    flex-direction: column;
+    align-items: normal;
+  }
+  
+  .nav-logout-btn {
+    margin-left: 0px;
   }
 }
 
@@ -149,6 +176,15 @@ nav {
   .logo-text {
     font-size: 1rem;
   }
+
+  .nav-main {
+    flex-direction: column;
+    align-items: normal;
+  }
+  
+  .nav-logout-btn {
+    margin-left: 0px;
+  }
 }
 
 /* ===============================
@@ -175,5 +211,14 @@ nav {
 
   .linkto {
     font-size: 12px;
+  }
+
+  .nav-main {
+    flex-direction: column;
+    align-items: normal;
+  }
+  
+  .nav-logout-btn {
+    margin-left: 0px;
   }
 }

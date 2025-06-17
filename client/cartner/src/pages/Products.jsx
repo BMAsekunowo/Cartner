@@ -1,9 +1,12 @@
 import React from 'react'
+import ProductsHero from '../components/Products/ProductsHero'
+import ProductContainer from '../components/Products/ProductContainer'
 
 const Products = () => {
   return (
     <div>
-      <h1>Product Page</h1>
+      <ProductsHero />
+      <ProductContainer />
     </div>
   )
 }

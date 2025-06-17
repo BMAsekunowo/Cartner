@@ -1,0 +1,202 @@
+.product-container {
+    width: 100%;
+    height: auto;
+    padding: 10px 100px;
+    margin-bottom: 100px;
+}
+
+.product-content {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    padding: 40px;
+    gap: 20px;
+    background-color: #FFF;
+    border: 1px solid #E0F2FE;
+    border-radius: 20px;
+}
+
+.product-filters {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+}
+
+.product-filters h2 {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 580;
+    color: #0F172A;
+    margin-bottom: 20px;
+}
+
+.product-category {
+    width: 100%;
+    /* margin-bottom: 20px; */
+}
+
+.product-category h3{
+    font-family: 'Sora', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #0F172A;
+    margin-bottom: 10px;
+}
+
+.category-options {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.category-options label {
+    display: flex;
+    gap: 10px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.85rem;
+    color: #64748B;
+}
+
+.category-options input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    cursor: pointer; 
+}
+
+.makeline  {
+    width: 100%;
+    height: 1px;
+    background-color: #E0F2FE;
+    margin: 20px 0;
+}
+
+.price-range-filter {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.price-label {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #0F172A;
+    margin-bottom: 10px;
+}
+
+.price-values {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.85rem;
+    color: #64748B;
+}
+
+.price-slider {
+    height: 3px;
+    background: #000;
+    border-radius: 4px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* The filled part of the slider */
+.price-slider .track {
+    background: #0F172A;
+    height: 100%;
+    border-radius: 2px;
+}
+
+/* Slider thumbs */
+.price-slider .thumb {
+    height: 8px;
+    width: 8px;
+    background-color: #0F172A;
+    border-radius: 50%;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    border: 1px solid #000;
+    box-shadow: 0 0 0 2px #0F172A33;
+    transition: background-color 0.2s;
+}
+
+.price-slider .thumb:hover {
+    background-color: #0F172A;
+}
+
+.price-slider .thumb:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #0F172A;
+}
+
+.sortby {
+    width: 100%;
+    /* margin-bottom: 20px; */
+}
+
+.sortby h3{
+    font-family: 'Sora', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #0F172A;
+    margin-bottom: 10px;
+}
+
+.sortby-options {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.sortby-options label {
+    display: flex;
+    gap: 10px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.85rem;
+    color: #64748B;
+}
+
+.sortby-options input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    cursor: pointer; 
+}
+
+.cartner-express {
+    width: 100%;
+    /* margin-bottom: 20px; */
+}
+
+.cartner-express h3{
+    font-family: 'Sora', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #0F172A;
+    margin-bottom: 10px;
+}
+
+.express-options {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.express-options label {
+    display: flex;
+    gap: 10px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.85rem;
+    color: #64748B;
+}
+
+.express-options input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    cursor: pointer; 
+}
