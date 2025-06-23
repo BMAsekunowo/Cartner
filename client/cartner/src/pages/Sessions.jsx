@@ -1,11 +1,12 @@
 import React from 'react'
+import SessionsHero from '../components/Sessions/SessionsHero'
+import SessionsContainer from '../components/Sessions/SessionsContainer'
 
 const Sessions = () => {
   return (
     <div>
-      <h1>Session Page</h1>
-
-      <h2>You currently have no active sessions</h2>
+      <SessionsHero />
+      <SessionsContainer />
     </div>
   )
 }

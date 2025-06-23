@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/HeroSection.css";
 import HeroImage from "../../assets/landing/cartner-hero.png";
+import Button from "../Button";
 
 const HeroSection = () => {
   return (
@@ -56,9 +57,12 @@ const HeroSection = () => {
               className="form-input"
             />
           </div>
-          <button type="submit" className="submit-btn">
-            Start Session
-          </button>
+          <Button
+                  size="lg"
+                 
+                >
+                  Start Session
+          </Button>
         </form>
       </div>
 

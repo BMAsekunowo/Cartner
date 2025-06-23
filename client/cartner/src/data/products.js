@@ -1,0 +1,88 @@
+// src/data/products.js
+
+export const products = [
+    {
+      name: "Apple Watch",
+      price: 399,
+      rating: 4.5,
+      reviews: 41,
+      image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MKU73_VW_34FR+watch-case-45-alum-silver-nc-se_VW_34FR_WF_CO?wid=800&hei=800&fmt=jpeg",
+    },
+    {
+      name: "Cotton T-Shirt",
+      price: 19,
+      rating: 5,
+      reviews: 5,
+      image: "https://m.media-amazon.com/images/I/61vi8mW1wrL._AC_UX569_.jpg",
+    },
+    {
+      name: "Bluetooth Speaker",
+      price: 59,
+      rating: 4.2,
+      reviews: 78,
+      image: "https://m.media-amazon.com/images/I/71+YV5YJtiL._AC_SL1500_.jpg",
+    },
+    {
+      name: "Yoga Mat",
+      price: 29,
+      rating: 4.8,
+      reviews: 23,
+      image: "https://m.media-amazon.com/images/I/81q0rKzAj8L._AC_SL1500_.jpg",
+    },
+    {
+      name: "Stainless Steel Water Bottle",
+      price: 15,
+      rating: 4.6,
+      reviews: 34,
+      image: "https://m.media-amazon.com/images/I/51h91PKY8+L._AC_SL1200_.jpg",
+    },
+    {
+      name: "Smartphone Tripod",
+      price: 22,
+      rating: 4.1,
+      reviews: 19,
+      image: "https://m.media-amazon.com/images/I/61rJD0RyZwL._AC_SL1500_.jpg",
+    },
+    {
+      name: "Running Shoes",
+      price: 89,
+      rating: 4.7,
+      reviews: 56,
+      image: "https://m.media-amazon.com/images/I/71xpbAz1uOL._AC_UL1500_.jpg",
+    },
+    {
+      name: "Noise Cancelling Headphones",
+      price: 129,
+      rating: 4.3,
+      reviews: 87,
+      image: "https://m.media-amazon.com/images/I/61dDvj2E3wL._AC_SL1500_.jpg",
+    },
+    {
+      name: "Ceramic Coffee Mug",
+      price: 12,
+      rating: 5,
+      reviews: 12,
+      image: "https://m.media-amazon.com/images/I/61DlfUnXkFL._AC_SL1500_.jpg",
+    },
+    {
+      name: "LED Desk Lamp",
+      price: 35,
+      rating: 4.4,
+      reviews: 48,
+      image: "https://m.media-amazon.com/images/I/61xt+Jns-vL._AC_SL1500_.jpg",
+    },
+    {
+      name: "Gaming Keyboard",
+      price: 69,
+      rating: 4.9,
+      reviews: 102,
+      image: "https://m.media-amazon.com/images/I/71V--WZVUIL._AC_SL1500_.jpg",
+    },
+    {
+      name: "Portable Power Bank",
+      price: 45,
+      rating: 4.2,
+      reviews: 67,
+      image: "https://m.media-amazon.com/images/I/71UNb+mG5XL._AC_SL1500_.jpg",
+    },
+  ];

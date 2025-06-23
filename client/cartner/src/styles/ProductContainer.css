@@ -8,7 +8,7 @@
 .product-content {
     display: flex;
     width: 100%;
-    height: 100vh;
+    height: auto;
     padding: 40px;
     gap: 20px;
     background-color: #FFF;
@@ -27,7 +27,8 @@
     font-size: 1.2rem;
     font-weight: 580;
     color: #0F172A;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 .product-category {
@@ -200,3 +201,17 @@
     height: 15px;
     cursor: pointer; 
 }
+
+.products-wrap {
+    width: 85%;
+}
+
+.search {
+    margin-left: 50%;
+    width: 50%;
+}
+
+.product-grid {
+    width: 100%;
+}
+

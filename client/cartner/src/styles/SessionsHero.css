@@ -1,0 +1,33 @@
+.shero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 300px;
+    background-color: #F9FAFB;
+}
+
+.shero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.shero-content h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 580;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.shero-content p{
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #6B7280;
+    margin-bottom: 20px;
+}

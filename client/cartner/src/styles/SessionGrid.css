@@ -1,0 +1,129 @@
+.session-grid-wrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .session-card-wrap {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #E0F2FE;
+    border-radius: 12px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    padding: 1.25rem 1.5rem;
+    width: 100%;
+  }
+  
+  .session-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .session-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: #111827;
+  }
+  
+  .session-description {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: lighter;
+    color: #64748B;
+    margin-bottom: 0.5rem;
+  }
+  
+  .participants {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .participants span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2em;
+    font-weight: 400;
+    color: #0F172A;
+  }
+  
+  .avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 999px;
+    object-fit: cover;
+  }
+  
+  .participant-count {
+    font-size: 0.85rem;
+    color: #374151;
+    font-weight: 500;
+  }
+  
+  .session-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+    margin-top: 12px; 
+    font-family: 'DM Sans', sans-serif;
+  }
+  
+  .session-metrics p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #0F172A;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .session-metrics span {
+    font-weight: lighter;
+    color: #64748B;
+    min-width: 100px; 
+    display: inline-block;
+  }
+  
+  .session-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .session-actions button {
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 2px solid #e5e7eb;
+    background-color: #f9fafb;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .session-actions button:hover {
+    background-color: #f3f4f6;
+  }
+
+  .menu-button {
+    margin-left: auto;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #64748B;
+    padding: 4px 8px;
+    line-height: 1;
+    transition: background-color 0.2s;
+    border-radius: 6px;
+  }
+  
+  .menu-button:hover {
+    background-color: #f3f4f6;
+  }

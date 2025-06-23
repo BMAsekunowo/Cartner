@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import ReactSlider from 'react-slider';
+import SearchBar from '../SearchBar';
 import '../../styles/ProductContainer.css'
+import ProductGrid from './ProductGrid';
+import { products } from '../../data/products';
 
 const ProductContainer = () => {
     const [priceRange, setpriceRange] = useState([0,1000])
@@ -52,6 +55,7 @@ const ProductContainer = () => {
                     </div>
                     <ReactSlider
                         className="price-slider"
+                        id="price-label"
                         thumbClassName="thumb"
                         trackClassName="track"
                         min={0}
@@ -123,7 +127,20 @@ const ProductContainer = () => {
             </div>
 
             <div className="products-wrap">
-                <h2>Products</h2>
+                <div className="search">
+                <SearchBar
+                placeholder="Search for products..."
+                size="sm"
+                buttonLabel="Find"
+                onSearch={(query) => {
+                    console.log("Searching for:", query);
+                }}
+                />
+                </div>
+
+                <div className="products-grid">
+                    <ProductGrid products={products} /> 
+                </div>
             </div>
         </div>
       </div>
