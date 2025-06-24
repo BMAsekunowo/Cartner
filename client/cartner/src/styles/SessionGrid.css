@@ -1,129 +1,261 @@
 .session-grid-wrap {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dotlength {
+  font-family: "DM Sans", sans-serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: #0f172a;
+  margin: 0;
+  padding: 0.1rem 0;
+}
+
+.session-card-wrap {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #e0f2fe;
+  border-radius: 12px;
+  margin-top: 20px;
+  margin-bottom: 0;
+  padding: 1.25rem 1.5rem;
+  width: 100%;
+}
+
+.session-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.session-title {
+  font-family: "Sora", sans-serif;
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #111827;
+}
+
+.session-description {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.2rem;
+  font-weight: lighter;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.participants {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.participants span {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.2em;
+  font-weight: 400;
+  color: #0f172a;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.participant-count {
+  font-size: 0.85rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.session-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+  font-family: "DM Sans", sans-serif;
+}
+
+.session-metrics p {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #0f172a;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.session-metrics span {
+  font-weight: lighter;
+  color: #64748b;
+  min-width: 100px;
+  display: inline-block;
+}
+
+.session-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 10px;
+}
+
+.session-actions button {
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  background-color: #f9fafb;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.session-actions button:hover {
+  background-color: #f3f4f6;
+}
+
+.menu-button {
+  margin-left: auto;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: background-color 0.2s;
+  border-radius: 6px;
+}
+
+.menu-button:hover {
+  background-color: #f3f4f6;
+}
+
+/* ===============================
+   Responsive: Tablet (≤1024px)
+   =============================== */
+@media (max-width: 1024px) {
   .session-card-wrap {
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-    border: 1px solid #E0F2FE;
-    border-radius: 12px;
-    margin-top: 20px;
-    margin-bottom: 0;
-    padding: 1.25rem 1.5rem;
-    width: 100%;
+    padding: 1rem;
   }
-  
-  .session-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-  
+
   .session-title {
-    font-family: 'Sora', sans-serif;
-    font-size: 1.5em;
-    font-weight: 500;
-    margin-bottom: 4px;
-    color: #111827;
+    font-size: 1.3em;
   }
-  
+
   .session-description {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1.2rem;
-    font-weight: lighter;
-    color: #64748B;
-    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
   }
-  
-  .participants {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+
+  .session-metrics p {
+    font-size: 1rem;
+  }
+
+  .session-metrics span {
+    min-width: 80px;
   }
 
   .participants span {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1.2em;
-    font-weight: 400;
-    color: #0F172A;
+    font-size: 1.05em;
   }
-  
+
   .avatar {
-    width: 45px;
-    height: 45px;
-    border-radius: 999px;
-    object-fit: cover;
+    width: 40px;
+    height: 40px;
   }
-  
-  .participant-count {
-    font-size: 0.85rem;
-    color: #374151;
-    font-weight: 500;
-  }
-  
-  .session-metrics {
-    display: flex;
+}
+
+/* ===============================
+    Responsive: Mobile (≤768px)
+  =============================== */
+@media (max-width: 768px) {
+  .session-card-wrap {
     flex-direction: column;
-    gap: 8px; 
-    margin-top: 12px; 
-    font-family: 'DM Sans', sans-serif;
   }
-  
+
+  .session-title {
+    font-size: 1.2em;
+  }
+
+  .session-description {
+    font-size: 1rem;
+  }
+
   .session-metrics p {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #0F172A;
-    display: flex;
-    gap: 8px;
-    align-items: center;
+    font-size: 0.95rem;
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
+
   .session-metrics span {
-    font-weight: lighter;
-    color: #64748B;
-    min-width: 100px; 
-    display: inline-block;
+    min-width: auto;
+    font-size: 0.95rem;
   }
-  
+
   .session-actions {
-    margin-top: 1rem;
-    display: flex;
-    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
+
   .session-actions button {
-    font-size: 0.85rem;
-    font-weight: 500;
-    padding: 6px 14px;
-    border-radius: 8px;
-    border: 2px solid #e5e7eb;
-    background-color: #f9fafb;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-  
-  .session-actions button:hover {
-    background-color: #f3f4f6;
+    width: 100%;
   }
 
   .menu-button {
-    margin-left: auto;
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #64748B;
-    padding: 4px 8px;
-    line-height: 1;
-    transition: background-color 0.2s;
-    border-radius: 6px;
+    font-size: 1.3rem;
   }
-  
-  .menu-button:hover {
-    background-color: #f3f4f6;
+
+  .avatar {
+    width: 38px;
+    height: 38px;
   }
+}
+
+/* ===============================
+  Responsive: Extra Small Devices (≤480px)
+=============================== */
+@media (max-width: 480px) {
+  .session-card-wrap {
+    padding: 0.85rem 1rem;
+  }
+
+  .session-title {
+    font-size: 1.1em;
+  }
+
+  .session-description {
+    font-size: 0.95rem;
+  }
+
+  .session-metrics p {
+    font-size: 0.9rem;
+  }
+
+  .session-metrics span {
+    font-size: 0.9rem;
+  }
+
+  .participants {
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .participants span {
+    font-size: 1em;
+  }
+
+  .avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  .menu-button {
+    font-size: 1.2rem;
+  }
+}

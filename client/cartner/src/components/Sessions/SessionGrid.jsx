@@ -4,7 +4,7 @@ import avatar1 from "../../assets/sessions/user1.png";
 import avatar2 from "../../assets/sessions/user2.png";
 import avatar3 from "../../assets/sessions/user3.png";
 import avatar4 from "../../assets/sessions/user4.png";
-import "../../styles/SessionGrid.css";  
+import "../../styles/SessionGrid.css";
 
 const SessionsGrid = () => {
   const sessionData = [
@@ -42,7 +42,7 @@ const SessionsGrid = () => {
     },
     {
       title: "Travel Essentials",
-      description: "Planning our next trip together",
+      description: "Planning our next trip together in the Maldives",
       participants: [avatar1, avatar2, avatar3, avatar4],
       budget: 1000,
       cartTotal: 600,
@@ -116,7 +116,7 @@ const SessionsGrid = () => {
 
   return (
     <div className="session-grid-wrap">
-      <p>You have ({sessionData.length}) Active Sessions Ongoing</p>
+      <p class="dotlength">You have ({sessionData.length}) Active Sessions Ongoing</p>
       {sessionData.map((session, index) => (
         <SessionCard key={index} {...session} />
       ))}

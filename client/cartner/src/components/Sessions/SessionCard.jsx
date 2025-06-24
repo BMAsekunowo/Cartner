@@ -24,7 +24,9 @@ const SessionCard = ({
               <img key={i} src={avatar} alt="avatar" className="avatar" />
             ))}
             {participants.length > 3 && (
-              <span className="participant-count">+{participants.length - 3}</span>
+              <span className="participant-count">
+                +{participants.length - 3}
+              </span>
             )}
           </div>
         </div>

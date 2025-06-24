@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 import { FaPlus } from "react-icons/fa";
-import Button from '../Button'
-import '../../styles/SessionsContainer.css'
-import SessionTabs from './SessionTabs';
-import SessionsGrid from './SessionGrid';
+import Button from "../Button";
+import "../../styles/SessionsContainer.css";
+import SessionTabs from "./SessionTabs";
+import SessionsGrid from "./SessionGrid";
 
 const SessionsContainer = () => {
   return (
@@ -12,13 +12,11 @@ const SessionsContainer = () => {
         <div className="session-content">
           <div className="title-bar">
             <h1>Sessions</h1>
-            
+
             <div className="btn-wrap">
-              <Button
-                    size="lg"
-                  >
-                    <FaPlus style={{ marginRight: "6px", alignItems: "center"}} />
-                    New Session
+              <Button size="lg">
+                <FaPlus style={{ marginRight: "6px", alignItems: "center" }} />
+                New Session
               </Button>
             </div>
           </div>
@@ -33,7 +31,7 @@ const SessionsContainer = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SessionsContainer
+export default SessionsContainer;

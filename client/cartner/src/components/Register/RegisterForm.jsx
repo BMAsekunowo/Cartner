@@ -9,6 +9,7 @@ import {
   FaXTwitter,
   FaFacebookF,
 } from "react-icons/fa6";
+import Button from "../Button";
 import SignUpImage from "../../assets/register/signup.png";
 import "../../styles/RegisterForm.css";
 import Logo from "../Logo";
@@ -77,9 +78,12 @@ const RegisterForm = () => {
               </div>
             </div>
 
-            <button type="submit" className="submit-btn">
-              Become a Cartner
-            </button>
+            <Button
+                  size="lg"
+                 
+                >
+                  Become a Cartner
+            </Button>
           </form>
         </div>
 

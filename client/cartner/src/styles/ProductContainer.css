@@ -1,217 +1,353 @@
 .product-container {
-    width: 100%;
-    height: auto;
-    padding: 10px 100px;
-    margin-bottom: 100px;
+  width: 100%;
+  height: auto;
+  padding: 10px 100px;
+  margin-bottom: 100px;
 }
 
 .product-content {
-    display: flex;
-    width: 100%;
-    height: auto;
-    padding: 40px;
-    gap: 20px;
-    background-color: #FFF;
-    border: 1px solid #E0F2FE;
-    border-radius: 20px;
+  display: flex;
+  width: 100%;
+  height: auto;
+  padding: 40px;
+  gap: 20px;
+  background-color: #fff;
+  border: 1px solid #e0f2fe;
+  border-radius: 20px;
 }
 
 .product-filters {
-    display: flex;
-    flex-direction: column;
-    width: 15%;
+  display: flex;
+  flex-direction: column;
+  width: 15%;
 }
 
 .product-filters h2 {
-    font-family: 'Sora', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 580;
-    color: #0F172A;
-    margin-top: 20px;
-    margin-bottom: 40px;
+  font-family: "Sora", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 580;
+  color: #0f172a;
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 .product-category {
-    width: 100%;
-    /* margin-bottom: 20px; */
+  width: 100%;
+  /* margin-bottom: 20px; */
 }
 
-.product-category h3{
-    font-family: 'Sora', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: #0F172A;
-    margin-bottom: 10px;
+.product-category h3 {
+  font-family: "Sora", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #0f172a;
+  margin-bottom: 10px;
 }
 
 .category-options {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
 }
 
 .category-options label {
-    display: flex;
-    gap: 10px;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 0.85rem;
-    color: #64748B;
+  display: flex;
+  gap: 10px;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 0.85rem;
+  color: #64748b;
 }
 
 .category-options input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
-    cursor: pointer; 
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
 }
 
-.makeline  {
-    width: 100%;
-    height: 1px;
-    background-color: #E0F2FE;
-    margin: 20px 0;
+.makeline {
+  width: 100%;
+  height: 1px;
+  background-color: #e0f2fe;
+  margin: 20px 0;
 }
 
 .price-range-filter {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .price-label {
-    font-family: 'Sora', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: #0F172A;
-    margin-bottom: 10px;
+  font-family: "Sora", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #0f172a;
+  margin-bottom: 10px;
 }
 
 .price-values {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 0.85rem;
-    color: #64748B;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 0.85rem;
+  color: #64748b;
 }
 
 .price-slider {
-    height: 3px;
-    background: #000;
-    border-radius: 4px;
-    position: relative;
-    margin-bottom: 20px;
+  height: 3px;
+  background: #000;
+  border-radius: 4px;
+  position: relative;
+  margin-bottom: 20px;
 }
 
 /* The filled part of the slider */
 .price-slider .track {
-    background: #0F172A;
-    height: 100%;
-    border-radius: 2px;
+  background: #0f172a;
+  height: 100%;
+  border-radius: 2px;
 }
 
 /* Slider thumbs */
 .price-slider .thumb {
-    height: 8px;
-    width: 8px;
-    background-color: #0F172A;
-    border-radius: 50%;
-    cursor: pointer;
-    top: 50%;
-    transform: translateY(-50%);
-    position: absolute;
-    border: 1px solid #000;
-    box-shadow: 0 0 0 2px #0F172A33;
-    transition: background-color 0.2s;
+  height: 8px;
+  width: 8px;
+  background-color: #0f172a;
+  border-radius: 50%;
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  border: 1px solid #000;
+  box-shadow: 0 0 0 2px #0f172a33;
+  transition: background-color 0.2s;
 }
 
 .price-slider .thumb:hover {
-    background-color: #0F172A;
+  background-color: #0f172a;
 }
 
 .price-slider .thumb:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px #0F172A;
+  outline: none;
+  box-shadow: 0 0 0 2px #0f172a;
 }
 
 .sortby {
-    width: 100%;
-    /* margin-bottom: 20px; */
+  width: 100%;
+  /* margin-bottom: 20px; */
 }
 
-.sortby h3{
-    font-family: 'Sora', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: #0F172A;
-    margin-bottom: 10px;
+.sortby h3 {
+  font-family: "Sora", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #0f172a;
+  margin-bottom: 10px;
 }
 
 .sortby-options {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
 }
 
 .sortby-options label {
-    display: flex;
-    gap: 10px;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 0.85rem;
-    color: #64748B;
+  display: flex;
+  gap: 10px;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 0.85rem;
+  color: #64748b;
 }
 
 .sortby-options input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
-    cursor: pointer; 
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
 }
 
 .cartner-express {
-    width: 100%;
-    /* margin-bottom: 20px; */
+  width: 100%;
+  /* margin-bottom: 20px; */
 }
 
-.cartner-express h3{
-    font-family: 'Sora', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: #0F172A;
-    margin-bottom: 10px;
+.cartner-express h3 {
+  font-family: "Sora", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #0f172a;
+  margin-bottom: 10px;
 }
 
 .express-options {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
 }
 
 .express-options label {
-    display: flex;
-    gap: 10px;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 0.85rem;
-    color: #64748B;
+  display: flex;
+  gap: 10px;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 0.85rem;
+  color: #64748b;
 }
 
 .express-options input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
-    cursor: pointer; 
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
 }
 
 .products-wrap {
-    width: 85%;
+  width: 85%;
 }
 
 .search {
-    margin-left: 50%;
-    width: 50%;
+  margin-left: 50%;
+  width: 50%;
 }
 
 .product-grid {
-    width: 100%;
+  width: 100%;
 }
 
+
+
+/* =====================================
+   Medium Devices (Tablets - ≤1024px)
+   ===================================== */
+   @media (max-width: 1024px) {
+    .product-container {
+      padding: 10px 50px;
+      margin-bottom: 60px;
+    }
+  
+    .product-content {
+      flex-direction: column;
+      padding: 30px;
+    }
+  
+    .product-filters {
+      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+  
+    .products-wrap {
+      width: 100%;
+    }
+  
+    .search {
+      margin-left: 0;
+      width: 100%;
+      margin-top: 20px;
+    }
+  }
+  
+  /* =====================================
+     Small Devices (Mobile - ≤768px)
+     ===================================== */
+  @media (max-width: 768px) {
+    .product-container {
+      padding: 10px 20px;
+      margin-bottom: 50px;
+    }
+  
+    .product-content {
+      padding: 20px;
+      gap: 16px;
+    }
+  
+    .product-filters {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .product-filters h2 {
+      font-size: 1rem;
+      margin-top: 16px;
+      margin-bottom: 24px;
+    }
+  
+    .product-category h3,
+    .sortby h3,
+    .cartner-express h3,
+    .price-label {
+      font-size: 0.9rem;
+    }
+  
+    .category-options label,
+    .sortby-options label,
+    .express-options label,
+    .price-values {
+      font-size: 0.8rem;
+    }
+  
+    .products-wrap {
+      width: 100%;
+    }
+  
+    .search {
+      width: 100%;
+      margin-left: 0;
+      margin-top: 16px;
+    }
+  }
+  
+  /* =====================================
+     Extra Small Devices (≤480px)
+     ===================================== */
+  @media (max-width: 480px) {
+    .product-container {
+      padding: 10px 12px;
+      margin-bottom: 40px;
+    }
+  
+    .product-content {
+      padding: 16px;
+      gap: 12px;
+    }
+  
+    .product-filters {
+      gap: 16px;
+    }
+  
+    .product-filters h2 {
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+  
+    .product-category h3,
+    .sortby h3,
+    .cartner-express h3,
+    .price-label {
+      font-size: 0.85rem;
+    }
+  
+    .category-options label,
+    .sortby-options label,
+    .express-options label,
+    .price-values {
+      font-size: 0.75rem;
+    }
+  
+    .price-slider .thumb {
+      height: 6px;
+      width: 6px;
+    }
+  
+    .products-wrap {
+      width: 100%;
+    }
+  
+    .search {
+      width: 100%;
+      margin-left: 0;
+      margin-top: 14px;
+    }
+  }

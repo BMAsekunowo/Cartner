@@ -1,34 +1,96 @@
 .phero-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 300px;
-    background-color: #F9FAFB;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 300px;
+  background-color: #f9fafb;
 }
 
 .phero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
 }
 
 .phero-content h1 {
-    font-family: 'Sora', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 580;
-    color: #111827;
-    margin-bottom: 10px;
+  font-family: "Sora", sans-serif;
+  font-size: 2.2rem;
+  font-weight: 580;
+  color: #111827;
+  margin-bottom: 10px;
 }
 
-.phero-content p{
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: #6B7280;
-    margin-bottom: 20px;
+.phero-content p {
+  font-family: "Segoe UI", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #6b7280;
+  margin-bottom: 20px;
 }
+
+
+/* ================================
+   Medium Devices (Tablets ≤1024px)
+   ================================ */
+   @media (max-width: 1024px) {
+    .phero-container {
+      height: 260px;
+      padding: 0 30px;
+    }
+  
+    .phero-content h1 {
+      font-size: 2rem;
+    }
+  
+    .phero-content p {
+      font-size: 1.1rem;
+      margin-bottom: 18px;
+    }
+  }
+  
+  /* ================================
+     Small Devices (Mobile ≤768px)
+     ================================ */
+  @media (max-width: 768px) {
+    .phero-container {
+      height: 220px;
+      padding: 0 20px;
+    }
+  
+    .phero-content h1 {
+      font-size: 1.8rem;
+    }
+  
+    .phero-content p {
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+  }
+  
+  /* ================================
+     Extra Small Devices (≤480px)
+     ================================ */
+  @media (max-width: 480px) {
+    .phero-container {
+      height: 200px;
+      padding: 0 15px;
+    }
+  
+    .phero-content {
+      padding: 15px;
+    }
+  
+    .phero-content h1 {
+      font-size: 1.6rem;
+    }
+  
+    .phero-content p {
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+  }

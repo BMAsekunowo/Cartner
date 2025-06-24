@@ -8,6 +8,7 @@ import {
   FaXTwitter,
   FaFacebookF,
 } from "react-icons/fa6";
+import Button from "../Button";
 import SignInImage from "../../assets/login/signinn.jpeg";
 import "../../styles/LoginForm.css";
 import Logo from "../Logo";
@@ -66,9 +67,12 @@ const LoginForm = () => {
                   />
                 </div>
               </div>
-              <button type="submit" className="submit-btn">
-                Continue Your Journey
-              </button>
+              <Button
+                  size="lg"
+                 
+                >
+                 Continue Your Journey
+          </Button>
             </form>
           </div>
 
