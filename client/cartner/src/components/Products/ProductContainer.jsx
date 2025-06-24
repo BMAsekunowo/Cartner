@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios'
 import ReactSlider from "react-slider";
 import SearchBar from "../SearchBar";
 import "../../styles/ProductContainer.css";

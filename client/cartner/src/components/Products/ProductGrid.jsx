@@ -26,6 +26,8 @@ const ProductCard = ({ image, name, price, rating, reviews }) => {
     return stars;
   };
 
+  
+
   return (
     <div className="product-card">
       <div className="product-image-container">

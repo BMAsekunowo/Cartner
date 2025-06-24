@@ -1,20 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "./Logo";
 import "../styles/Navbar.css";
 import Button from "./Button";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { handleLogout } from "../utils/auth";
 import { FaBars } from "react-icons/fa";
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // I'll Replace with actual authentication state management
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  //Authentication check (State Management)
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [location.pathname]); // <- Runs upon route change
+
+  const logout = () => {
+    handleLogout(navigate, "You have been logged out.");
+    setIsLoggedIn(false);
+    navigate("/"); //  redirect to home after logout
+  };
+
 
   return (
     <div>
@@ -84,10 +102,7 @@ const Navbar = () => {
               <div className="nav-logout-btn">
                 <Button
                   size="sm"
-                  onClick={() => {
-                    setIsLoggedIn(false);
-                    handleLogout();
-                  }}
+                  onClick={logout}
                 >
                   Logout
                 </Button>

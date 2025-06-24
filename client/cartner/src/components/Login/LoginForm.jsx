@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Link,useNavigate } from "react-router-dom";
 import {
   FaEnvelope,
   FaLock,
@@ -12,8 +13,33 @@ import Button from "../Button";
 import SignInImage from "../../assets/login/signinn.jpeg";
 import "../../styles/LoginForm.css";
 import Logo from "../Logo";
+import { login } from "../../services/AuthService"; 
 
 const LoginForm = () => {
+  const [formData, setformData] = useState({ email: "", password: ""});
+
+  const handleChange = (e) => {
+    setformData({ ...formData, [e.target.name]: e.target.value });
+  };
+  
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = await login(formData);
+      localStorage.setItem("token", data.token);
+      toast.success(`Welcome Back ${data.user.name}! You've Signed In Successfully, Enjoy your journey with Cartner`,
+        {
+          position: "top-center", // ✅ Fixed: lowercase string or use toast.POSITION.TOP_CENTER
+          autoClose: 10000,
+        }
+      );
+      navigate("/"); // redirect to home
+    } catch (err) {
+      alert("Signin failed: " + err.response.data.message);
+    }
+  };
   return (
     <>
       <div className="login-wrapper">
@@ -36,7 +62,7 @@ const LoginForm = () => {
               />
             </div>
 
-            <form className="form-l">
+            <form className="form-l" onSubmit={handleSubmit}>
               <div className="subtitle">
                 <p>Welcome back! Sign In to Continue Your Journey</p>
               </div>
@@ -50,6 +76,10 @@ const LoginForm = () => {
                     placeholder="Enter your email"
                     required
                     className="form-input"
+                    name="email"
+                    onChange={handleChange} 
+                    value={formData.email}
+                    autoComplete="current-email"
                   />
                 </div>
               </div>
@@ -64,12 +94,16 @@ const LoginForm = () => {
                     placeholder="Enter your password"
                     required
                     className="form-input"
+                    name="password"
+                    onChange={handleChange} 
+                    value={formData.password}
+                    autoComplete="current-password"
                   />
                 </div>
               </div>
               <Button
                   size="lg"
-                 
+                  type="submit"
                 >
                  Continue Your Journey
           </Button>

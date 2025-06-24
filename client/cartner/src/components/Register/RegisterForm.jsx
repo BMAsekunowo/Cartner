@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   FaEnvelope,
   FaLock,
@@ -13,8 +13,34 @@ import Button from "../Button";
 import SignUpImage from "../../assets/register/signup.png";
 import "../../styles/RegisterForm.css";
 import Logo from "../Logo";
+import { signup } from "../../services/AuthService";
 
 const RegisterForm = () => {
+
+  const [formData, setformData] = useState({name: "", email: "", password: ""});
+  const handleChange = (e) => {
+    setformData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = await signup(formData);
+      localStorage.setItem("token", data.token);
+      toast.success(`Congratulations ${data.user.name}! You've Signed up Successfully, We Hope you Enjoy your journey with Cartner`,
+        {
+          position: "top-center", // ✅ Fixed: lowercase string or use toast.POSITION.TOP_CENTER
+          autoClose: 10000,
+        }
+      );
+      navigate("/"); // redirect to home
+    } catch (err) {
+      alert("Signup failed: " + err.response.data.message);
+    }
+  };
+
   return (
     <div className="register-wrapper">
       <div className="register-form">
@@ -31,7 +57,7 @@ const RegisterForm = () => {
             <img src={SignUpImage} alt="Sign-Up" className="register-image" />
           </div>
 
-          <form className="register-form-l">
+          <form className="register-form-l" onSubmit={handleSubmit}>
             <div className="register-subtitle">
               <p>Welcome! Sign up to become a Cartner today</p>
             </div>
@@ -46,6 +72,10 @@ const RegisterForm = () => {
                   placeholder="Enter your name"
                   required
                   className="form-input"
+                  name="name"
+                  onChange={handleChange} 
+                  value={formData.name}
+                  autoComplete="name"
                 />
               </div>
             </div>
@@ -60,6 +90,10 @@ const RegisterForm = () => {
                   placeholder="Enter your email"
                   required
                   className="form-input"
+                  name="email"
+                  onChange={handleChange} 
+                  value={formData.email}
+                  autoComplete="email"
                 />
               </div>
             </div>
@@ -74,12 +108,17 @@ const RegisterForm = () => {
                   placeholder="Create a password"
                   required
                   className="form-input"
+                  name="password"
+                  onChange={handleChange} 
+                  value={formData.password}
+                  autoComplete="new-password"
                 />
               </div>
             </div>
 
             <Button
                   size="lg"
+                  type="submit"
                  
                 >
                   Become a Cartner
