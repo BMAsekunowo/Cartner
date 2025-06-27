@@ -116,7 +116,7 @@ const SessionsGrid = () => {
 
   return (
     <div className="session-grid-wrap">
-      <p class="dotlength">You have ({sessionData.length}) Active Sessions Ongoing</p>
+      <p className="dotlength">You have ({sessionData.length}) Active Sessions Ongoing</p>
       {sessionData.map((session, index) => (
         <SessionCard key={index} {...session} />
       ))}

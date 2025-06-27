@@ -30,6 +30,11 @@
   color: #0f172a;
 }
 
+.btns-wrap {
+  width: 20%;
+  height: 40px;
+}
+
 /* ===============================
    Responsive: Tablet (≤1024px)
    =============================== */
@@ -56,7 +61,7 @@
 @media (max-width: 768px) {
   .session-container {
     padding: 10px 30px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   }
 
   .session-content {
@@ -66,7 +71,6 @@
   }
 
   .title-bar {
-    flex-direction: column;
     gap: 12px;
   }
 
@@ -82,7 +86,7 @@
 @media (max-width: 480px) {
   .session-container {
     padding: 10px 16px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 
   .session-content {
@@ -92,7 +96,6 @@
   }
 
   .title-bar {
-    flex-direction: column;
     gap: 10px;
   }
 
@@ -100,5 +103,10 @@
     font-size: 1.4rem;
     line-height: 1.3;
     text-align: left;
+  }
+
+  .btns-wrap {
+    width: 40%;
+    height: 40px;
   }
 }

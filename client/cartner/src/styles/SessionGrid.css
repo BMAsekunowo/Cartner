@@ -145,6 +145,12 @@
     padding: 1rem;
   }
 
+  .session-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
   .session-title {
     font-size: 1.3em;
   }
@@ -177,6 +183,12 @@
 @media (max-width: 768px) {
   .session-card-wrap {
     flex-direction: column;
+  }
+
+  .session-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
   }
 
   .session-title {
@@ -223,6 +235,12 @@
 @media (max-width: 480px) {
   .session-card-wrap {
     padding: 0.85rem 1rem;
+  }
+
+  .session-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
   }
 
   .session-title {

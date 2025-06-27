@@ -4,7 +4,7 @@ import "../styles/Navbar.css";
 import Button from "./Button";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { handleLogout } from "../utils/auth";
 import { FaBars } from "react-icons/fa";
 
@@ -12,6 +12,7 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // I'll Replace with actual authentication state management
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -19,6 +20,7 @@ const Navbar = () => {
 
   //Authentication check (State Management)
   useEffect(() => {
+    setMenuOpen(false); // Close menu on route change
     const token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);

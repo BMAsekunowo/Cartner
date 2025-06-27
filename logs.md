@@ -65,3 +65,29 @@
 ✅ Clean and modern backend logic; ready for frontend phase
 
 //All fully Tested by self and operational – Cleared for Frontend Phase on the 21st of May 2025
+
+
+
+===WEEK 4: Frontend Week 1 Summary: Frontend UI Architecture & Core Pages (Completed) ===
+
+✅ Project scaffolded and environment initialized with modular folder structure (Vite + CSS)
+✅ Reusable NavBar and Footer components built and styled for consistent sitewide use
+✅ Landing UI designed and implemented:
+ • Hero, Features, Testimonials, Call-to-Action sections
+✅ Sign In & Register UIs fully designed and connected to backend authentication
+✅ Explore Marketplace (Products Page) created with styled product cards (currently static)
+✅ Sessions Page UI implemented for collaborative shopping structure (static)
+✅ Cart Page UI fully developed:
+ • CartTable component with responsive layout, image, name, quantity, price
+ • Quantity adjusters styled with proper alignment
+ • OrderSummary component showing subtotal, 13% tax, and total
+✅ Placeholder Home Page added to simulate post-login landing flow
+✅ Connected to server-side authentication:
+ • Sign In and Register forms functional via backend API
+ • JWT token storage and access confirmed
+✅ Responsiveness applied across all components using media queries:
+ • Tablet (≤1024px), Mobile (≤768px), Extra Small (≤480px)
+✅ All UI pages and elements visually validated on multiple screen sizes
+✅ Currently using static product/session data pending dynamic integration in Week 2
+
+// All components tested and responsive – Cleared for Frontend Week 2 (Session Flows, Product Detail, and Dynamic Data) on the 27th of June 2025
