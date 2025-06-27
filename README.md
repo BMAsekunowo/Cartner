@@ -86,10 +86,16 @@ npm run dev
 
 ## 📅 Project Timeline
 
-- **Week 1**: Environment setup, Git, MongoDB, MVC structure ✅
-- **Week 2**: Auth system, JWT, route protection 🔒
-- **Week 3**: Shared sessions + Cart logic 🛒
-- **Week 4**: Final polish + deployment 🚀
+- **Backend Week 1**: Environment setup, Git, MongoDB, MVC structure ✅  
+- **Backend Week 2**: Auth system, JWT, route protection 🔒  
+- **Backend Week 3**: Shared sessions + Smart Cart logic 🛒  
+
+- **Frontend Week 1**: Project structure, Auth pages, layout responsiveness 🧱  
+- **Frontend Week 2**: Product pages, cart features, session creation 🛍️  
+- **Frontend Week 3**: Real-time session features, smart cost split 👥  
+- **Frontend Week 4**: Profile, order history, notifications, UX polish 🧾  
+- **Frontend Week 5**: Static pages, admin prep, UI refinements 🎨  
+- **Frontend Week 6**: Deployment, route protection, final testing 🚀
 
 ---
 
