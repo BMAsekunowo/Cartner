@@ -7,7 +7,7 @@ import {
   FaEye,
   FaCartPlus,
 } from "react-icons/fa";
-import Button from "../Button";
+import Button from "../Reusables/Button";
 import "../../styles/ProductGrid.css";
 // Reusable single product card
 const ProductCard = ({ image, name, price, rating, reviews }) => {

@@ -1,0 +1,141 @@
+.profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    min-height: 500px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border: 1px solid #E0F2FE;
+}
+
+.pimg-wrap {
+    display: flex;
+    flex-direction: column ;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    border-bottom: 1px solid #E0F2FE;
+}
+
+.p-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #6366F1;
+    margin-bottom: 20px
+}
+
+.verification {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 140px;
+    padding: 20px;
+    gap: 10px;
+    border-bottom: 1px solid #E0F2FE;
+}
+
+.provided-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 150px;
+    padding: 10px 20px;
+    gap: 25px;
+    border-bottom: 1px solid #E0F2FE;
+}
+
+.provided-info p {
+    font-family: 'Sora', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #0F172A;
+}
+
+.provided-info ul {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.9rem;
+    list-style: none;
+    color: #374151;
+}
+
+.provided-info ul li {
+    margin-bottom: 5px;
+}
+
+.your-orders {
+    width: 100%;
+    padding: 10px 20px;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .your-orders > p {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #111827;
+    font-family: 'Sora', sans-serif;
+  }
+  
+  .order-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .order-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background-color: #f9fafb;
+    font-family: 'DM Sans', sans-serif;
+  }
+  
+  .order-id {
+    font-weight: bold;
+    color: #1f2937;
+  }
+  
+  .order-name {
+    margin: 4px 0;
+    color: #374151;
+  }
+  
+  .order-status {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+  
+  .order-status.delivered {
+    color: #10b981;
+  }
+  
+  .order-status.shipped {
+    color: #3b82f6;
+  }
+  
+  .order-status.processing {
+    color: #f59e0b;
+  }
+  
+  .order-date {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-top: 2px;
+  }
+
+  .view-more {
+    text-align: right;
+  }

@@ -57,7 +57,7 @@ exports.loginUser = async (req, res) => { const { email, password } = req.body; 
         }
 
         //Generating JWT token
-        const token = JWT.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '2d' });
+        const token = JWT.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '6h' });
 
         res.status(200).json({message:`Congratulations ${user.name} your login was successful`, token, user:{
             name:user.name,
@@ -72,4 +72,21 @@ exports.loginUser = async (req, res) => { const { email, password } = req.body; 
         res.status(500).json({ message: 'oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up' });
     }
 };
+
+exports.validateToken = (req, res) => {
+    console.log('req.user:', req.user) // 🔍 Check if user is defined
+  
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ message: 'User not authenticated' })
+    }
+  
+    const newToken = JWT.sign(
+      { id: req.user.id },
+      process.env.JWT_SECRET,
+      { expiresIn: '6h' }
+      
+    )
+    console.log('Token refreshed successfully ✅')
+    res.json({ token: newToken })
+  }
 

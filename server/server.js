@@ -20,6 +20,7 @@ app.use('/api/auth', require('./routes/auth'));  //Auth Routes
 app.use('/api/products', require('./routes/product')); //Product Routes
 app.use('/api/carts', require('./routes/cart'));  //Cart Routes
 app.use('/api/sessions', require('./routes/session')); //Session Routes
+app.use('/api/profiles', require('./routes/profile')); //Profile Routes
 
 // Global Error Handler (should come after all routes)
 app.use(errorHandler);

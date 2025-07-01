@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import ReactSlider from "react-slider";
-import SearchBar from "../SearchBar";
+import SearchBar from "../Reusables/SearchBar";
 import "../../styles/ProductContainer.css";
 import ProductGrid from "./ProductGrid";
 import { products } from "../../data/products";

@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/HeroSection.css";
 import HeroImage from "../../assets/landing/cartner-hero.png";
-import Button from "../Button";
+import Button from "../Reusables/Button";
 
 const HeroSection = () => {
   return (

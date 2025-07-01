@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../Button'
+import Button from '../Reusables/Button'
 import { Link, useNavigate } from 'react-router-dom'
 import '../../styles/CartHeader.css' 
 const CartHeader = () => {

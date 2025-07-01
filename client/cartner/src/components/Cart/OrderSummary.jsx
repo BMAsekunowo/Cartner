@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../Button";
+import Button from "../Reusables/Button";
 import "../../styles/OrderSummary.css";
 
 const OrderSummary = ({ subtotal = 209, fees = 7 }) => {

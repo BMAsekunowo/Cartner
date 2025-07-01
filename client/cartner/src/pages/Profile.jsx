@@ -1,9 +1,13 @@
 import React from 'react'
+import ProfileView from '../components/Profile/ProfileView'
+import ProfileSide from '../components/Profile/ProfileSide'
+import ProfileMain from '../components/Profile/ProfileMain'
 
 const Profile = () => {
   return (
-    <div>
-      <h1>Welcome to your profile</h1>
+    <div className='profile-page-wrap'>
+      <ProfileSide />
+      <ProfileMain />
     </div>
   )
 }

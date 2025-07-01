@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-//This is the base URL for local server 
+//This is the base URL for local server
 const port = "http://localhost:5005";
 
 export const signup = async (userData) => {
@@ -21,4 +21,4 @@ export const login = async (credentials) => {
     console.error("Error during signin:", error);
     throw error.response ? error.response.data : error.message;
   }
-}
+};

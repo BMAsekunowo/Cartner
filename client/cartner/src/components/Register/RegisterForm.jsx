@@ -9,10 +9,10 @@ import {
   FaXTwitter,
   FaFacebookF,
 } from "react-icons/fa6";
-import Button from "../Button";
+import Button from "../Reusables/Button";
 import SignUpImage from "../../assets/register/signup.png";
 import "../../styles/RegisterForm.css";
-import Logo from "../Logo";
+import Logo from "../Reusables/Logo";
 import { signup } from "../../services/AuthService";
 
 const RegisterForm = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SearchBar from "../SearchBar";
+import SearchBar from "../Reusables/SearchBar";
 import "../../styles/SessionTabs.css";
 
 const SessionTabs = () => {

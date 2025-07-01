@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FaSearch } from "react-icons/fa";
 import Button from "./Button";
-import "../styles/SearchBar.css";
+import "../../styles/SearchBar.css";
 
 const SearchBar = ({ placeholder, onSearch, buttonLabel = "Search", size = "md" }) => {
   const [value, setValue] = React.useState("");

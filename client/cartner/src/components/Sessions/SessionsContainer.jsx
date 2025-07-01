@@ -1,6 +1,6 @@
 import React from "react";
 import { FaPlus } from "react-icons/fa";
-import Button from "../Button";
+import Button from "../Reusables/Button";
 import "../../styles/SessionsContainer.css";
 import SessionTabs from "./SessionTabs";
 import SessionsGrid from "./SessionGrid";

@@ -9,10 +9,10 @@ import {
   FaXTwitter,
   FaFacebookF,
 } from "react-icons/fa6";
-import Button from "../Button";
+import Button from "../Reusables/Button";
 import SignInImage from "../../assets/login/signinn.jpeg";
 import "../../styles/LoginForm.css";
-import Logo from "../Logo";
+import Logo from "../Reusables/Logo";
 import { login } from "../../services/AuthService"; 
 
 const LoginForm = () => {
@@ -29,6 +29,7 @@ const LoginForm = () => {
     try {
       const data = await login(formData);
       localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user)); // Store user data in localStorage
       toast.success(`Welcome Back ${data.user.name}! You've Signed In Successfully, Enjoy your journey with Cartner`,
         {
           position: "top-center", // ✅ Fixed: lowercase string or use toast.POSITION.TOP_CENTER

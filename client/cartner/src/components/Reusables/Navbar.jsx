@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Logo from "./Logo";
-import "../styles/Navbar.css";
+import "../../styles/Navbar.css";
 import Button from "./Button";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { handleLogout } from "../utils/auth";
+import { Link, useNavigate, useLocation, data } from "react-router-dom";
+import { handleLogout } from "../../utils/auth";
 import { FaBars } from "react-icons/fa";
 
 const Navbar = () => {
@@ -13,6 +13,9 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const user = JSON.parse(localStorage.getItem('user'))
+
+
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -75,7 +78,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <Link to="/profile" className="linkto">
-                      Profile
+                      Welcome Back, {user.name}!
                     </Link>
                   </li>
                 </>
