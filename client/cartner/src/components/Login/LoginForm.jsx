@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   FaEnvelope,
   FaLock,
@@ -14,6 +14,7 @@ import SignInImage from "../../assets/login/signinn.jpeg";
 import "../../styles/LoginForm.css";
 import Logo from "../Reusables/Logo";
 import { login } from "../../services/AuthService"; 
+import { createSession } from "../../services/SessionService"; // Import createSession function
 
 const LoginForm = () => {
   const [formData, setformData] = useState({ email: "", password: ""});
@@ -29,18 +30,39 @@ const LoginForm = () => {
     try {
       const data = await login(formData);
       localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user)); // Store user data in localStorage
-      toast.success(`Welcome Back ${data.user.name}! You've Signed In Successfully, Enjoy your journey with Cartner`,
-        {
-          position: "top-center", // ✅ Fixed: lowercase string or use toast.POSITION.TOP_CENTER
-          autoClose: 10000,
-        }
-      );
-      navigate("/"); // redirect to home
+      localStorage.setItem("user", JSON.stringify(data.user));
+  
+      const pending = localStorage.getItem("pendingSession");
+  
+      if (pending) {
+        // Process the session creation immediately
+        const sessionData = JSON.parse(pending);
+  
+        await createSession(sessionData);
+        localStorage.removeItem("pendingSession");
+  
+        toast.success("Session created after login!", {
+          position: "top-center",
+        });
+  
+        navigate("/sessions");
+      } else {
+        toast.success(
+          `Welcome Back ${data.user.name}! You've Signed In Successfully. Enjoy your journey with Cartner`,
+          {
+            position: "top-center",
+            autoClose: 10000,
+          }
+        );
+  
+        navigate("/"); // Only if no session is pending
+      }
     } catch (err) {
-      alert("Signin failed: " + err.response.data.message);
+      alert("Signin failed: " + err.response?.data?.message || err.message);
     }
   };
+  
+  
   return (
     <>
       <div className="login-wrapper">

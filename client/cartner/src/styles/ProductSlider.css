@@ -1,0 +1,26 @@
+.product-slider-section {
+    margin: 3rem 0;
+    padding: 0 1rem;
+  }
+  
+  .slider-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: "Sora", sans-serif;
+    color: #111827;
+  }
+  
+  .product-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .slider-item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: 240px; /* Same as min width of your product cards */
+  }

@@ -4,10 +4,30 @@ import ReactSlider from "react-slider";
 import SearchBar from "../Reusables/SearchBar";
 import "../../styles/ProductContainer.css";
 import ProductGrid from "./ProductGrid";
-import { products } from "../../data/products";
+import { getAllProducts } from "../../services/ProductService";
 
 const ProductContainer = () => {
+  
   const [priceRange, setpriceRange] = useState([0, 1000]);
+  const [products, setProducts] = useState([]); // ✅ dynamic data
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+
+      try {
+        const data = await getAllProducts()
+        setProducts(data.products)
+      } catch (err) {
+        console.error("Error fetching products:", err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProducts()
+  }, [])
+
   return (
     <div>
       <div className="product-container">

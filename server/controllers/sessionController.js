@@ -9,10 +9,10 @@ const generateCode = () => {
 };
 
 exports.createSession = async (req, res) => {
-  const { type, name, passcode } = req.body;
+  const { sessionType, sessionName, passcode, participants } = req.body;
   const userId = req.user.id;
 
-  if (!type || !name) {
+  if (!sessionType || !sessionName) {
     return res
       .status(400)
       .json({ message: "Session type and name are required" });
@@ -31,10 +31,11 @@ exports.createSession = async (req, res) => {
     const sessionCode = generateCode();
 
     const newSession = new Session({
-      type,
-      name,
+      sessionType,
+      sessionName,
       cartId: newCart._id,
       createdBy: userId,
+      participants,
       sessionCode,
       passcode: passcode || null,
       invitedUsers: [{ userId, role: "creator" }],
@@ -46,7 +47,7 @@ exports.createSession = async (req, res) => {
       message: "Session created successfully",
       session: {
         id: newSession._id,
-        name: newSession.name,
+        name: newSession.sessionName,
         sessionCode: newSession.sessionCode,
         passcodeRequired: !!newSession.passcode,
       },
@@ -111,8 +112,8 @@ exports.inviteUser = async (req, res) => {
 
     res.status(200).json({
       message: `✅ ${
-        invitedUser.name || invitedUser.email
-      } has been successfully invited to your ${session.name} session`,
+        invitedUser.sessionName || invitedUser.email
+      } has been successfully invited to your ${session.sessionName} session`,
     });
   } catch (error) {
     console.error("❌ inviteUser error:", error);
@@ -273,7 +274,7 @@ exports.getJoinRequests = async (req, res) => {
     const pendingRequests = session.invitedUsers.filter(user => user.role === "pending");
 
     res.status(200).json({
-      sessionName: session.name,
+      sessionName: session.sessionName,
       pendingRequests
     });
   } catch (error) {

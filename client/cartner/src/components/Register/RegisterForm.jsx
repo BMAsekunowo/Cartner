@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import {
   FaEnvelope,
@@ -14,10 +15,15 @@ import SignUpImage from "../../assets/register/signup.png";
 import "../../styles/RegisterForm.css";
 import Logo from "../Reusables/Logo";
 import { signup } from "../../services/AuthService";
+import { createSession } from "../../services/SessionService";
 
 const RegisterForm = () => {
+  const [formData, setformData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
-  const [formData, setformData] = useState({name: "", email: "", password: ""});
   const handleChange = (e) => {
     setformData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -29,17 +35,35 @@ const RegisterForm = () => {
     try {
       const data = await signup(formData);
       localStorage.setItem("token", data.token);
-      toast.success(`Congratulations ${data.user.name}! You've Signed up Successfully, We Hope you Enjoy your journey with Cartner`,
-        {
-          position: "top-center", // ✅ Fixed: lowercase string or use toast.POSITION.TOP_CENTER
-          autoClose: 10000,
-        }
-      );
-      navigate("/"); // redirect to home
+      localStorage.setItem("user", JSON.stringify(data.user));
+  
+      toast.success(`Congratulations ${data.user.name}! You've signed up successfully. Enjoy your journey with Cartner!`, {
+        position: "top-center",
+        autoClose: 10000,
+      });
+  
+      const pending = localStorage.getItem("pendingSession");
+  
+      if (pending) {
+        const sessionData = JSON.parse(pending);
+        await createSession(sessionData);
+        localStorage.removeItem("pendingSession");
+  
+        toast.success("Session created after signup!", {
+          position: "top-center",
+        });
+  
+        navigate("/sessions");
+      } else {
+        navigate("/");
+      }
+  
     } catch (err) {
-      alert("Signup failed: " + err.response.data.message);
+      alert("Signup failed: " + err.response?.data?.message || err.message);
     }
   };
+
+  
 
   return (
     <div className="register-wrapper">
@@ -73,7 +97,7 @@ const RegisterForm = () => {
                   required
                   className="form-input"
                   name="name"
-                  onChange={handleChange} 
+                  onChange={handleChange}
                   value={formData.name}
                   autoComplete="name"
                 />
@@ -91,7 +115,7 @@ const RegisterForm = () => {
                   required
                   className="form-input"
                   name="email"
-                  onChange={handleChange} 
+                  onChange={handleChange}
                   value={formData.email}
                   autoComplete="email"
                 />
@@ -109,19 +133,15 @@ const RegisterForm = () => {
                   required
                   className="form-input"
                   name="password"
-                  onChange={handleChange} 
+                  onChange={handleChange}
                   value={formData.password}
                   autoComplete="new-password"
                 />
               </div>
             </div>
 
-            <Button
-                  size="lg"
-                  type="submit"
-                 
-                >
-                  Become a Cartner
+            <Button size="lg" type="submit">
+              Become a Cartner
             </Button>
           </form>
         </div>

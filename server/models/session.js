@@ -1,14 +1,19 @@
 const mongoose = require('mongoose');
 
 const sessionSchema = new mongoose.Schema({
-  type: {
+  sessionType: {
     type: String,
-    enum: ['couple', 'friends', 'family', 'solo'],
+    enum: ['Couple', 'Friends', 'Family', 'Solo'],
     required: true
   },
-  name: {
+  sessionName: {
     type: String,
     required: true
+  },
+  participants: {
+    type: String,
+    required: true,
+    min: 1
   },
   status: {
     type: String,

@@ -15,6 +15,7 @@ import "./styles/index.css"; // Importing global styles
 import Footer from "./components/Reusables/Footer";
 import Navbar from "./components/Reusables/Navbar";
 import PublicProfile from "./pages/PublicProfile"; // Importing PublicProfile page 
+import ProductDetails from "./pages/ProductDetails"; // Importing ProductDetails page
 import useAutoRefreshToken from "./hooks/useAutoRefreshToken";
 
 function App() {
@@ -60,7 +61,9 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/sessions" element={<Sessions />} />
           <Route path="/profile" element={<Profile />} />
+          {/* Dynamic Routes */}
           <Route path="/user/:userId" element={<PublicProfile />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
           {/* Route for client side invalid path Error */}
           <Route path="*" element={<Error404 />} />
         </Routes>

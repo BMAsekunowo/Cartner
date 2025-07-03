@@ -4,7 +4,7 @@ import axios from "axios";
 const port = "http://localhost:5005";
 
 export const getMyProfile = async (token) => {
-  const res = await fetch(`${port}/api/profile/me`, {
+  const res = await axios.get(`${port}/api/profile/me`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -29,8 +29,7 @@ export const getMyProfile = async (token) => {
 //   }, [])
 
 export const updateProfile = async (token, profileData) => {
-  const res = await fetch(`${port}/api/profile`, {
-    method: "POST",
+  const res = await axios.post(`${port}/api/profile`, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

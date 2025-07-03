@@ -2,7 +2,7 @@ const Product = require('../models/product'); //Product Model
 const mongoose = require('mongoose'); //Database
 
 exports.createProduct = async (req, res) => { 
-    const { name, description, price, stock, category,imageUrl } = req.body; //Destructuring the request body
+    const { name, description, price, stock, category,imageUrl, reviews, rating } = req.body; //Destructuring the request body
     //Validation of Prospective new product input
     if (!name || !description || !price || !stock || !category) {
         return res.status(400).json({ message: 'All Products details must be duly inputed' });
@@ -21,7 +21,9 @@ exports.createProduct = async (req, res) => {
             price,
             stock,
             category: category.trim(), 
-            imageUrl
+            imageUrl,
+            reviews,
+            rating
         });
         await newProduct.save();
         console.log(`A New product added to database ✅:`, newProduct);
@@ -47,6 +49,37 @@ exports.getAllProducts = async (req, res) => {
         res.status(500).json({ message: 'oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up' });
     }
 }
+
+exports.getProductByName = async (req, res) => {
+    //Check if the name is a valid name in an ObjectId
+  const name = req.params.name; //Destructuring req.body and extracting Product Name
+
+  // Validate that name is a non-empty string
+  if (!name || typeof name !== 'string' || name.trim() === '') {
+    return res.status(400).json({ message: 'Invalid product name format' });
+  }
+
+  //Proper Error Handling, standard
+  try {
+    const product = await Product.findOne( { name } );
+
+    if (!product) {
+      return res.status(404).json({ message: `Product with name ${name} was not found, Enter correct name` });
+    }
+
+    res.status(200).json({
+      message: `Product with the name: ${name} was found`,
+      product
+    });
+
+  } 
+  
+  catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up' });
+  }
+}
+
 
 exports.getProductById = async (req, res) => { 
         //Check if the ID is a valid ObjectId in MongoDB
