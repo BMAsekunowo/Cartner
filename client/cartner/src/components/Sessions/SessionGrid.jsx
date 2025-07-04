@@ -1,14 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SessionCard from "./SessionCard";
-import avatar1 from "../../assets/sessions/user1.png";
-import avatar2 from "../../assets/sessions/user2.png";
-import avatar3 from "../../assets/sessions/user3.png";
-import avatar4 from "../../assets/sessions/user4.png";
 import "../../styles/SessionGrid.css";
 import { getAllSessions } from "../../services/SessionService";
 
-const SessionsGrid = () => {
+const SessionsGrid = ({ activeTab }) => {
+  const navigate = useNavigate();
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,18 +27,30 @@ const SessionsGrid = () => {
 
   if (loading) return <p>Loading your sessions...</p>;
 
+  if (activeTab === "upcoming") return <p style={{ padding: "2rem" }}>🚧 Coming Soon!</p>;
+
+  const filteredSessions = sessions.filter((session) => {
+    if (activeTab === "active") return session.status === "active"; // or your custom logic
+    if (activeTab === "past") return session.status === "completed"; // or check end date
+    return true;
+  });
+
   return (
     <div className="session-grid-wrap">
-      <p className="dotlength">You have ({sessions.length}) Active Sessions Ongoing</p>
-      {sessions.map((session, index) => (
+      <p className="dotlength">You have ({filteredSessions.length}) {activeTab} Sessions</p>
+      {filteredSessions.map((session, index) => (
         <SessionCard
           key={index}
           title={session.sessionName}
           description={session.sessionType}
-          participants={session.invitedUsers.map((user) => user.avatar || null)}
+          participants={session.invitedUsers.map((u) => u.avatar || null)}
           budget={session.budget || 0}
           cartTotal={session.cart?.totalPrice || 0}
           savings={(session.budget || 0) - (session.cart?.totalPrice || 0)}
+          onView={() => navigate(`/session/${session._id}`)}
+          onEdit={() => navigate(`/session/edit/${session._id}`)}
+          onLeave={() => navigate(`/sessions/leave/${session._id}`)}
+          onEnd={() => navigate(`/sessions/end/${session._id}`)}
         />
       ))}
     </div>

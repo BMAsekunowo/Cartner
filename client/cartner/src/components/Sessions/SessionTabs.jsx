@@ -2,42 +2,40 @@ import React, { useState } from "react";
 import SearchBar from "../Reusables/SearchBar";
 import "../../styles/SessionTabs.css";
 
-const SessionTabs = () => {
-  const [activeTab, setActiveTab] = useState("active");
-
+const SessionTabs = ({ activeTab, setActiveTab }) => {
   return (
     <div className="session-tabs-container">
-        <div className="session-tabs">
+      <div className="session-tabs">
         <button
-            className={activeTab === "active" ? "tab active" : "tab"}
-            onClick={() => setActiveTab("active")}
+          className={activeTab === "active" ? "tab active" : "tab"}
+          onClick={() => setActiveTab("active")}
         >
-            Active
+          Active
         </button>
         <button
-            className={activeTab === "past" ? "tab active" : "tab"}
-            onClick={() => setActiveTab("past")}
+          className={activeTab === "past" ? "tab active" : "tab"}
+          onClick={() => setActiveTab("past")}
         >
-            Past
+          Past
         </button>
         <button
-            className={activeTab === "upcoming" ? "tab active" : "tab"}
-            onClick={() => setActiveTab("upcoming")}
+          className={activeTab === "upcoming" ? "tab active" : "tab"}
+          onClick={() => setActiveTab("upcoming")}
         >
-            Upcoming
+          Upcoming
         </button>
-        </div>
+      </div>
 
-        <div className="tabs-search">
+      <div className="tabs-search">
         <SearchBar
-                placeholder="Search for Sessions..."
-                size="sm"
-                buttonLabel="Find"
-                onSearch={(query) => {
-                    console.log("Searching for:", query);
-                }}
-            />
-        </div>
+          placeholder="Search for Sessions..."
+          size="sm"
+          buttonLabel="Find"
+          onSearch={(query) => {
+            console.log("Searching for:", query);
+          }}
+        />
+      </div>
     </div>
   );
 };

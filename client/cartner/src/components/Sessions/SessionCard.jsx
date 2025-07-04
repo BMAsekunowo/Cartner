@@ -12,6 +12,7 @@ const SessionCard = ({
   onView,
   onEdit,
   onLeave,
+  onEnd,
 }) => {
   return (
     <div className="session-card-wrap">
@@ -48,6 +49,7 @@ const SessionCard = ({
         <button onClick={onView}>View</button>
         <button onClick={onEdit}>Edit</button>
         <button onClick={onLeave}>Leave</button>
+        <button onClick={onEnd}>End</button>
         <button className="menu-button">⋯</button>
       </div>
     </div>

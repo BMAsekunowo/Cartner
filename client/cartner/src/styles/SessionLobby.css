@@ -1,0 +1,115 @@
+.session-lobby-wrap {
+    width: 700px;
+    padding: 2rem;
+    background-color: #f9fafb;
+    border-radius: 1.5rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0f2fe;
+    font-family: "DM Sans", sans-serif;
+    color: #1e293b;
+  }
+  
+  .sessiond-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #0f172a;
+  }
+  
+  .session-description {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #475569;
+    margin-bottom: 1.5rem;
+  }
+  
+  .passcode-box {
+    margin-bottom: 2rem;
+  }
+  
+  .passcode-box .label {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin-bottom: 0.3rem;
+  }
+  
+  .passcode-box .code {
+    font-size: 1.1rem;
+    background-color: #f1f5f9;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    width: fit-content;
+    font-weight: 600;
+  }
+  
+  .participants-wrap .label {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+  }
+  
+  .avatars-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  
+  .avatar-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 999px;
+    object-fit: cover;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .avatar-name {
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1e293b;
+  }
+  
+  .badge {
+    margin-top: 0.2rem;
+    font-size: 0.75rem;
+    color: #fff;
+    background-color: #6366f1;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.5rem;
+  }
+  
+  .budget-cart-wrap {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .budget-cart-wrap .label {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 0.2rem;
+  }
+  
+  .budget-cart-wrap .value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0f172a;
+  }
+  
+  .session-footer {
+    text-align: center;
+    color: #1e293b;
+    font-size: 0.95rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+  }
+  

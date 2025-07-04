@@ -1,0 +1,103 @@
+.invite-user-form {
+  width: 500px;
+  background: #ffffff;
+  border: 1px solid #E0F2FE;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+}
+
+.form-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.form-group3 {
+  margin-bottom: 1rem;
+  border: 1px solid #e2e8f0;
+   border-radius: 10px;
+  padding: 10px;
+}
+
+.form-group3 label {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.invite-input {
+  width: 100%;
+  padding: 0.65rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.invite-input:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+
+.form-group3:has(.invite-input:focus) {
+  border-color: #0f172a;
+}
+
+
+
+
+.pending-requests-section {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.pending-user {
+  display: flex;
+  align-items: center;
+  background: #f9fafb;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.pending-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+.pending-info {
+  flex-grow: 1;
+}
+
+.pending-name {
+  font-size: 0.95rem;
+  color: #1f2937;
+}
+
+.pending-actions button {
+  margin-left: 0.5rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+  border: none;
+}
+
+.accept-btn {
+  background-color: #10b981;
+  color: white;
+}
+
+.reject-btn {
+  background-color: #ef4444;
+  color: white;
+}
