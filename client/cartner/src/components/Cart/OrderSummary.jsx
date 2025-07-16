@@ -2,9 +2,13 @@ import React from "react";
 import Button from "../Reusables/Button";
 import "../../styles/OrderSummary.css";
 
-const OrderSummary = ({ subtotal = 209, fees = 7 }) => {
+const OrderSummary = ({ subtotal = 0 }) => {
+  const feesRate = 0.01;
+  const fees = subtotal * feesRate;
+
   const taxRate = 0.13;
-  const tax = subtotal * taxRate;
+  const tax = (subtotal + fees) * taxRate;
+
   const total = subtotal + fees + tax;
 
   return (
@@ -17,7 +21,7 @@ const OrderSummary = ({ subtotal = 209, fees = 7 }) => {
       </div>
 
       <div className="summary-row">
-        <span className="label">Fees</span>
+        <span className="label">Fees (1%)</span>
         <span className="amount">${fees.toFixed(2)}</span>
       </div>
 
@@ -35,8 +39,8 @@ const OrderSummary = ({ subtotal = 209, fees = 7 }) => {
 
       <div className="btno-wrap">
         <Button 
-        className="checkout-button"
-        size="lg"
+          className="checkout-button"
+          size="lg"
         >
           Proceed to Checkout
         </Button>

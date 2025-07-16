@@ -45,7 +45,7 @@ const useAutoRefreshToken = () => {
           localStorage.setItem('token', data.token)
           activityDetected.current = false // Reset detection after refresh
         } else {
-          console.warn('❌ Token refresh failed:', data.message)
+          console.warn('  Token refresh failed:', data.message)
           localStorage.removeItem('token')
           localStorage.removeItem('user')
           navigate('/login')

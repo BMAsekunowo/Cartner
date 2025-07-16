@@ -4,8 +4,8 @@ const Cart = require("../models/cart"); //Cart Model
 const mongoose = require("mongoose"); //Database
 
 exports.createCart = async (req, res) => {
-  const userId = req.user.id; //Getting user ID from token
-  const { sessionId, products} = req.body; //Destructuring the request body
+  const userId = req.user.id;
+  const { sessionId, products } = req.body;
 
   let totalPrice = 0;
   for (const item of products) {
@@ -15,14 +15,10 @@ exports.createCart = async (req, res) => {
     }
   }
 
-  //Validation if Account exists && cart Exists
   if (!userId) {
-    return res
-      .status(400)
-      .json({
-        message:
-          "oops, It looks like you are not signed in or you do not have an account with us",
-      });
+    return res.status(400).json({
+      message: "You are not signed in or do not have an account",
+    });
   }
 
   if (
@@ -31,41 +27,45 @@ exports.createCart = async (req, res) => {
     products.length === 0 ||
     !totalPrice
   ) {
-    return res
-      .status(400)
-      .json({
-        message: "Cart is empty,Shop to add to your new products to your cart",
-      });
+    return res.status(400).json({
+      message: "Cart is empty. Add products to your cart",
+    });
   }
 
-  //Proper Error Handling, standard
   try {
-    //Creating and saving the new cart
+    // 1. Create Cart
     const newCart = new Cart({
       userId,
       sessionId,
       products,
       totalPrice,
     });
+
     await newCart.save();
-    console.log(`A New cart added to database ✅:`, newCart);
+
+    // Link this cart back to the Session
+    if (sessionId) {
+      await Session.findByIdAndUpdate(sessionId, {
+        cartId: newCart._id,
+      });
+    }
+
+    console.log(`✅ New cart added:`, newCart);
+
     res.status(201).json({
       message: `You have created a cart successfully`,
       cart: newCart,
     });
   } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json({
-        message:
-          "oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up",
-      });
+    console.error("  Error creating cart:", error);
+    res.status(500).json({
+      message: "Something went wrong. We're fixing it.",
+    });
   }
 };
 
 exports.getCartByUserId = async (req, res) => {
-  const userId = req.user.id; //Getting user ID from token
+  const userId = req.user.id;
 
   // Validate MongoDB ObjectId
   if (!mongoose.Types.ObjectId.isValid(userId)) {
@@ -73,22 +73,43 @@ exports.getCartByUserId = async (req, res) => {
   }
 
   try {
-    const carts = await Cart.find({ userId }).sort({ createdAt: -1 }); // ← No conversion needed here
+    const carts = await Cart.find({ userId })
+      .sort({ createdAt: -1 })
+      .populate({
+        path: "products.productId", 
+        model: "Product",
+      })
+      .populate({
+        path: "sessionId",
+        model: "Session",
+        select: "sessionName sessionType invitedUsers createdBy status",
+      })
+      .populate({
+        path: "sessionId.invitedUsers.userId",
+        model: "User",
+        select: "email name",
+      })
+      .populate({
+        path: "sessionId.createdBy",
+        model: "User",
+        select: "email name",
+      });
 
     if (!carts || carts.length === 0) {
       return res.status(404).json({
-        message: `Oops, you do not seem to have any existing cart(s)`
+        message: `Oops, you do not seem to have any existing cart(s)`,
       });
     }
 
     res.status(200).json({
       message: `We found your ${carts.length} cart(s) and we are pulling them up`,
-      carts
+      carts,
     });
   } catch (error) {
-    console.error(error);
+    console.error("  getCartByUserId error:", error);
     res.status(500).json({
-      message: "Oops, something went wrong. It’s not you, it’s us and we’re fixing it."
+      message:
+        "Oops, something went wrong. It’s not you, it’s us and we’re fixing it.",
     });
   }
 };
@@ -119,11 +140,9 @@ exports.updateCart = async (req, res) => {
     //Prevent actions on ended sessions
     const session = await Session.findById(cart.sessionId);
     if (session && session.status === "ended") {
-      return res
-        .status(403)
-        .json({
-          message: "This session has ended. Cart can no longer be modified.",
-        });
+      return res.status(403).json({
+        message: "This session has ended. Cart can no longer be modified.",
+      });
     }
   } catch (error) {
     console.error(error);
@@ -133,45 +152,209 @@ exports.updateCart = async (req, res) => {
   }
 };
 
-exports.deleteCart = async (req, res) => {
-  const cartId = req.params.cartId; //Destructuring the request body
+exports.updateCartQuantity = async (req, res) => {
+  const { cartId } = req.params;
+  const { productId, change } = req.body; // change: +1 or -1
 
-  // Validate MongoDB ObjectId
+  try {
+    const cart = await Cart.findById(cartId);
+    if (!cart) return res.status(404).json({ message: "Cart not found" });
+
+    const product = cart.products.find(
+      (p) => p.productId.toString() === productId
+    );
+    if (!product)
+      return res.status(404).json({ message: "Product not in cart" });
+
+    product.quantity += change;
+
+    if (product.quantity < 1) {
+      // remove item entirely if quantity < 1
+      cart.products = cart.products.filter(
+        (p) => p.productId.toString() !== productId
+      );
+    }
+
+    // Recalculate totalPrice
+    let total = 0;
+    for (let item of cart.products) {
+      const prod = await Product.findById(item.productId);
+      total += prod.price * item.quantity;
+    }
+    cart.totalPrice = total;
+
+    await cart.save();
+
+    res.status(200).json({
+      message: "Cart updated successfully",
+      cart,
+    });
+  } catch (err) {
+    console.error("🛠️ updateCartQuantity error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+exports.removeProductFromCart = async (req, res) => {
+  const { cartId, productId } = req.params;
+
+  try {
+    const cart = await Cart.findById(cartId);
+    if (!cart) return res.status(404).json({ message: "Cart not found" });
+
+    const originalLength = cart.products.length;
+
+    // Filter out the product
+    cart.products = cart.products.filter(
+      (item) => item.productId.toString() !== productId
+    );
+
+    if (cart.products.length === originalLength) {
+      return res.status(404).json({ message: "Product not found in cart" });
+    }
+
+    // Recalculate total
+    let total = 0;
+    for (let item of cart.products) {
+      const product = await Product.findById(item.productId);
+      if (product) {
+        total += product.price * item.quantity;
+      }
+    }
+
+    cart.totalPrice = total;
+
+    await cart.save();
+
+    res.status(200).json({
+      message: "Product removed from cart successfully",
+      cart,
+    });
+  } catch (error) {
+    console.error("🗑️ removeProductFromCart error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+exports.addProductToCart = async (req, res) => {
+  const { cartId } = req.params;
+  const { productId, quantity } = req.body;
+
+  if (!productId || !quantity || quantity < 1) {
+    return res
+      .status(400)
+      .json({ message: "Product ID and valid quantity are required" });
+  }
+
+  try {
+    const cart = await Cart.findById(cartId);
+    if (!cart) return res.status(404).json({ message: "Cart not found" });
+
+    const existingItem = cart.products.find(
+      (item) => item.productId.toString() === productId
+    );
+
+    if (existingItem) {
+      // Update quantity
+      existingItem.quantity += quantity;
+    } else {
+      // Add new product
+      cart.products.push({ productId, quantity });
+    }
+
+    // Recalculate total
+    let total = 0;
+    for (let item of cart.products) {
+      const product = await Product.findById(item.productId);
+      if (product) {
+        total += product.price * item.quantity;
+      }
+    }
+
+    cart.totalPrice = total;
+
+    await cart.save();
+
+    res.status(200).json({
+      message: "Product added to cart successfully",
+      cart,
+    });
+  } catch (error) {
+    console.error("➕ addProductToCart error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+exports.getSingleCart = async (req, res) => {
+  try {
+    const cart = await Cart.findById(req.params.cartId)
+      .populate("sessionId")
+      .populate("products.productId");
+
+    if (!cart) return res.status(404).json({ message: "Cart not found" });
+
+    res.status(200).json({ cart });
+  } catch (error) {
+    console.error("getSingleCart error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+exports.clearCart = async (req, res) => {
+  try {
+    const cart = await Cart.findById(req.params.cartId);
+    if (!cart) return res.status(404).json({ message: "Cart not found" });
+
+    cart.products = [];
+    cart.totalPrice = 0;
+    await cart.save();
+
+    res.status(200).json({ message: "Cart cleared", cart });
+  } catch (error) {
+    console.error("clearCart error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+exports.deleteCart = async (req, res) => {
+  const cartId = req.params.cartId;
+
+  // Validate cart ID
   if (!mongoose.Types.ObjectId.isValid(cartId)) {
     return res.status(400).json({ message: "Invalid cart ID format" });
   }
 
-  //Proper Error Handling, standard
   try {
-    const cart = await Cart.findByIdAndDelete(cartId);
+    // Find the cart first
+    const cart = await Cart.findById(cartId);
 
     if (!cart) {
-      return res
-        .status(404)
-        .json({ message: `oops, you do not seem to have an existing cart` });
-    }
-
-    res.status(200).json({
-      message: `We have deleted your cart successfully`,
-      cart,
-    });
-
-    //Prevent actions on ended sessions
-    const session = await Session.findById(cart.sessionId);
-    if (session && session.status === "ended") {
-      return res
-        .status(403)
-        .json({
-          message: "This session has ended. Cart can no longer be modified.",
-        });
-    }
-  } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json({
-        message:
-          "oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up",
+      return res.status(404).json({
+        message: "Oops, this cart doesn't exist or has already been deleted.",
       });
+    }
+
+    // Delete the cart
+    await cart.deleteOne();
+
+    // End the connected session (if exists)
+    if (cart.sessionId) {
+      const session = await Session.findById(cart.sessionId);
+      if (session && session.status !== "ended") {
+        session.status = "ended";
+        await session.save();
+      }
+    }
+
+    // Respond to client
+    res.status(200).json({
+      message: "Cart deleted successfully and session (if linked) ended.",
+      cartId: cart._id,
+    });
+  } catch (error) {
+    console.error("  deleteCart error:", error);
+    res.status(500).json({
+      message: "Oops, something went wrong while deleting your cart.",
+    });
   }
 };

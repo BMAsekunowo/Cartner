@@ -2,6 +2,7 @@ const Session = require("../models/session"); //Session Model
 const Cart = require("../models/cart"); //Cart Model
 const User = require("../models/user"); //User Model
 const mongoose = require("mongoose"); //Database
+const user = require("../models/user");
 
 // Utility to generate readable session codes
 const generateCode = () => {
@@ -13,13 +14,26 @@ exports.createSession = async (req, res) => {
   const userId = req.user.id;
 
   if (!sessionType || !sessionName) {
-    return res
-      .status(400)
-      .json({ message: "Session type and name are required" });
+    return res.status(400).json({
+      message: "Session type and name are required",
+    });
   }
 
   try {
-    // Generate cart first
+    // Check if user already has a session with same name
+    const existingSession = await Session.findOne({
+      sessionName,
+      createdBy: userId,
+    });
+
+    if (existingSession) {
+      return res.status(409).json({
+        message:
+          "You already have a session with this name. Please choose a different name.",
+      });
+    }
+
+    // Step 1: Create cart
     const newCart = await Cart.create({
       userId,
       sessionUsers: [{ userId, role: "creator" }],
@@ -27,9 +41,10 @@ exports.createSession = async (req, res) => {
       totalPrice: 0,
     });
 
-    // Generate unique session code (loop retry optional later)
+    // Step 2: Generate session code
     const sessionCode = generateCode();
 
+    // Step 3: Create session
     const newSession = new Session({
       sessionType,
       sessionName,
@@ -43,7 +58,12 @@ exports.createSession = async (req, res) => {
 
     await newSession.save();
 
-    res.status(201).json({
+    // Step 4: Link sessionId to cart
+    newCart.sessionId = newSession._id;
+    await newCart.save();
+
+    // Step 5: Respond
+    return res.status(201).json({
       message: "Session created successfully",
       session: {
         id: newSession._id,
@@ -53,10 +73,17 @@ exports.createSession = async (req, res) => {
       },
     });
   } catch (error) {
+    // Handle duplicate key error from index, just in case
+    if (error.code === 11000) {
+      return res.status(409).json({
+        message: "A session with this name already exists under your account.",
+      });
+    }
+
     console.error("createSession error:", error);
-    res
-      .status(500)
-      .json({ message: "Something went wrong while creating the session" });
+    return res.status(500).json({
+      message: "Something went wrong while creating the session",
+    });
   }
 };
 
@@ -66,7 +93,9 @@ exports.inviteUser = async (req, res) => {
 
   // Validate input
   if (!email || !sessionCode) {
-    return res.status(400).json({ message: "Please provide email and session code" });
+    return res
+      .status(400)
+      .json({ message: "Please provide email and session code" });
   }
 
   try {
@@ -116,9 +145,38 @@ exports.inviteUser = async (req, res) => {
       } has been successfully invited to your ${session.sessionName} session`,
     });
   } catch (error) {
-    console.error("❌ inviteUser error:", error);
+    console.error("  inviteUser error:", error);
     res.status(500).json({
       message: "Oops, something went wrong while inviting user",
+    });
+  }
+};
+
+exports.getInvitesByEmail = async (req, res) => {
+  const userEmail = req.user.email;
+
+  try {
+    const sessions = await Session.find({
+      invitedUsers: { $elemMatch: { email: userEmail, role: "pending" } },
+    }).select("sessionName sessionCode invitedUsers creator");
+
+    const pendingInvites = sessions.map((session) => {
+      const invite = session.invitedUsers.find(
+        (u) => u.email === userEmail && u.role === "pending"
+      );
+
+      return {
+        sessionName: session.sessionName,
+        sessionCode: session.sessionCode,
+        invitedBy: session.creator,
+      };
+    });
+
+    res.status(200).json(pendingInvites);
+  } catch (error) {
+    console.error("  getInvitesByEmail error:", error);
+    res.status(500).json({
+      message: "Something went wrong while fetching invites by email",
     });
   }
 };
@@ -130,7 +188,7 @@ exports.acceptInvite = async (req, res) => {
   try {
     const session = await Session.findOne({ sessionCode });
     if (!session) {
-      return res.status(404).json({ message: 'Session not found' });
+      return res.status(404).json({ message: "Session not found" });
     }
 
     const invited = session.invitedUsers.find(
@@ -138,7 +196,9 @@ exports.acceptInvite = async (req, res) => {
     );
 
     if (!invited) {
-      return res.status(400).json({ message: 'You are not invited to this session' });
+      return res
+        .status(400)
+        .json({ message: "You are not invited to this session" });
     }
 
     // Ensure participant is not already in the cart sessionUsers
@@ -146,11 +206,14 @@ exports.acceptInvite = async (req, res) => {
       $addToSet: { sessionUsers: { userId, role: invited.role } },
     });
 
-    res.status(200).json({ message: 'You have joined the session successfully' });
+    res.status(200).json({
+      message: "You have joined the session successfully",
+      sessionId: session._id,
+    });
   } catch (error) {
-    console.error('❌ acceptInvite error:', error);
+    console.error("  acceptInvite error:", error);
     res.status(500).json({
-      message: 'Oops, something went wrong while accepting invite',
+      message: "Oops, something went wrong while accepting invite",
     });
   }
 };
@@ -184,19 +247,24 @@ exports.rejectSessionInvite = async (req, res) => {
 
     // Also remove from cart.sessionUsers
     await Cart.findByIdAndUpdate(session.cartId, {
-      $pull: { sessionUsers: { userId } }
+      $pull: { sessionUsers: { userId } },
     });
 
     res.status(200).json({ message: "You have declined the session invite" });
   } catch (error) {
-    console.error("❌ rejectSessionInvite error:", error);
-    res.status(500).json({ message: "Something went wrong rejecting the invite" });
+    console.error("  rejectSessionInvite error:", error);
+    res
+      .status(500)
+      .json({ message: "Something went wrong rejecting the invite" });
   }
 };
 
 exports.joinSessionByCode = async (req, res) => {
   const userId = req.user.id;
-  const { sessionCode, passcode } = req.body;
+  const sessionCode = req.body.sessionCode || req.body.joinSessionCode;
+  const passcode = req.body.passcode || req.body.joinPasscode;
+
+  console.log("🔐 Received join request:", { sessionCode, passcode });
 
   if (!sessionCode) {
     return res.status(400).json({ message: "Session code is required" });
@@ -204,19 +272,18 @@ exports.joinSessionByCode = async (req, res) => {
 
   try {
     const session = await Session.findOne({ sessionCode });
+    console.log("📦 Session fetched:", session);
 
     if (!session) {
       return res.status(404).json({ message: "Session not found" });
     }
 
-    // If passcode is required but missing or wrong
     if (session.passcode && session.passcode !== passcode) {
       return res
         .status(403)
         .json({ message: "Incorrect or missing session passcode" });
     }
 
-    // Check if user is already invited (participant or pending)
     const existing = session.invitedUsers.find(
       (u) => String(u.userId) === userId
     );
@@ -224,27 +291,31 @@ exports.joinSessionByCode = async (req, res) => {
     if (existing) {
       return res.status(200).json({
         message:
-          existing.role === "participant"
+          existing.role === "pending"
             ? "You are already a participant in this session"
             : "You have already requested to join this session",
       });
     }
 
-    // Add user as pending
-    session.invitedUsers.push({ userId, role: "pending" });
-    await session.save();
+    console.log("📌 User is new, updating invitedUsers and cart...");
 
-    // Add to cart.sessionUsers as well
-    await Cart.findByIdAndUpdate(session.cartId, {
-      $addToSet: { sessionUsers: { userId, role: "participant" } }, // Optional: you can delay this until approval if needed
-    });
+    // ✅ Safe DB-level update without triggering full validation
+    await Session.updateOne(
+      { _id: session._id },
+      { $addToSet: { invitedUsers: { userId, role: "pending" } } }
+    );
+
+    await Cart.updateOne(
+      { _id: session.cartId },
+      { $addToSet: { sessionUsers: { userId, role: "participant" } } }
+    );
 
     res.status(202).json({
       message: "Join request submitted. Awaiting session creator approval",
       sessionId: session._id,
     });
   } catch (error) {
-    console.error("❌ joinSessionByCode error:", error);
+    console.error("  joinSessionByCode error:", error);
     res.status(500).json({
       message: "Oops, something went wrong while joining the session",
     });
@@ -268,18 +339,31 @@ exports.getJoinRequests = async (req, res) => {
 
     // Only the session creator can view join requests
     if (String(session.createdBy) !== requesterId) {
-      return res.status(403).json({ message: "Only the session creator can view join requests" });
+      return res
+        .status(403)
+        .json({ message: "Only the session creator can view join requests" });
     }
 
-    const pendingRequests = session.invitedUsers.filter(user => user.role === "pending");
+    const pendingRequests = session.invitedUsers.filter(
+      (user) => user.role === "pending"
+    );
 
-    res.status(200).json({
-      sessionName: session.sessionName,
-      pendingRequests
-    });
+    if (pendingRequests.length === 0) {
+      return res
+        .status(200)
+        .json({ message: "No pending join requests for this session" });
+    } else {
+      return res.status(200).json({
+        sessionName: session.sessionName,
+        message: `Found ${pendingRequests.length} pending join request(s)`,
+        pendingRequests,
+      });
+    }
   } catch (error) {
-    console.error("❌ getJoinRequests error:", error);
-    res.status(500).json({ message: "Something went wrong while fetching join requests" });
+    console.error("  getJoinRequests error:", error);
+    res
+      .status(500)
+      .json({ message: "Something went wrong while fetching join requests" });
   }
 };
 
@@ -289,37 +373,42 @@ exports.approveJoinRequest = async (req, res) => {
   const requesterId = req.user.id;
 
   if (!email) {
-    return res.status(400).json({ message: 'Email is required' });
+    return res.status(400).json({ message: "Email is required" });
   }
 
   try {
     const session = await Session.findOne({ sessionCode });
 
     if (!session) {
-      return res.status(404).json({ message: 'Session not found' });
+      return res.status(404).json({ message: "Session not found" });
     }
 
     // Ensure only creator can approve
     if (String(session.createdBy) !== requesterId) {
-      return res.status(403).json({ message: 'Only the session creator can approve requests' });
+      return res
+        .status(403)
+        .json({ message: "Only the session creator can approve requests" });
     }
 
     const userToApprove = await User.findOne({ email });
     if (!userToApprove) {
-      return res.status(404).json({ message: 'No user found with that email' });
+      return res.status(404).json({ message: "No user found with that email" });
     }
 
     // Check if user is in pending state
     const invitedEntry = session.invitedUsers.find(
-      (u) => String(u.userId) === String(userToApprove._id) && u.role === 'pending'
+      (u) =>
+        String(u.userId) === String(userToApprove._id) && u.role === "pending"
     );
 
     if (!invitedEntry) {
-      return res.status(400).json({ message: 'No pending request from this user' });
+      return res
+        .status(400)
+        .json({ message: "No pending request from this user" });
     }
 
     // Approve the request
-    invitedEntry.role = 'participant';
+    invitedEntry.role = "participant";
     await session.save();
 
     // Reflect it in the cart
@@ -327,16 +416,19 @@ exports.approveJoinRequest = async (req, res) => {
       $push: {
         sessionUsers: {
           userId: userToApprove._id,
-          role: 'participant'
-        }
-      }
+          role: "participant",
+        },
+      },
     });
 
-    res.status(200).json({ message: `${email} has been approved and added to the session.` });
-
+    res.status(200).json({
+      message: `${email} has been approved and added to the session.`,
+    });
   } catch (error) {
-    console.error('❌ approveJoinRequest error:', error);
-    res.status(500).json({ message: 'Something went wrong while approving the join request' });
+    console.error("  approveJoinRequest error:", error);
+    res.status(500).json({
+      message: "Something went wrong while approving the join request",
+    });
   }
 };
 
@@ -346,24 +438,24 @@ exports.rejectJoinRequest = async (req, res) => {
   const requesterId = req.user.id;
 
   if (!email || !sessionCode) {
-    return res.status(400).json({ message: 'Missing session code or email' });
+    return res.status(400).json({ message: "Missing session code or email" });
   }
 
   try {
     const session = await Session.findOne({ sessionCode });
 
     if (!session) {
-      return res.status(404).json({ message: 'Session not found' });
+      return res.status(404).json({ message: "Session not found" });
     }
 
     // Ensure only the creator can reject
     if (String(session.createdBy) !== requesterId) {
-      return res.status(403).json({ message: 'Unauthorized access' });
+      return res.status(403).json({ message: "Unauthorized access" });
     }
 
     const userToReject = await User.findOne({ email });
     if (!userToReject) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: "User not found" });
     }
 
     const originalCount = session.invitedUsers.length;
@@ -372,17 +464,19 @@ exports.rejectJoinRequest = async (req, res) => {
     );
 
     if (session.invitedUsers.length === originalCount) {
-      return res.status(404).json({ message: 'User is not in the session or already handled' });
+      return res
+        .status(404)
+        .json({ message: "User is not in the session or already handled" });
     }
 
     await session.save();
 
     res.status(200).json({
-      message: `User ${email} has been rejected from the session`
+      message: `User ${email} has been rejected from the session`,
     });
   } catch (error) {
-    console.error('❌ rejectJoinRequest error:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    console.error("  rejectJoinRequest error:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -391,19 +485,22 @@ exports.getMySessions = async (req, res) => {
 
   try {
     const sessions = await Session.find({
-      "invitedUsers.userId": userId,
+      invitedUsers: {
+        $elemMatch: {
+          userId: userId,
+          role: { $in: ["creator", "participant"] }, // Exclude 'pending'
+        },
+      },
     })
-      .sort({ updatedAt: -1 }) // Most recent first
-      .populate("cartId") // Optional: get cart info
-      .populate("createdBy", "name email"); // Optional: creator info
+      .sort({ updatedAt: -1 })
+      .populate("cartId")
+      .populate("createdBy", "name email");
 
     if (!sessions || sessions.length === 0) {
-      return res
-        .status(200)
-        .json({
-          message: "You are not part of any sessions yet",
-          sessions: [],
-        });
+      return res.status(200).json({
+        message: "You are not part of any active sessions yet",
+        sessions: [],
+      });
     }
 
     res.status(200).json({
@@ -412,9 +509,9 @@ exports.getMySessions = async (req, res) => {
     });
   } catch (error) {
     console.error("getMySessions error:", error);
-    res
-      .status(500)
-      .json({ message: "Something went wrong fetching your sessions" });
+    res.status(500).json({
+      message: "Something went wrong fetching your sessions",
+    });
   }
 };
 
@@ -463,6 +560,78 @@ exports.getSessionById = async (req, res) => {
   }
 };
 
+exports.getActiveSessionsByUser = async (req, res) => {
+  console.log("💡 Incoming request to /my-actives");
+  console.log("🔐 req.user:", req.user);
+
+  try {
+    const userId = req.user.id;
+    const objectUserId = new mongoose.Types.ObjectId(userId);
+
+    const sessions = await Session.find({
+      status: "active",
+      $or: [
+        { createdBy: objectUserId },
+        {
+          invitedUsers: {
+            $elemMatch: {
+              userId: objectUserId,
+              role: "participant",
+            },
+          },
+        },
+      ],
+    })
+      .sort({ updatedAt: -1 })
+      .populate("cartId");
+
+    console.log("✅ Sessions found:", sessions.length);
+
+    res.status(200).json({
+      message: `Found ${sessions.length} active session(s) for user`,
+      sessions,
+    });
+  } catch (error) {
+    console.error("  getActiveSessionsByUser error:", error);
+    res.status(500).json({
+      message: "Something went wrong while fetching your active sessions",
+    });
+  }
+};
+
+exports.getCartById = async (req, res) => {
+  const userId = req.user.id;
+  const { sessionId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(sessionId)) {
+    return res.status(400).json({ message: "Invalid session ID" });
+  }
+
+  try {
+    const session = await Session.findById(sessionId);
+    if (!session) return res.status(404).json({ message: "Session not found" });
+
+    // ✅ Check if user is part of invitedUsers (creator or participant)
+    const isInvited = session.invitedUsers.some(
+      (user) => String(user.userId) === userId
+    );
+
+    if (!isInvited && String(session.createdBy) !== userId) {
+      return res.status(403).json({ message: "Access denied to this cart" });
+    }
+
+    const cart = await Cart.findById(session.cartId).populate(
+      "products.productId"
+    );
+    if (!cart) return res.status(404).json({ message: "Cart not found" });
+
+    res.status(200).json(cart);
+  } catch (error) {
+    console.error("getCartById error:", error);
+    res.status(500).json({ message: "Server error while fetching cart" });
+  }
+};
+
 exports.leaveSession = async (req, res) => {
   const userId = req.user.id;
   const { sessionId } = req.params;
@@ -477,12 +646,10 @@ exports.leaveSession = async (req, res) => {
 
     // Prevent creator from leaving
     if (String(session.createdBy) === userId) {
-      return res
-        .status(403)
-        .json({
-          message:
-            "Creators cannot leave their own sessions. You may end the session instead.",
-        });
+      return res.status(403).json({
+        message:
+          "Creators cannot leave their own sessions. You may end the session instead.",
+      });
     }
 
     // Filter out user from invitedUsers
@@ -499,11 +666,9 @@ exports.leaveSession = async (req, res) => {
     res.status(200).json({ message: "You have left the session successfully" });
   } catch (error) {
     console.error("leaveSession error:", error);
-    res
-      .status(500)
-      .json({
-        message: "Something went wrong while trying to leave the session",
-      });
+    res.status(500).json({
+      message: "Something went wrong while trying to leave the session",
+    });
   }
 };
 
@@ -531,6 +696,7 @@ exports.endSession = async (req, res) => {
     }
 
     session.status = "ended";
+    await Cart.findOneAndDelete({ sessionId: session._id });
     await session.save();
 
     res.status(200).json({

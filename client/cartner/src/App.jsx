@@ -18,6 +18,7 @@ import PublicProfile from "./pages/PublicProfile"; // Importing PublicProfile pa
 import ProductDetails from "./pages/ProductDetails"; // Importing ProductDetails page
 import SessionDetails from "./pages/SessionDetails"; // Importing SessionDetails page
 import useAutoRefreshToken from "./hooks/useAutoRefreshToken";
+import SessionSelector from "./components/Reusables/SessionSelector";
 
 function App() {
   //Checking token validity
@@ -54,6 +55,7 @@ function App() {
     <div className="outer-wrapper">
       <div className="app-wrapper">
         <Navbar />
+        {localStorage.getItem("token") && <SessionSelector />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -66,6 +68,7 @@ function App() {
           <Route path="/user/:userId" element={<PublicProfile />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/session/:sessionId" element={< SessionDetails />} />
+          <Route path="/cart/:sessionId" element={<Cart />} />
           {/* Route for client side invalid path Error */}
           <Route path="*" element={<Error404 />} />
         </Routes>

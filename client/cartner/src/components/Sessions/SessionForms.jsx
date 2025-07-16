@@ -93,30 +93,38 @@ const SessionForms = ({ sessionCode, onInvite }) => {
       </form>
 
       <div className="pending-requests-section">
-  <h4 className="form-title">Pending Join Requests</h4>
+        <h4 className="form-title">Pending Join Requests</h4>
 
-  <div className="pending-user">
-    <img src="https://i.pravatar.cc/48?u=one" alt="User One" className="pending-avatar" />
-    <div className="pending-info">
-      <p className="pending-name">janedoe@example.com</p>
-    </div>
-    <div className="pending-actions">
-      <button className="accept-btn">Accept</button>
-      <button className="reject-btn">Reject</button>
-    </div>
-  </div>
+        <div className="pending-user">
+          <img
+            src="https://i.pravatar.cc/48?u=one"
+            alt="User One"
+            className="pending-avatar"
+          />
+          <div className="pending-info">
+            <p className="pending-name">janedoe@example.com</p>
+          </div>
+          <div className="pending-actions">
+            <button className="accept-btn">Accept</button>
+            <button className="reject-btn">Reject</button>
+          </div>
+        </div>
 
-  <div className="pending-user">
-    <img src="https://i.pravatar.cc/48?u=two" alt="User Two" className="pending-avatar" />
-    <div className="pending-info">
-      <p className="pending-name">johndoe@example.com</p>
-    </div>
-    <div className="pending-actions">
-      <button className="accept-btn">Accept</button>
-      <button className="reject-btn">Reject</button>
-    </div>
-  </div>
-</div>
+        <div className="pending-user">
+          <img
+            src="https://i.pravatar.cc/48?u=two"
+            alt="User Two"
+            className="pending-avatar"
+          />
+          <div className="pending-info">
+            <p className="pending-name">johndoe@example.com</p>
+          </div>
+          <div className="pending-actions">
+            <button className="accept-btn">Accept</button>
+            <button className="reject-btn">Reject</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

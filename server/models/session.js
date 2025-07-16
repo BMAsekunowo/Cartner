@@ -46,6 +46,9 @@ const sessionSchema = new mongoose.Schema({
         ref: 'User',
         required: true
       },
+      email: {
+        type: String,
+      },
       role: {
         type: String,
         enum: ['creator', 'participant', 'pending'],
@@ -54,5 +57,7 @@ const sessionSchema = new mongoose.Schema({
     }
   ]
 }, { timestamps: true });
+
+sessionSchema.index({ sessionName: 1, createdBy: 1 }, { unique: true });
 
 module.exports = mongoose.model('Session', sessionSchema);

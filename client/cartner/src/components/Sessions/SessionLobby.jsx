@@ -1,17 +1,70 @@
-// src/components/SessionDetails.jsx
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { getSessionById } from "../../services/SessionService";
-import "../../styles/SessionLobby.css";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../Reusables/Button";
+import { useSession } from "../../context/SessionContext";
+import {
+  getCartBySessionId,
+  leaveSession,
+  endSession,
+} from "../../services/SessionService";
+import "../../styles/SessionLobby.css";
 
-const SessionLobby = ({
-    session,
-}) => {
+const SessionLobby = () => {
+  const navigate = useNavigate();
+  const { activeSession: sessionData, setActiveSession } = useSession();
+
+  useEffect(() => {
+    if (sessionData) {
+      setActiveSession(sessionData);
+    }
+  }, [sessionData]);
+
+  if (!sessionData) return <p>Loading session...</p>;
+
+  const session = sessionData;
+
+  const handleLeaveSession = async () => {
+    try {
+      await leaveSession(session._id);
+      setActiveSession(null);
+      navigate("/sessions");
+    } catch (error) {
+      console.error("Failed to leave session:", error);
+    }
+  };
+
+  const handleEndSession = async () => {
+    try {
+      await endSession(session._id);
+      setActiveSession(null);
+      navigate("/sessions");
+    } catch (error) {
+      console.error("Failed to end session:", error);
+    }
+  };
+
+  const handleViewCart = async () => {
+    try {
+      const cart = await getCartBySessionId(session._id);
+      navigate(`/cart/${session._id}`, { state: { cart } });
+    } catch (error) {
+      console.error("Failed to load session cart:", error);
+    }
+  };
 
   return (
     <div className="session-lobby-wrap">
-      <h1 className="sessiond-title">{session.sessionName}</h1>
+      <div className="sessiond-header-row">
+        <h1 className="sessiond-title">{session.sessionName}</h1>
+        <span
+          className={`status-badge ${
+            session.status === "ended" ? "danger" : "success"
+          }`}
+        >
+          {session.status === "ended" ? "Ended" : "Active"}
+        </span>
+      </div>
+
       <p className="session-description">{session.sessionType}</p>
 
       <div className="passcode-box">
@@ -59,11 +112,13 @@ const SessionLobby = ({
       <div className="budget-cart-wrap">
         <div>
           <p className="label">Budget</p>
-          <p className="value">${session.budget?.toFixed(2)}</p>
+          <p className="value">${session.budget?.toFixed(2) || "0.00"}</p>
         </div>
         <div>
           <p className="label">Cart Total</p>
-          <p className="value">${session.cart?.totalPrice?.toFixed(2)}</p>
+          <p className="value">
+            ${session.cart?.totalPrice?.toFixed(2) || "0.00"}
+          </p>
         </div>
         <div>
           <p className="label">Savings</p>
@@ -74,6 +129,28 @@ const SessionLobby = ({
             )}
           </p>
         </div>
+      </div>
+
+      <div className="session-action-buttons">
+        <Button
+          size="md"
+          variant="outline"
+          onClick={() => handleLeaveSession()}
+        >
+          Leave Session
+        </Button>
+
+        {session.invitedUsers.some((user) => user.role === "creator") && (
+          <div className="session-actions-row">
+            <Button
+              size="md"
+              className="danger-outline"
+              onClick={() => handleEndSession()}
+            >
+              End Session
+            </Button>
+          </div>
+        )}
       </div>
 
       <Button
@@ -88,7 +165,7 @@ const SessionLobby = ({
         <Button
           className="sessiond-action-btn"
           size="lg"
-          onClick={() => navigate(`/products`)}
+          onClick={() => handleViewCart()}
         >
           View Session Cart
         </Button>

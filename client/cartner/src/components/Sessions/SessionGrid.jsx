@@ -30,9 +30,8 @@ const SessionsGrid = ({ activeTab }) => {
   if (activeTab === "upcoming") return <p style={{ padding: "2rem" }}>🚧 Coming Soon!</p>;
 
   const filteredSessions = sessions.filter((session) => {
-    if (activeTab === "active") return session.status === "active"; // or your custom logic
-    if (activeTab === "past") return session.status === "completed"; // or check end date
-    return true;
+    if (activeTab === "active") return session.status === "active"; 
+    if (activeTab === "past") return session.status === "ended"; 
   });
 
   return (

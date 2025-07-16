@@ -1,4 +1,3 @@
-// src/components/ProductCard.jsx
 import React from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
@@ -9,10 +8,16 @@ import {
   FaEye,
   FaCartPlus,
 } from "react-icons/fa";
+import { useSession } from "../../context/SessionContext";
 import Button from "../Reusables/Button";
-import "../../styles/ProductGrid.css"; // Keep this for styling
+import { addProductToCart } from "../../services/CartService";
+import { toast } from "react-toastify";
+import "../../styles/ProductGrid.css";
 
 const ProductCard = ({ imageUrl, name, price, rating, reviews, _id }) => {
+  const { activeSession } = useSession();
+  const navigate = useNavigate();
+
   const renderStars = () => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -28,7 +33,25 @@ const ProductCard = ({ imageUrl, name, price, rating, reviews, _id }) => {
     return stars;
   };
 
-  const navigate = useNavigate();
+  const handleAddToCart = async (productId, quantity = 1) => {
+    if (!activeSession || !activeSession.cartId) {
+      toast.error("Please select a session with a cart.");
+      return;
+    }
+
+    const cartId =
+      typeof activeSession.cartId === "object"
+        ? activeSession.cartId._id
+        : activeSession.cartId;
+
+    try {
+      await addProductToCart(cartId, productId, quantity);
+      toast.success("Added to cart for selected session.");
+    } catch (err) {
+      console.error(" Add to cart error:", err);
+      toast.error("Failed to add product to cart.");
+    }
+  };
 
   return (
     <div className="product-card">
@@ -49,7 +72,7 @@ const ProductCard = ({ imageUrl, name, price, rating, reviews, _id }) => {
           <Button size="xs" onClick={() => navigate(`/product/${_id}`)}>
             <FaEye />
           </Button>
-          <Button size="xs" onClick={() => console.log("Add to Cart", name)}>
+          <Button size="xs" onClick={() => handleAddToCart(_id)}>
             <FaCartPlus />
           </Button>
         </div>

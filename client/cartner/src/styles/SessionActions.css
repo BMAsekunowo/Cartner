@@ -1,0 +1,103 @@
+.session-actions-wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 40px 100px;
+  margin-bottom: 40px;
+  background-color: #fff;
+}
+
+.create-wrap {
+  width: 400px;
+}
+
+.join-form-wrap {
+  width: 350px;
+}
+
+.session-actions-wrap h2 {
+  font-family: "Sora", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+
+.invite-list {
+  width: 450px;
+}
+
+.invite-ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.invite-li {
+  display: flex;
+  align-items: center;
+  background: #f9fafb;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.invite-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+.invite-info {
+  flex-grow: 1;
+}
+
+.invite-info .session-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.invite-info .invited-by,
+.invite-info .session-code {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.invite-actions {
+  display: flex;
+  align-items: center;
+}
+
+.invite-actions button {
+  margin-left: 0.5rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+  border: none;
+}
+
+.accept-btn {
+  background-color: #10b981;
+  color: white;
+}
+
+.reject-btn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.invite-actions .accept-btn:hover {
+  background-color: #2563eb;
+}
+
+.invite-actions .reject-btn:hover {
+  background-color: #eb7125;
+}

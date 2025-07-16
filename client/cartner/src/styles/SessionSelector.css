@@ -1,0 +1,42 @@
+.session-selector-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: "Sora", sans-serif;
+  margin: 10px auto;
+  width: 95%;
+  max-width: 1300px;
+  box-sizing: border-box;
+}
+
+.session-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.session-select {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: "DM Sans", sans-serif;
+  color: #111827;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.session-select:hover {
+  border-color: #9ca3af;
+}
+
+.session-select:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
