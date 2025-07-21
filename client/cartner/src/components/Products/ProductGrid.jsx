@@ -23,7 +23,7 @@ ProductGrid.propTypes = {
       rating: PropTypes.number.isRequired,
       reviews: PropTypes.number.isRequired,
       _id: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
 };
 

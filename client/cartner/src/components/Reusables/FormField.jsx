@@ -41,7 +41,9 @@ const FormField = ({
             required={required}
           >
             {options.map((opt, i) => (
-              <option key={i} value={opt.value}>{opt.label}</option>
+              <option key={i} value={opt.value}>
+                {opt.label}
+              </option>
             ))}
           </select>
         );

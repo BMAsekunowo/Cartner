@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Button from "../Reusables/Button";
+import {
+  getJoinRequests,
+  approveJoinRequest,
+  rejectJoinRequest,
+} from "../../services/SessionService";
 import "../../styles/SessionForms.css";
 
 const SessionForms = ({ sessionCode, onInvite }) => {
@@ -9,12 +14,27 @@ const SessionForms = ({ sessionCode, onInvite }) => {
     role: "participant",
   });
 
+  const [pendingRequests, setPendingRequests] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    // Initialize sessionCode into inviteData when prop is available
     if (sessionCode) {
       setInviteData((prev) => ({ ...prev, sessionCode }));
+      fetchJoinRequests();
     }
   }, [sessionCode]);
+
+  const fetchJoinRequests = async () => {
+    try {
+      setLoading(true);
+      const data = await getJoinRequests(sessionCode);
+      setPendingRequests(data.requests || []);
+    } catch (error) {
+      console.error("Failed to load join requests:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleChange = (e) => {
     setInviteData({ ...inviteData, [e.target.name]: e.target.value });
@@ -40,8 +60,26 @@ const SessionForms = ({ sessionCode, onInvite }) => {
     }));
   };
 
+  const handleAccept = async (email) => {
+    try {
+      await approveJoinRequest(sessionCode, { email });
+      fetchJoinRequests();
+    } catch (error) {
+      console.error("Error approving request:", error);
+    }
+  };
+
+  const handleReject = async (email) => {
+    try {
+      await rejectJoinRequest(sessionCode, { email });
+      fetchJoinRequests();
+    } catch (error) {
+      console.error("Error rejecting request:", error);
+    }
+  };
+
   return (
-    <div>
+    <div className="form-section">
       <form className="invite-user-form" onSubmit={handleSubmit}>
         <h3 className="form-title">Invite a Cartner</h3>
 
@@ -54,7 +92,7 @@ const SessionForms = ({ sessionCode, onInvite }) => {
             id="sessionCode"
             value={inviteData.sessionCode}
             onChange={handleChange}
-            readOnly // optional if you don't want it editable
+            readOnly
             disabled
           />
         </div>
@@ -95,35 +133,38 @@ const SessionForms = ({ sessionCode, onInvite }) => {
       <div className="pending-requests-section">
         <h4 className="form-title">Pending Join Requests</h4>
 
-        <div className="pending-user">
-          <img
-            src="https://i.pravatar.cc/48?u=one"
-            alt="User One"
-            className="pending-avatar"
-          />
-          <div className="pending-info">
-            <p className="pending-name">janedoe@example.com</p>
-          </div>
-          <div className="pending-actions">
-            <button className="accept-btn">Accept</button>
-            <button className="reject-btn">Reject</button>
-          </div>
-        </div>
-
-        <div className="pending-user">
-          <img
-            src="https://i.pravatar.cc/48?u=two"
-            alt="User Two"
-            className="pending-avatar"
-          />
-          <div className="pending-info">
-            <p className="pending-name">johndoe@example.com</p>
-          </div>
-          <div className="pending-actions">
-            <button className="accept-btn">Accept</button>
-            <button className="reject-btn">Reject</button>
-          </div>
-        </div>
+        {loading ? (
+          <p className="form-note">Loading join requests...</p>
+        ) : pendingRequests.length === 0 ? (
+          <p className="form-note">No pending requests at the moment.</p>
+        ) : (
+          pendingRequests.map((user, index) => (
+            <div className="pending-user" key={index}>
+              <img
+                src={user.avatar || `https://i.pravatar.cc/48?u=${user.email}`}
+                alt={user.name || user.email}
+                className="pending-avatar"
+              />
+              <div className="pending-info">
+                <p className="pending-name">{user.email}</p>
+              </div>
+              <div className="pending-actions">
+                <button
+                  className="accept-btn"
+                  onClick={() => handleAccept(user.email)}
+                >
+                  Accept
+                </button>
+                <button
+                  className="reject-btn"
+                  onClick={() => handleReject(user.email)}
+                >
+                  Reject
+                </button>
+              </div>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

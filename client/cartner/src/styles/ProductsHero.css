@@ -33,64 +33,63 @@
   margin-bottom: 20px;
 }
 
-
 /* ================================
    Medium Devices (Tablets ≤1024px)
    ================================ */
-   @media (max-width: 1024px) {
-    .phero-container {
-      height: 260px;
-      padding: 0 30px;
-    }
-  
-    .phero-content h1 {
-      font-size: 2rem;
-    }
-  
-    .phero-content p {
-      font-size: 1.1rem;
-      margin-bottom: 18px;
-    }
+@media (max-width: 1024px) {
+  .phero-container {
+    height: 260px;
+    padding: 0 30px;
   }
-  
-  /* ================================
+
+  .phero-content h1 {
+    font-size: 2rem;
+  }
+
+  .phero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+  }
+}
+
+/* ================================
      Small Devices (Mobile ≤768px)
      ================================ */
-  @media (max-width: 768px) {
-    .phero-container {
-      height: 220px;
-      padding: 0 20px;
-    }
-  
-    .phero-content h1 {
-      font-size: 1.8rem;
-    }
-  
-    .phero-content p {
-      font-size: 1rem;
-      margin-bottom: 16px;
-    }
+@media (max-width: 768px) {
+  .phero-container {
+    height: 220px;
+    padding: 0 20px;
   }
-  
-  /* ================================
+
+  .phero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .phero-content p {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+}
+
+/* ================================
      Extra Small Devices (≤480px)
      ================================ */
-  @media (max-width: 480px) {
-    .phero-container {
-      height: 200px;
-      padding: 0 15px;
-    }
-  
-    .phero-content {
-      padding: 15px;
-    }
-  
-    .phero-content h1 {
-      font-size: 1.6rem;
-    }
-  
-    .phero-content p {
-      font-size: 0.95rem;
-      margin-bottom: 14px;
-    }
+@media (max-width: 480px) {
+  .phero-container {
+    height: 200px;
+    padding: 0 15px;
   }
+
+  .phero-content {
+    padding: 15px;
+  }
+
+  .phero-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .phero-content p {
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+}

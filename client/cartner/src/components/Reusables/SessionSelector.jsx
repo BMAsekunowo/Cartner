@@ -23,7 +23,7 @@ const SessionSelector = () => {
       try {
         const data = await getActiveSessionsByUser();
         const sorted = data.sessions.sort(
-          (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+          (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt),
         );
         setSessions(sorted);
 
@@ -46,13 +46,17 @@ const SessionSelector = () => {
   };
 
   // Hide on /cart or /profile
-  const hiddenPaths = ["/cart", "/profile", "*"];
-  if (!tokenPresent || sessions.length === 0 || hiddenPaths.includes(location.pathname)) {
+  const hiddenPaths = ["/cart", "/profile", "/editme", "/*"];
+  if (
+    !tokenPresent ||
+    sessions.length === 0 ||
+    hiddenPaths.includes(location.pathname)
+  ) {
     return null;
   }
 
   const shouldHideSessionSelector = hiddenPaths.some((path) =>
-    location.pathname.startsWith(path)
+    location.pathname.startsWith(path),
   );
 
   return (

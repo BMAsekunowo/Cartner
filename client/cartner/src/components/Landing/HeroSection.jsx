@@ -64,13 +64,14 @@ const HeroSection = () => {
         {
           position: "top-center",
           autoClose: 10000,
-        }
+        },
       );
 
       navigate("/sessions");
     } catch (err) {
       alert(
-        "Session creation failed: " + err.response?.data?.message || err.message
+        "Session creation failed: " + err.response?.data?.message ||
+          err.message,
       );
     }
   };

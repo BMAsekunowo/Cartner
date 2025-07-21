@@ -1,22 +1,46 @@
-import React, { useState } from 'react';
-import '../../styles/Profile.css';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "../../styles/Profile.css";
+import { getMyProfile } from "../../services/ProfileService";
 
 function ProfileView() {
   const [showMenu, setShowMenu] = useState(false);
+  const [profile, setProfile] = useState(null);
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const data = await getMyProfile(token);
+        setProfile(data);
+      } catch (error) {
+        console.error("Failed to fetch profile:", error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  if (!profile) return <div className="loading">Loading profile...</div>;
 
   return (
     <div className="profile-wrapper">
       <aside className="profile-sidebar">
-        <img src="/avatar.png" alt="User Avatar" className="avatar" />
+        <img
+          src={profile.avatar ? profile.avatar : "/avatar.png"}
+          alt="User Avatar"
+          className="avatar"
+        />
         <button className="update-photo">Update Photo</button>
 
         <div className="verification">
-          <p>148 sessions joined</p>
+          <p>{profile.sessions?.length || 0} sessions joined</p>
           <span className="verified">✔ Verified</span>
         </div>
 
         <div className="provided-info">
-          <p>Boluwatife provided:</p>
+          <p>{user.name} provided:</p>
           <ul>
             <li>Government ID</li>
             <li>Email address</li>
@@ -28,8 +52,15 @@ function ProfileView() {
 
       <main className="profile-main">
         <div className="profile-header">
-          <h1>Hi, I’m Boluwatife</h1>
-          <p>Joined in 2024 <span className="edit-profile">• Edit profile</span></p>
+          <h1>Hi, I’m {user.name}</h1>
+          <p>
+            Joined in {new Date(profile.joinedAt).getFullYear()}
+            <span className="edit-profile">
+              <Link to="/editme" className="linkto">
+                Edit profile
+              </Link>
+            </span>
+          </p>
           <button className="menu-btn" onClick={() => setShowMenu(!showMenu)}>
             ☰
           </button>
@@ -46,21 +77,23 @@ function ProfileView() {
         </div>
 
         <div className="profile-bio">
-          <blockquote>
-            I'm a passionate tech-savvy guy building Cartner to make shopping more collaborative. I love working across finance and tech, and this platform reflects that.
-          </blockquote>
+          <blockquote>{profile.bio || "No bio added yet."}</blockquote>
 
           <ul className="profile-details">
-            <li>📍 Lives in Welland, Canada</li>
-            <li>🗣 Speaks English, Yoruba</li>
-            <li>💼 Work: Freelance Web Developer</li>
+            {profile.location && <li>📍 Lives in {profile.location}</li>}
+            {profile.languages?.length > 0 && (
+              <li>🗣 Speaks {profile.languages.join(", ")}</li>
+            )}
+            {profile.occupation && <li>💼 Work: {profile.occupation}</li>}
           </ul>
         </div>
 
         <div className="product-section">
-          <h2>Boluwatife’s Products</h2>
+          <h2>{user.name}’s Products</h2>
           <div className="product-cards coming-soon">
-            <p>🔧 This feature is <strong>Coming Soon</strong></p>
+            <p>
+              🔧 This feature is <strong>Coming Soon</strong>
+            </p>
           </div>
         </div>
       </main>

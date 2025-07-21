@@ -4,7 +4,12 @@ import { FaSearch } from "react-icons/fa";
 import Button from "./Button";
 import "../../styles/SearchBar.css";
 
-const SearchBar = ({ placeholder, onSearch, buttonLabel = "Search", size = "md" }) => {
+const SearchBar = ({
+  placeholder,
+  onSearch,
+  buttonLabel = "Search",
+  size = "md",
+}) => {
   const [value, setValue] = React.useState("");
 
   const handleSubmit = (e) => {

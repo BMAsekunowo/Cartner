@@ -76,7 +76,7 @@ exports.getCartByUserId = async (req, res) => {
     const carts = await Cart.find({ userId })
       .sort({ createdAt: -1 })
       .populate({
-        path: "products.productId", 
+        path: "products.productId",
         model: "Product",
       })
       .populate({
@@ -125,7 +125,7 @@ exports.updateCart = async (req, res) => {
     const updatedCart = await Cart.findByIdAndUpdate(
       cartId,
       { $set: req.body },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     );
 
     if (!updatedCart) {
@@ -161,7 +161,7 @@ exports.updateCartQuantity = async (req, res) => {
     if (!cart) return res.status(404).json({ message: "Cart not found" });
 
     const product = cart.products.find(
-      (p) => p.productId.toString() === productId
+      (p) => p.productId.toString() === productId,
     );
     if (!product)
       return res.status(404).json({ message: "Product not in cart" });
@@ -171,7 +171,7 @@ exports.updateCartQuantity = async (req, res) => {
     if (product.quantity < 1) {
       // remove item entirely if quantity < 1
       cart.products = cart.products.filter(
-        (p) => p.productId.toString() !== productId
+        (p) => p.productId.toString() !== productId,
       );
     }
 
@@ -206,7 +206,7 @@ exports.removeProductFromCart = async (req, res) => {
 
     // Filter out the product
     cart.products = cart.products.filter(
-      (item) => item.productId.toString() !== productId
+      (item) => item.productId.toString() !== productId,
     );
 
     if (cart.products.length === originalLength) {
@@ -251,7 +251,7 @@ exports.addProductToCart = async (req, res) => {
     if (!cart) return res.status(404).json({ message: "Cart not found" });
 
     const existingItem = cart.products.find(
-      (item) => item.productId.toString() === productId
+      (item) => item.productId.toString() === productId,
     );
 
     if (existingItem) {

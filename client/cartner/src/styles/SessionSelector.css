@@ -3,13 +3,14 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 16px;
-  padding: 20px;
+  padding: 20px 100px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   font-family: "Sora", sans-serif;
   margin: 10px auto;
-  width: 95%;
-  max-width: 1300px;
+  width: 100%;
   box-sizing: border-box;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .session-label {
@@ -39,4 +40,25 @@
 .session-select:focus {
   border-color: #6366f1;
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+/* Responsive Padding Based on Navbar Sizes */
+@media (max-width: 1024px) {
+  .session-selector-container {
+    padding: 20px 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .session-selector-container {
+    padding: 20px 30px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .session-selector-container {
+    padding: 20px 16px;
+  }
 }

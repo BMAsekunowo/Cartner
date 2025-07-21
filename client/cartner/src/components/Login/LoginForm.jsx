@@ -13,16 +13,16 @@ import Button from "../Reusables/Button";
 import SignInImage from "../../assets/login/signinn.jpeg";
 import "../../styles/LoginForm.css";
 import Logo from "../Reusables/Logo";
-import { login } from "../../services/AuthService"; 
+import { login } from "../../services/AuthService";
 import { createSession } from "../../services/SessionService"; // Import createSession function
 
 const LoginForm = () => {
-  const [formData, setformData] = useState({ email: "", password: ""});
+  const [formData, setformData] = useState({ email: "", password: "" });
 
   const handleChange = (e) => {
     setformData({ ...formData, [e.target.name]: e.target.value });
   };
-  
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -31,20 +31,20 @@ const LoginForm = () => {
       const data = await login(formData);
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
-  
+
       const pending = localStorage.getItem("pendingSession");
-  
+
       if (pending) {
         // Process the session creation immediately
         const sessionData = JSON.parse(pending);
-  
+
         await createSession(sessionData);
         localStorage.removeItem("pendingSession");
-  
+
         toast.success("Session created after login!", {
           position: "top-center",
         });
-  
+
         navigate("/sessions");
       } else {
         toast.success(
@@ -52,17 +52,16 @@ const LoginForm = () => {
           {
             position: "top-center",
             autoClose: 10000,
-          }
+          },
         );
-  
+
         navigate("/"); // Only if no session is pending
       }
     } catch (err) {
       alert("Signin failed: " + err.response?.data?.message || err.message);
     }
   };
-  
-  
+
   return (
     <>
       <div className="login-wrapper">
@@ -100,7 +99,7 @@ const LoginForm = () => {
                     required
                     className="form-input"
                     name="email"
-                    onChange={handleChange} 
+                    onChange={handleChange}
                     value={formData.email}
                     autoComplete="current-email"
                   />
@@ -118,18 +117,15 @@ const LoginForm = () => {
                     required
                     className="form-input"
                     name="password"
-                    onChange={handleChange} 
+                    onChange={handleChange}
                     value={formData.password}
                     autoComplete="current-password"
                   />
                 </div>
               </div>
-              <Button
-                  size="lg"
-                  type="submit"
-                >
-                 Continue Your Journey
-          </Button>
+              <Button size="lg" type="submit">
+                Continue Your Journey
+              </Button>
             </form>
           </div>
 

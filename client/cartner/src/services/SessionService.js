@@ -90,7 +90,7 @@ export const getJoinRequests = async (sessionCode) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
 
   return res.data;
@@ -107,7 +107,7 @@ export const approveJoinRequest = async (sessionCode, userId) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
 
   return res.data;
@@ -124,7 +124,7 @@ export const rejectJoinRequest = async (sessionCode, userId) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
 
   return res.data;
@@ -180,7 +180,7 @@ export const getCartBySessionId = async (sessionId) => {
   });
 
   return res.data;
-}
+};
 
 export const leaveSession = async (sessionId) => {
   const token = localStorage.getItem("token");
@@ -206,7 +206,7 @@ export const endSession = async (sessionId) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
 
   return res.data;

@@ -215,139 +215,137 @@
   width: 100%;
 }
 
-
-
 /* =====================================
    Medium Devices (Tablets - ≤1024px)
    ===================================== */
-   @media (max-width: 1024px) {
-    .product-container {
-      padding: 10px 50px;
-      margin-bottom: 60px;
-    }
-  
-    .product-content {
-      flex-direction: column;
-      padding: 30px;
-    }
-  
-    .product-filters {
-      width: 100%;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-  
-    .products-wrap {
-      width: 100%;
-    }
-  
-    .search {
-      margin-left: 0;
-      width: 100%;
-      margin-top: 20px;
-    }
+@media (max-width: 1024px) {
+  .product-container {
+    padding: 10px 50px;
+    margin-bottom: 60px;
   }
-  
-  /* =====================================
+
+  .product-content {
+    flex-direction: column;
+    padding: 30px;
+  }
+
+  .product-filters {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .products-wrap {
+    width: 100%;
+  }
+
+  .search {
+    margin-left: 0;
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+/* =====================================
      Small Devices (Mobile - ≤768px)
      ===================================== */
-  @media (max-width: 768px) {
-    .product-container {
-      padding: 10px 20px;
-      margin-bottom: 50px;
-    }
-  
-    .product-content {
-      padding: 20px;
-      gap: 16px;
-    }
-  
-    .product-filters {
-      flex-direction: column;
-      width: 100%;
-    }
-  
-    .product-filters h2 {
-      font-size: 1rem;
-      margin-top: 16px;
-      margin-bottom: 24px;
-    }
-  
-    .product-category h3,
-    .sortby h3,
-    .cartner-express h3,
-    .price-label {
-      font-size: 0.9rem;
-    }
-  
-    .category-options label,
-    .sortby-options label,
-    .express-options label,
-    .price-values {
-      font-size: 0.8rem;
-    }
-  
-    .products-wrap {
-      width: 100%;
-    }
-  
-    .search {
-      width: 100%;
-      margin-left: 0;
-      margin-top: 16px;
-    }
+@media (max-width: 768px) {
+  .product-container {
+    padding: 10px 20px;
+    margin-bottom: 50px;
   }
-  
-  /* =====================================
+
+  .product-content {
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .product-filters {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .product-filters h2 {
+    font-size: 1rem;
+    margin-top: 16px;
+    margin-bottom: 24px;
+  }
+
+  .product-category h3,
+  .sortby h3,
+  .cartner-express h3,
+  .price-label {
+    font-size: 0.9rem;
+  }
+
+  .category-options label,
+  .sortby-options label,
+  .express-options label,
+  .price-values {
+    font-size: 0.8rem;
+  }
+
+  .products-wrap {
+    width: 100%;
+  }
+
+  .search {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 16px;
+  }
+}
+
+/* =====================================
      Extra Small Devices (≤480px)
      ===================================== */
-  @media (max-width: 480px) {
-    .product-container {
-      padding: 10px 12px;
-      margin-bottom: 40px;
-    }
-  
-    .product-content {
-      padding: 16px;
-      gap: 12px;
-    }
-  
-    .product-filters {
-      gap: 16px;
-    }
-  
-    .product-filters h2 {
-      font-size: 0.95rem;
-      margin-bottom: 20px;
-    }
-  
-    .product-category h3,
-    .sortby h3,
-    .cartner-express h3,
-    .price-label {
-      font-size: 0.85rem;
-    }
-  
-    .category-options label,
-    .sortby-options label,
-    .express-options label,
-    .price-values {
-      font-size: 0.75rem;
-    }
-  
-    .price-slider .thumb {
-      height: 6px;
-      width: 6px;
-    }
-  
-    .products-wrap {
-      width: 100%;
-    }
-  
-    .search {
-      width: 100%;
-      margin-left: 0;
-      margin-top: 14px;
-    }
+@media (max-width: 480px) {
+  .product-container {
+    padding: 10px 12px;
+    margin-bottom: 40px;
   }
+
+  .product-content {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .product-filters {
+    gap: 16px;
+  }
+
+  .product-filters h2 {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  .product-category h3,
+  .sortby h3,
+  .cartner-express h3,
+  .price-label {
+    font-size: 0.85rem;
+  }
+
+  .category-options label,
+  .sortby-options label,
+  .express-options label,
+  .price-values {
+    font-size: 0.75rem;
+  }
+
+  .price-slider .thumb {
+    height: 6px;
+    width: 6px;
+  }
+
+  .products-wrap {
+    width: 100%;
+  }
+
+  .search {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 14px;
+  }
+}

@@ -49,12 +49,14 @@ Cartner-ENV/
 ## 🧪 Local Setup
 
 1. **Clone the repo**
+
 ```bash
 git clone https://github.com/BMAsekunowo/Cartner.git
 cd Cartner-ENV
 ```
 
 2. **Install dependencies**
+
 ```bash
 # Client
 cd client
@@ -66,6 +68,7 @@ npm install
 ```
 
 3. **Configure environment**
+
 ```env
 # Inside /server/.env
 PORT=5005
@@ -74,6 +77,7 @@ JWT_SECRET=your_secret_here
 ```
 
 4. **Run the app**
+
 ```bash
 # Server
 npm run dev
@@ -86,22 +90,22 @@ npm run dev
 
 ## 📅 Project Timeline
 
-- **Backend Week 1**: Environment setup, Git, MongoDB, MVC structure ✅  
-- **Backend Week 2**: Auth system, JWT, route protection 🔒  
-- **Backend Week 3**: Shared sessions + Smart Cart logic 🛒  
+- **Backend Week 1**: Environment setup, Git, MongoDB, MVC structure ✅
+- **Backend Week 2**: Auth system, JWT, route protection 🔒
+- **Backend Week 3**: Shared sessions + Smart Cart logic 🛒
 
-- **Frontend Week 1**: Project structure, Auth pages, layout responsiveness 🧱  
-- **Frontend Week 2**: Product pages, cart features, session creation 🛍️  
-- **Frontend Week 3**: Real-time session features, smart cost split 👥  
-- **Frontend Week 4**: Profile, order history, notifications, UX polish 🧾  
-- **Frontend Week 5**: Static pages, admin prep, UI refinements 🎨  
+- **Frontend Week 1**: Project structure, Auth pages, layout responsiveness 🧱
+- **Frontend Week 2**: Product pages, cart features, session creation 🛍️
+- **Frontend Week 3**: Real-time session features, smart cost split 👥
+- **Frontend Week 4**: Profile, order history, notifications, UX polish 🧾
+- **Frontend Week 5**: Static pages, admin prep, UI refinements 🎨
 - **Frontend Week 6**: Deployment, route protection, final testing 🚀
 
 ---
 
 ## 👤 Author
 
-Hey there 👋, I'm **Boluwatife Asekunowo** — a passionate software developer building Cartner to make collaborative shopping seamless. 
+Hey there 👋, I'm **Boluwatife Asekunowo** — a passionate software developer building Cartner to make collaborative shopping seamless.
 
 – [GitHub](https://github.com/BMAsekunowo)
 – [X](https://x.com/BMAsekunowo)

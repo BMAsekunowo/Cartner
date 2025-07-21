@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const PublicProfile = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default PublicProfile
+export default PublicProfile;

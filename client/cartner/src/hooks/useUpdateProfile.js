@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { updateProfile as updateProfileService } from "../services/ProfileService";
-import { useNavigate as navigate} from "react-router-dom";
+import { useNavigate as navigate } from "react-router-dom";
 
 const useUpdateProfile = () => {
   const [loading, setLoading] = useState(false);

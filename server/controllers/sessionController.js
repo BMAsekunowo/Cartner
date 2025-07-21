@@ -2,7 +2,6 @@ const Session = require("../models/session"); //Session Model
 const Cart = require("../models/cart"); //Cart Model
 const User = require("../models/user"); //User Model
 const mongoose = require("mongoose"); //Database
-const user = require("../models/user");
 
 // Utility to generate readable session codes
 const generateCode = () => {
@@ -122,7 +121,7 @@ exports.inviteUser = async (req, res) => {
 
     // Prevent duplicate invite
     const alreadyInvited = session.invitedUsers.some(
-      (u) => String(u.userId) === String(userId)
+      (u) => String(u.userId) === String(userId),
     );
     if (alreadyInvited) {
       return res
@@ -162,7 +161,7 @@ exports.getInvitesByEmail = async (req, res) => {
 
     const pendingInvites = sessions.map((session) => {
       const invite = session.invitedUsers.find(
-        (u) => u.email === userEmail && u.role === "pending"
+        (u) => u.email === userEmail && u.role === "pending",
       );
 
       return {
@@ -192,7 +191,7 @@ exports.acceptInvite = async (req, res) => {
     }
 
     const invited = session.invitedUsers.find(
-      (u) => String(u.userId) === String(userId)
+      (u) => String(u.userId) === String(userId),
     );
 
     if (!invited) {
@@ -230,7 +229,7 @@ exports.rejectSessionInvite = async (req, res) => {
 
     // Check if user is actually invited
     const isInvited = session.invitedUsers.some(
-      (u) => String(u.userId) === userId
+      (u) => String(u.userId) === userId,
     );
 
     if (!isInvited) {
@@ -241,7 +240,7 @@ exports.rejectSessionInvite = async (req, res) => {
 
     // Remove from invitedUsers
     session.invitedUsers = session.invitedUsers.filter(
-      (u) => String(u.userId) !== userId
+      (u) => String(u.userId) !== userId,
     );
     await session.save();
 
@@ -285,7 +284,7 @@ exports.joinSessionByCode = async (req, res) => {
     }
 
     const existing = session.invitedUsers.find(
-      (u) => String(u.userId) === userId
+      (u) => String(u.userId) === userId,
     );
 
     if (existing) {
@@ -302,12 +301,12 @@ exports.joinSessionByCode = async (req, res) => {
     // ✅ Safe DB-level update without triggering full validation
     await Session.updateOne(
       { _id: session._id },
-      { $addToSet: { invitedUsers: { userId, role: "pending" } } }
+      { $addToSet: { invitedUsers: { userId, role: "pending" } } },
     );
 
     await Cart.updateOne(
       { _id: session.cartId },
-      { $addToSet: { sessionUsers: { userId, role: "participant" } } }
+      { $addToSet: { sessionUsers: { userId, role: "participant" } } },
     );
 
     res.status(202).json({
@@ -345,7 +344,7 @@ exports.getJoinRequests = async (req, res) => {
     }
 
     const pendingRequests = session.invitedUsers.filter(
-      (user) => user.role === "pending"
+      (user) => user.role === "pending",
     );
 
     if (pendingRequests.length === 0) {
@@ -398,7 +397,7 @@ exports.approveJoinRequest = async (req, res) => {
     // Check if user is in pending state
     const invitedEntry = session.invitedUsers.find(
       (u) =>
-        String(u.userId) === String(userToApprove._id) && u.role === "pending"
+        String(u.userId) === String(userToApprove._id) && u.role === "pending",
     );
 
     if (!invitedEntry) {
@@ -460,7 +459,7 @@ exports.rejectJoinRequest = async (req, res) => {
 
     const originalCount = session.invitedUsers.length;
     session.invitedUsers = session.invitedUsers.filter(
-      (u) => String(u.userId) !== String(userToReject._id)
+      (u) => String(u.userId) !== String(userToReject._id),
     );
 
     if (session.invitedUsers.length === originalCount) {
@@ -541,7 +540,7 @@ exports.getSessionById = async (req, res) => {
 
     // 🔒 Confirm requesting user is in the session
     const isInSession = session.invitedUsers.some(
-      (entry) => String(entry.userId._id) === userId
+      (entry) => String(entry.userId._id) === userId,
     );
 
     if (!isInSession && String(session.createdBy._id) !== userId) {
@@ -613,7 +612,7 @@ exports.getCartById = async (req, res) => {
 
     // ✅ Check if user is part of invitedUsers (creator or participant)
     const isInvited = session.invitedUsers.some(
-      (user) => String(user.userId) === userId
+      (user) => String(user.userId) === userId,
     );
 
     if (!isInvited && String(session.createdBy) !== userId) {
@@ -621,7 +620,7 @@ exports.getCartById = async (req, res) => {
     }
 
     const cart = await Cart.findById(session.cartId).populate(
-      "products.productId"
+      "products.productId",
     );
     if (!cart) return res.status(404).json({ message: "Cart not found" });
 
@@ -654,7 +653,7 @@ exports.leaveSession = async (req, res) => {
 
     // Filter out user from invitedUsers
     session.invitedUsers = session.invitedUsers.filter(
-      (entry) => String(entry.userId) !== userId
+      (entry) => String(entry.userId) !== userId,
     );
     await session.save();
 

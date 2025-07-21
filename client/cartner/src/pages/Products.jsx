@@ -1,6 +1,6 @@
-import React from 'react'
-import ProductsHero from '../components/Products/ProductsHero'
-import ProductContainer from '../components/Products/ProductContainer'
+import React from "react";
+import ProductsHero from "../components/Products/ProductsHero";
+import ProductContainer from "../components/Products/ProductContainer";
 
 const Products = () => {
   return (
@@ -8,7 +8,7 @@ const Products = () => {
       <ProductsHero />
       <ProductContainer />
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;

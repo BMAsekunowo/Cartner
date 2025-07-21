@@ -1,20 +1,24 @@
 import React from "react";
 import "../../styles/CartTable.css";
-import { updateCartQuantity, removeProductFromCart } from "../../services/CartService";
+import {
+  updateCartQuantity,
+  removeProductFromCart,
+} from "../../services/CartService";
 import { FiTrash2 } from "react-icons/fi";
 
 const CartTable = ({ items = [], cartId, onUpdate }) => {
   const handleQuantityChange = async (productId, delta) => {
     const target = items.find((i) => {
-      const id = typeof i.productId === "object" ? i.productId._id : i.productId;
+      const id =
+        typeof i.productId === "object" ? i.productId._id : i.productId;
       return id === productId;
     });
-  
+
     if (!target) return;
-  
+
     const newQty = target.quantity + delta;
     if (newQty < 1) return;
-  
+
     try {
       await updateCartQuantity(cartId, productId, delta); // <-- use delta
       onUpdate(); // Refresh from parent
@@ -59,16 +63,18 @@ const CartTable = ({ items = [], cartId, onUpdate }) => {
                 <td className="product-info">
                   <div className="product-info-wrap">
                     <img
-                      src={
-                        product.imageUrl
-                      }
+                      src={product.imageUrl}
                       alt={product.name || "Product"}
                       className="product-img"
                     />
                     <div className="product-text">
-                      <span className="product-name">{product.name || "Unnamed Product"}</span>
+                      <span className="product-name">
+                        {product.name || "Unnamed Product"}
+                      </span>
                       {product.color && (
-                        <span className="product-color">Color: {product.color}</span>
+                        <span className="product-color">
+                          Color: {product.color}
+                        </span>
                       )}
                     </div>
                   </div>
@@ -110,9 +116,7 @@ const CartTable = ({ items = [], cartId, onUpdate }) => {
           <tr>
             <td></td>
             <td className="tfoot-label">Total</td>
-            <td className="tfoot-value">
-              ${calculateTotal().toFixed(2)}
-            </td>
+            <td className="tfoot-value">${calculateTotal().toFixed(2)}</td>
             <td></td>
           </tr>
         </tfoot>

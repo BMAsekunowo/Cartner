@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-const user = JSON.parse(localStorage.getItem('user'))
+const user = JSON.parse(localStorage.getItem("user"));
 // Logout utility function
 export const handleLogout = (navigate) => {
   // Clear saved auth data
@@ -13,10 +13,9 @@ export const handleLogout = (navigate) => {
     {
       position: "top-center", // ✅ Fixed: lowercase string or use toast.POSITION.TOP_CENTER
       autoClose: 10000,
-    }
+    },
   );
 
   // Redirect to login page
   navigate("/login");
 };
-

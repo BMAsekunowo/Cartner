@@ -36,34 +36,34 @@ const RegisterForm = () => {
       const data = await signup(formData);
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
-  
-      toast.success(`Congratulations ${data.user.name}! You've signed up successfully. Enjoy your journey with Cartner!`, {
-        position: "top-center",
-        autoClose: 10000,
-      });
-  
+
+      toast.success(
+        `Congratulations ${data.user.name}! You've signed up successfully. Enjoy your journey with Cartner!`,
+        {
+          position: "top-center",
+          autoClose: 10000,
+        },
+      );
+
       const pending = localStorage.getItem("pendingSession");
-  
+
       if (pending) {
         const sessionData = JSON.parse(pending);
         await createSession(sessionData);
         localStorage.removeItem("pendingSession");
-  
+
         toast.success("Session created after signup!", {
           position: "top-center",
         });
-  
+
         navigate("/sessions");
       } else {
-        navigate("/");
+        navigate("/editme");
       }
-  
     } catch (err) {
       alert("Signup failed: " + err.response?.data?.message || err.message);
     }
   };
-
-  
 
   return (
     <div className="register-wrapper">

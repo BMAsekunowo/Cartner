@@ -13,13 +13,6 @@ const SessionsContainer = () => {
       <div className="session-content">
         <div className="title-bar">
           <h1>Sessions</h1>
-
-          <div className="btns-wrap">
-            <Button size="lg">
-              <FaPlus style={{ marginRight: "6px", alignItems: "center" }} />
-              New Session
-            </Button>
-          </div>
         </div>
 
         <div className="session-options">

@@ -13,9 +13,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const user = JSON.parse(localStorage.getItem('user'))
-
-
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -37,7 +35,6 @@ const Navbar = () => {
     setIsLoggedIn(false);
     navigate("/"); //  redirect to home after logout
   };
-
 
   return (
     <div>
@@ -105,10 +102,7 @@ const Navbar = () => {
 
             {isLoggedIn && (
               <div className="nav-logout-btn">
-                <Button
-                  size="sm"
-                  onClick={logout}
-                >
+                <Button size="sm" onClick={logout}>
                   Logout
                 </Button>
               </div>

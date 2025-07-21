@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 import CartHeader from "../components/Cart/CartHeader";
 import CartTable from "../components/Cart/CartTable";
 import OrderSummary from "../components/Cart/OrderSummary";
 import {
   getCartByUserId,
+  getSingleCart,
   clearCart,
   deleteCart,
 } from "../services/CartService";
@@ -15,16 +17,26 @@ const Cart = () => {
   const [carts, setCarts] = useState([]);
   const [expandedCartId, setExpandedCartId] = useState(null);
   const userId = JSON.parse(localStorage.getItem("user"))?._id;
+  const { sessionId } = useParams(); // <-- route param
 
   const fetchCarts = async () => {
     try {
       const data = await getCartByUserId();
       const sorted = [...(data.carts || [])].sort(
-        (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+        (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt),
       );
       setCarts(sorted);
-      if (sorted.length > 0) {
-        setExpandedCartId(sorted[0]._id); // latest cart expanded
+
+      // Prioritize expanding based on route sessionId
+      if (sessionId) {
+        const match = sorted.find((cart) => cart.sessionId?._id === sessionId);
+        if (match) {
+          setExpandedCartId(match._id);
+        } else if (sorted.length > 0) {
+          setExpandedCartId(sorted[0]._id); // fallback
+        }
+      } else if (sorted.length > 0) {
+        setExpandedCartId(sorted[0]._id); // fallback
       }
     } catch (error) {
       console.error("  Failed to load carts:", error);
@@ -33,7 +45,7 @@ const Cart = () => {
 
   useEffect(() => {
     fetchCarts();
-  }, []);
+  }, [sessionId]); // listen to param change
 
   const toggleCart = (id) => {
     setExpandedCartId((prev) => (prev === id ? null : id));
@@ -47,7 +59,7 @@ const Cart = () => {
 
   const handleDeleteCart = async (cartId) => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this cart?"
+      "Are you sure you want to delete this cart?",
     );
     if (!confirmDelete) return;
 
@@ -116,9 +128,8 @@ const Cart = () => {
               >
                 {expandedCartId === cart._id ? "−" : "+"}
               </button>
-
               <span>
-              <button
+                <button
                   className="clear-cart-btn"
                   onClick={() => handleClearCart(cart._id)}
                 >
@@ -136,12 +147,10 @@ const Cart = () => {
                 onUpdate={fetchCarts}
               />
               <OrderSummary subtotal={calculateSubtotal(cart.products)} />
-              
             </div>
           )}
         </div>
       ))}
-      
     </div>
   );
 };

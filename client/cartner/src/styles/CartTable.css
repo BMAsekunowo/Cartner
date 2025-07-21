@@ -1,11 +1,11 @@
 .cart-table-container {
-  background: #FFFFFF;
+  background: #ffffff;
   padding: 0 20px;
   border-radius: 12px;
-  border: 1px solid #E0F2FE;
+  border: 1px solid #e0f2fe;
   width: 100%;
   max-width: 800px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   margin-bottom: 100px;
 }
 
@@ -13,7 +13,7 @@
   width: 100%;
 }
 
-.cart-table thead{
+.cart-table thead {
   width: 100%;
   padding: 10px 20px;
 }
@@ -23,7 +23,7 @@
   font-size: 14px;
   color: #334155;
   padding: 20px 0;
-  border-bottom: 1px solid #E0F2FE;
+  border-bottom: 1px solid #e0f2fe;
 }
 
 .cart-table thead th:first-child {
@@ -31,8 +31,16 @@
   padding-left: 20px;
 }
 
+.cart-table thead th:nth-child(4),
+.cart-table tbody td:nth-child(4),
+.cart-table tfoot td:nth-child(4) {
+  width: 40px;
+  text-align: center;
+  padding: 14px 0;
+}
+
 .cart-table tbody td {
-  border-bottom: 1px solid #E0F2FE;
+  border-bottom: 1px solid #e0f2fe;
   padding: 15px 0;
   align-items: center;
 }
@@ -48,7 +56,7 @@
   gap: 20px;
 }
 
-.cart-table tbody th:nth-child(2)  {
+.cart-table tbody th:nth-child(2) {
   width: 20%;
   text-align: center;
 }
@@ -79,15 +87,13 @@
   flex-direction: column;
 }
 
-
-
 .cart-table tfoot td {
   height: 50px;
   padding: 20px 0;
   font-weight: 600;
   color: #1e293b;
-  border-top: 1px solid #E0F2FE;
-  border-bottom: 1px solid #E0F2FE;
+  border-top: 1px solid #e0f2fe;
+  border-bottom: 1px solid #e0f2fe;
 }
 
 .cart-table tfoot td:first-child {
@@ -109,11 +115,11 @@
 .quantity-controls {
   display: inline-flex;
   align-items: center;
-  border: 1px solid #E0F2FE;
+  border: 1px solid #e0f2fe;
   border-radius: 8px;
   overflow: hidden;
   height: 40px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .qty-btn {
@@ -144,10 +150,19 @@
   height: 100%;
 }
 
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
 
-/* ===============================
-   Responsive: Tablet (≤1024px)
-=============================== */
+.remove-btn:hover {
+  color: #dc2626;
+}
+
+/* Tablet (≤1024px) */
 @media (max-width: 1024px) {
   .cart-table-container {
     max-width: 100%;
@@ -187,11 +202,16 @@
     padding: 18px 0;
     font-size: 15px;
   }
+
+  .cart-table thead th:nth-child(4),
+  .cart-table tbody td:nth-child(4),
+  .cart-table tfoot td:nth-child(4) {
+    width: 36px;
+    padding: 12px 0;
+  }
 }
 
-/* ===============================
-   Responsive: Mobile (≤768px)
-=============================== */
+/* Mobile (≤768px) */
 @media (max-width: 768px) {
   .cart-table-container {
     margin-bottom: 30px;
@@ -229,11 +249,16 @@
     font-size: 14.5px;
     padding: 0 12px;
   }
+
+  .cart-table thead th:nth-child(4),
+  .cart-table tbody td:nth-child(4),
+  .cart-table tfoot td:nth-child(4) {
+    width: 34px;
+    padding: 10px 0;
+  }
 }
 
-/* ===============================
-   Responsive: Extra Small Devices (≤480px)
-=============================== */
+/* Extra Small Devices (≤480px) */
 @media (max-width: 480px) {
   .cart-table-container {
     border-radius: 8px;
@@ -283,5 +308,26 @@
   .cart-table tfoot td {
     padding: 14px 0;
     font-size: 14.5px;
+  }
+
+  .cart-table thead th:nth-child(4),
+  .cart-table tbody td:nth-child(4),
+  .cart-table tfoot td:nth-child(4) {
+    width: 32px;
+    padding: 8px 0;
+  }
+}
+
+/* Medium-Large Screens (1025px - 1499px) */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .cart-table-container {
+    padding: 20px 40px;
+  }
+
+  .cart-table thead th:nth-child(4),
+  .cart-table tbody td:nth-child(4),
+  .cart-table tfoot td:nth-child(4) {
+    width: 38px;
+    padding: 13px 0;
   }
 }

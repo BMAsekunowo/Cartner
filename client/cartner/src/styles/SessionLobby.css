@@ -1,147 +1,209 @@
 .session-lobby-wrap {
-    width: 700px;
-    padding: 2rem;
-    background-color: #f9fafb;
-    border-radius: 1.5rem;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e0f2fe;
-    font-family: "DM Sans", sans-serif;
-    color: #1e293b;
-  }
-  
-  .sessiond-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: #0f172a;
-  }
+  width: 700px;
+  max-width: 700px;
+  padding: 20px;
+  background-color: #f9fafb;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e0f2fe;
+  font-family: "DM Sans", sans-serif;
+  color: #1e293b;
+}
 
-  .status-badge {
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-left: auto;
-  }
-  
-  .status-badge.success {
-    background-color: #d1fae5;
-    color: #065f46;
-  }
-  
-  .status-badge.danger {
-    background-color: #fee2e2;
-    color: #b91c1c;
-  }
-  
-  .sessiond-header-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .session-description {
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: #475569;
-    margin-bottom: 1.5rem;
-  }
-  
-  .passcode-box {
-    margin-bottom: 2rem;
-  }
-  
-  .passcode-box .label {
-    font-size: 0.95rem;
-    color: #64748b;
-    margin-bottom: 0.3rem;
-  }
-  
-  .passcode-box .code {
-    font-size: 1.1rem;
-    background-color: #f1f5f9;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    width: fit-content;
-    font-weight: 600;
-  }
-  
-  .participants-wrap .label {
-    font-size: 0.95rem;
-    color: #64748b;
-    margin-bottom: 0.5rem;
-  }
-  
-  .avatars-row {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-  
-  .avatar-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 999px;
-    object-fit: cover;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  }
-  
-  .avatar-name {
-    margin-top: 0.4rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #1e293b;
-  }
-  
-  .badge {
-    margin-top: 0.2rem;
-    font-size: 0.75rem;
-    color: #fff;
-    background-color: #6366f1;
-    padding: 0.15rem 0.5rem;
-    border-radius: 0.5rem;
-  }
-  
-  .budget-cart-wrap {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  
-  .budget-cart-wrap .label {
-    font-size: 0.9rem;
-    color: #64748b;
-    margin-bottom: 0.2rem;
-  }
-  
-  .budget-cart-wrap .value {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #0f172a;
-  }
+.sessiond-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #0f172a;
+}
 
-  .session-action-buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 1.5rem;
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-left: auto;
+}
+
+.status-badge.success {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status-badge.danger {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.sessiond-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.session-description {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #475569;
+  margin-bottom: 1.5rem;
+}
+
+.passcode-box {
+  margin-bottom: 2rem;
+}
+
+.passcode-box .label {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 0.3rem;
+}
+
+.passcode-box .code {
+  font-size: 1.1rem;
+  background-color: #f1f5f9;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  width: fit-content;
+  font-weight: 600;
+}
+
+.participants-wrap .label {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.avatars-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.avatar-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.avatar-name {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.badge {
+  margin-top: 0.2rem;
+  font-size: 0.75rem;
+  color: #fff;
+  background-color: #6366f1;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.budget-cart-wrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.budget-cart-wrap .label {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-bottom: 0.2rem;
+}
+
+.budget-cart-wrap .value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.session-action-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.session-footer {
+  text-align: center;
+  color: #1e293b;
+  font-size: 0.95rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* 1025px–1499px (Mid desktop) */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .session-lobby-wrap {
+    width: 600px;
+    padding: 1.75rem;
   }
-  
-  .session-footer {
-    text-align: center;
-    color: #1e293b;
-    font-size: 0.95rem;
+}
+
+/* ≤1024px (Tablet) */
+@media (max-width: 1024px) {
+  .session-lobby-wrap {
+    width: 100%;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* ≤768px (Small Tablet / Mobile) */
+@media (max-width: 768px) {
+  .session-lobby-wrap {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+}
+
+/* ≤480px (Mobile) */
+@media (max-width: 480px) {
+  .session-lobby-wrap {
+    padding-left: 16px;
+    padding-right: 16px;
     padding-top: 1rem;
-    border-top: 1px solid #e2e8f0;
+    padding-bottom: 1rem;
+    border-radius: 1rem;
   }
-  
+}
+
+/* ≤375px (Small Mobile) */
+@media (max-width: 375px) {
+  .session-lobby-wrap {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+    border-radius: 0.85rem;
+  }
+}
+
+/* ≤320px (Ultra-small / Legacy) */
+@media (max-width: 320px) {
+  .session-lobby-wrap {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    border-radius: 0.75rem;
+  }
+}

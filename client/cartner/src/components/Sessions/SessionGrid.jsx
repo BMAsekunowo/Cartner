@@ -27,16 +27,19 @@ const SessionsGrid = ({ activeTab }) => {
 
   if (loading) return <p>Loading your sessions...</p>;
 
-  if (activeTab === "upcoming") return <p style={{ padding: "2rem" }}>🚧 Coming Soon!</p>;
+  if (activeTab === "upcoming")
+    return <p style={{ padding: "2rem" }}>🚧 Coming Soon!</p>;
 
   const filteredSessions = sessions.filter((session) => {
-    if (activeTab === "active") return session.status === "active"; 
-    if (activeTab === "past") return session.status === "ended"; 
+    if (activeTab === "active") return session.status === "active";
+    if (activeTab === "past") return session.status === "ended";
   });
 
   return (
     <div className="session-grid-wrap">
-      <p className="dotlength">You have ({filteredSessions.length}) {activeTab} Sessions</p>
+      <p className="dotlength">
+        You have ({filteredSessions.length}) {activeTab} Sessions
+      </p>
       {filteredSessions.map((session, index) => (
         <SessionCard
           key={index}

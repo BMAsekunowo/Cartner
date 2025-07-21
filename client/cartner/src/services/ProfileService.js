@@ -9,33 +9,14 @@ export const getMyProfile = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  if (!res.ok) throw new Error("Failed to fetch profile");
-  return res.json();
+  return res.data;
 };
 
-
-//use case
-// useEffect(() => {
-//     const fetchProfile = async () => {
-//       const token = localStorage.getItem('token')
-//       try {
-//         const data = await getMyProfile(token)
-//         setProfile(data)
-//       } catch (err) {
-//         console.error(err)
-//       }
-//     }
-//     fetchProfile()
-//   }, [])
-
 export const updateProfile = async (token, profileData) => {
-  const res = await axios.post(`${port}/api/profile`, {
+  const res = await axios.post(`${port}/api/profile/me`, profileData, {
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(profileData),
   });
-  if (!res.ok) throw new Error("Failed to update profile");
-  return res.json();
+  return res.data;
 };

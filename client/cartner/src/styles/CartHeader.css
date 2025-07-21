@@ -1,77 +1,75 @@
 .carth-wrap {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    width: 100%;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  width: 100%;
+  align-items: center;
 }
 
 .cart-header h1 {
-    font-family: 'Sora', sans-serif;   
-    font-size: rem;
-    font-weight: 450;
-    margin-bottom: 5px;
+  font-family: "Sora", sans-serif;
+  font-size: rem;
+  font-weight: 450;
+  margin-bottom: 5px;
 }
 
-.cart-header p{
-    font-family: 'Sora', sans-serif;
-    font-size: 16px;
-    font-weight: bold;
+.cart-header p {
+  font-family: "Sora", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .back2products {
-    max-height: 50px;
+  max-height: 50px;
 }
-
-
 
 /* ===============================
    Responsive: Tablet (≤1024px)
 =============================== */
 @media (max-width: 1024px) {
-    .cart-header h1 {
-      font-size: 1.6rem;
-    }
-  
-    .cart-header p {
-      font-size: 15px;
-    }
-  
-    .back2products {
-      max-height: 45px;
-    }
+  .cart-header h1 {
+    font-size: 1.6rem;
   }
-  
-  /* ===============================
+
+  .cart-header p {
+    font-size: 15px;
+  }
+
+  .back2products {
+    max-height: 45px;
+  }
+}
+
+/* ===============================
      Responsive: Mobile (≤768px)
   =============================== */
-  @media (max-width: 768px) {
-    .cart-header h1 {
-      font-size: 1.5rem;
-    }
-  
-    .cart-header p {
-      font-size: 14.5px;
-    }
-  
-    .back2products {
-      max-height: 42px;
-    }
+@media (max-width: 768px) {
+  .cart-header h1 {
+    font-size: 1.5rem;
   }
-  
-  /* ===============================
+
+  .cart-header p {
+    font-size: 14.5px;
+  }
+
+  .back2products {
+    max-height: 42px;
+  }
+}
+
+/* ===============================
      Responsive: Extra Small Devices (≤480px)
   =============================== */
-  @media (max-width: 480px) {
-    .cart-header h1 {
-      font-size: 1.4rem;
-    }
-  
-    .cart-header p {
-      font-size: 14px;
-    }
-  
-    .back2products {
-      max-height: 40px;
-    }
+@media (max-width: 480px) {
+  .cart-header h1 {
+    font-size: 1.4rem;
   }
+
+  .cart-header p {
+    font-size: 14px;
+  }
+
+  .back2products {
+    max-height: 40px;
+  }
+}

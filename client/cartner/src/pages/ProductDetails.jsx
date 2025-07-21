@@ -108,7 +108,6 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      
       <ProductSlider products={relatedProducts} title="Similar Products" />
     </main>
   );

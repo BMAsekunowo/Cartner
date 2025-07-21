@@ -4,6 +4,56 @@
   padding: 50px 100px;
   border: 1px solid #e0f2fe;
   font-family: "DM Sans", sans-serif;
-  color: #0F172A;
+  color: #0f172a;
   gap: 100px;
+}
+
+/* Mid-Desktop Screens (1025px–1499px) */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .session-details-wrap {
+    padding: 50px 80px;
+    gap: 80px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .session-details-wrap {
+    padding: 40px 60px;
+    gap: 60px;
+  }
+}
+
+/* Small Tablet / Large Mobile */
+@media (max-width: 768px) {
+  .session-details-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px 40px;
+    gap: 40px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .session-details-wrap {
+    padding: 20px;
+    gap: 30px;
+  }
+}
+
+/* Older iPhones */
+@media (max-width: 375px) {
+  .session-details-wrap {
+    padding: 16px;
+    gap: 20px;
+  }
+}
+
+/* Extra Small Screens */
+@media (max-width: 320px) {
+  .session-details-wrap {
+    padding: 12px;
+    gap: 16px;
+  }
 }

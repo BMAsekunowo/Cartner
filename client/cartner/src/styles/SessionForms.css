@@ -1,7 +1,7 @@
 .invite-user-form {
   width: 500px;
   background: #ffffff;
-  border: 1px solid #E0F2FE;
+  border: 1px solid #e0f2fe;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
@@ -17,7 +17,7 @@
 .form-group3 {
   margin-bottom: 1rem;
   border: 1px solid #e2e8f0;
-   border-radius: 10px;
+  border-radius: 10px;
   padding: 10px;
 }
 
@@ -44,9 +44,6 @@
 .form-group3:has(.invite-input:focus) {
   border-color: #0f172a;
 }
-
-
-
 
 .pending-requests-section {
   margin-top: 2rem;
@@ -100,4 +97,67 @@
 .reject-btn {
   background-color: #ef4444;
   color: white;
+}
+
+/* 1025px–1499px (Mid desktop) */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .invite-user-form {
+    width: 450px;
+    padding: 1.25rem;
+  }
+}
+
+/* ≤1024px (Tablet) */
+@media (max-width: 1024px) {
+  .invite-user-form {
+    width: 100%;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* ≤768px (Small Tablet / Mobile) */
+@media (max-width: 768px) {
+  .invite-user-form {
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+}
+
+/* ≤480px (Mobile) */
+@media (max-width: 480px) {
+  .invite-user-form {
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+/* ≤375px (iPhone SE / older) */
+@media (max-width: 375px) {
+  .invite-user-form {
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+  }
+}
+
+/* ≤320px (Legacy / ultra-small) */
+@media (max-width: 320px) {
+  .invite-user-form {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+  }
 }

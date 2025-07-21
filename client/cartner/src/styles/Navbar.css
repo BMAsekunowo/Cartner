@@ -254,7 +254,10 @@ nav {
     max-height: 0;
     opacity: 0;
     transform: translateY(-10px);
-    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+    transition:
+      max-height 0.4s ease,
+      opacity 0.4s ease,
+      transform 0.4s ease;
     width: 100%;
     border-top: 1px solid #e5e7eb;
     padding-left: 0;
@@ -262,7 +265,7 @@ nav {
   }
 
   .nav-main.open {
-    max-height: 800px; 
+    max-height: 800px;
     opacity: 1;
     transform: translateY(0);
     padding: 1rem 0;

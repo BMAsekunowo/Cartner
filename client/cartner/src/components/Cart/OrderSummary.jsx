@@ -38,10 +38,7 @@ const OrderSummary = ({ subtotal = 0 }) => {
       </div>
 
       <div className="btno-wrap">
-        <Button 
-          className="checkout-button"
-          size="lg"
-        >
+        <Button className="checkout-button" size="lg">
           Proceed to Checkout
         </Button>
       </div>

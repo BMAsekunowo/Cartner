@@ -70,7 +70,7 @@ const SessionActions = () => {
         {
           position: "top-center",
           autoClose: 10000,
-        }
+        },
       );
     }
   };
@@ -105,7 +105,7 @@ const SessionActions = () => {
           sessionCode: joinData.joinSessionCode.trim(),
           passcode: joinData.joinPasscode.trim(),
         },
-        token
+        token,
       );
 
       console.log("👉 About to join with:", joinData);
@@ -138,7 +138,7 @@ const SessionActions = () => {
         {
           position: "top-center",
           autoClose: 8000,
-        }
+        },
       );
     }
   };
@@ -158,7 +158,7 @@ const SessionActions = () => {
         {
           position: "top-center",
           autoClose: 8000,
-        }
+        },
       );
     }
   };

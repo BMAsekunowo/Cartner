@@ -14,11 +14,12 @@ import Profile from "./pages/Profile";
 import "./styles/index.css"; // Importing global styles
 import Footer from "./components/Reusables/Footer";
 import Navbar from "./components/Reusables/Navbar";
-import PublicProfile from "./pages/PublicProfile"; // Importing PublicProfile page 
+import PublicProfile from "./pages/PublicProfile"; // Importing PublicProfile page
 import ProductDetails from "./pages/ProductDetails"; // Importing ProductDetails page
 import SessionDetails from "./pages/SessionDetails"; // Importing SessionDetails page
 import useAutoRefreshToken from "./hooks/useAutoRefreshToken";
 import SessionSelector from "./components/Reusables/SessionSelector";
+import EditProfile from "./pages/EditProfile";
 
 function App() {
   //Checking token validity
@@ -26,7 +27,6 @@ function App() {
 
   //Custom Hooks
   useAutoRefreshToken(); // Custom hook for auto-refreshing token
-    
 
   useEffect(() => {
     const checkToken = async () => {
@@ -60,15 +60,17 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/products" element={<Products />} /> 
+          <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/sessions" element={<Sessions />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/editme" element={<EditProfile />} />
           {/* Dynamic Routes */}
           <Route path="/user/:userId" element={<PublicProfile />} />
           <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="/session/:sessionId" element={< SessionDetails />} />
+          <Route path="/session/:sessionId" element={<SessionDetails />} />
           <Route path="/cart/:sessionId" element={<Cart />} />
+          <Route path="/cart/id/:cartId" element={<Cart />} />
           {/* Route for client side invalid path Error */}
           <Route path="*" element={<Error404 />} />
         </Routes>

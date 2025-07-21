@@ -26,7 +26,7 @@ export const updateCartQuantity = async (cartId, productId, quantity) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
 };
 
@@ -38,7 +38,7 @@ export const removeProductFromCart = async (cartId, productId) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
 };
 
@@ -53,7 +53,7 @@ export const addProductToCart = async (cartId, productId, quantity = 1) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
 
   return res.data;

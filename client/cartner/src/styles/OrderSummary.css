@@ -1,73 +1,71 @@
 .order-summary-card {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 20px;
-    width: 380px;
-    box-shadow: 0 0 0 1px #E0F2FE;
-    font-family: 'Inter', sans-serif;
-  }
-  
-  .summary-title {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: #1e293b;
-  }
-  
-  .summary-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-size: 15px;
-  }
-  
-  .label {
-    color: #334155;
-  }
-  
-  .amount {
-    color: #1e293b;
-    font-weight: 500;
-  }
-  
-  .summary-divider {
-    border: none;
-    border-top: 1px solid #e2e8f0;
-    margin: 12px 0;
-  }
-  
-  .total-row {
-    font-size: 16px;
-    font-weight: 600;
-  }
-  
-  .checkout-button {
-    margin-top: 16px;
-    width: 100%;
-    background-color: #0f3e45;
-    color: #ffffff;
-    font-weight: 500;
-    padding: 10px 16px;
-    font-size: 15px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .checkout-button:hover {
-    background-color: #0c3239;
-  }
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  width: 380px;
+  box-shadow: 0 0 0 1px #e0f2fe;
+  font-family: "Inter", sans-serif;
+}
 
-  .btno-wrap {
-    height: 40px;
-    width: 100%;
-    margin: 20px 0 10px 0;
-  }
+.summary-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #1e293b;
+}
 
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
 
+.label {
+  color: #334155;
+}
 
-  /* ===============================
+.amount {
+  color: #1e293b;
+  font-weight: 500;
+}
+
+.summary-divider {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  margin: 12px 0;
+}
+
+.total-row {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.checkout-button {
+  margin-top: 16px;
+  width: 100%;
+  background-color: #0f3e45;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 10px 16px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.checkout-button:hover {
+  background-color: #0c3239;
+}
+
+.btno-wrap {
+  height: 40px;
+  width: 100%;
+  margin: 20px 0 10px 0;
+}
+
+/* ===============================
    Responsive: Tablet (≤1024px)
    =============================== */
 @media (max-width: 1024px) {

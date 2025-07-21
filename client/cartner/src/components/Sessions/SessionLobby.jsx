@@ -9,19 +9,18 @@ import {
 } from "../../services/SessionService";
 import "../../styles/SessionLobby.css";
 
-const SessionLobby = () => {
+const SessionLobby = ({ session: propSession }) => {
   const navigate = useNavigate();
-  const { activeSession: sessionData, setActiveSession } = useSession();
+  const { activeSession, setActiveSession } = useSession();
+  const session = propSession || activeSession;
 
   useEffect(() => {
-    if (sessionData) {
-      setActiveSession(sessionData);
+    if (propSession) {
+      setActiveSession(propSession); // Optional sync
     }
-  }, [sessionData]);
+  }, [propSession]);
 
-  if (!sessionData) return <p>Loading session...</p>;
-
-  const session = sessionData;
+  if (!session) return <p>Loading session...</p>;
 
   const handleLeaveSession = async () => {
     try {
@@ -51,6 +50,8 @@ const SessionLobby = () => {
       console.error("Failed to load session cart:", error);
     }
   };
+
+  const CartTotal = session.cart?.totalPrice || 0;
 
   return (
     <div className="session-lobby-wrap">
@@ -125,7 +126,7 @@ const SessionLobby = () => {
           <p className="value">
             $
             {((session.budget || 0) - (session.cart?.totalPrice || 0)).toFixed(
-              2
+              2,
             )}
           </p>
         </div>
