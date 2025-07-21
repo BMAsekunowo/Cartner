@@ -1,0 +1,8 @@
+.cont-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 100px;
+  height: auto;
+}

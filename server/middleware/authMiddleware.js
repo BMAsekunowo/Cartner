@@ -16,11 +16,9 @@ const protect = async (req, res, next) => {
     next(); //Proceed to the next middleware or route handler
   } catch (error) {
     console.error(error);
-    res
-      .status(401)
-      .json({
-        message: "Unauthorized, Invalid or expired token. Please login again",
-      });
+    res.status(401).json({
+      message: "Unauthorized, Invalid or expired token. Please login again",
+    });
   }
 };
 

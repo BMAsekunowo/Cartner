@@ -33,17 +33,22 @@ exports.createCart = async (req, res) => {
   }
 
   try {
-    // 1. Create Cart
+    const enrichedProducts = products.map((p) => ({
+      productId: p.productId,
+      quantity: p.quantity,
+      addedBy: userId,
+      addedAt: new Date(),
+    }));
+
     const newCart = new Cart({
       userId,
       sessionId,
-      products,
+      products: enrichedProducts,
       totalPrice,
     });
 
     await newCart.save();
 
-    // Link this cart back to the Session
     if (sessionId) {
       await Session.findByIdAndUpdate(sessionId, {
         cartId: newCart._id,
@@ -255,14 +260,16 @@ exports.addProductToCart = async (req, res) => {
     );
 
     if (existingItem) {
-      // Update quantity
       existingItem.quantity += quantity;
     } else {
-      // Add new product
-      cart.products.push({ productId, quantity });
+      cart.products.push({
+        productId,
+        quantity,
+        addedBy: req.user.id,
+        addedAt: new Date(),
+      });
     }
 
-    // Recalculate total
     let total = 0;
     for (let item of cart.products) {
       const product = await Product.findById(item.productId);

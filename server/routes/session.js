@@ -14,6 +14,7 @@ const {
   getSessionById,
   getActiveSessionsByUser,
   getCartById,
+  getSessionSummary,
   leaveSession,
   endSession,
 } = require("../controllers/sessionController");
@@ -57,6 +58,9 @@ router.put("/:sessionId/end", protect, endSession);
 
 //Get all sessions the logged-in user is involved in
 router.get("/my", protect, getMySessions);
+
+//Get session summary by session ID (for creator)
+router.get("/:sessionId/summary", protect, getSessionSummary);
 
 //Get full details of a specific session by ID
 router.get("/:sessionId", protect, getSessionById);

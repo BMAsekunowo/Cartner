@@ -20,8 +20,8 @@ const CartTable = ({ items = [], cartId, onUpdate }) => {
     if (newQty < 1) return;
 
     try {
-      await updateCartQuantity(cartId, productId, delta); // <-- use delta
-      onUpdate(); // Refresh from parent
+      await updateCartQuantity(cartId, productId, delta);
+      onUpdate();
     } catch (err) {
       console.error("Failed to update quantity:", err);
     }
@@ -50,13 +50,13 @@ const CartTable = ({ items = [], cartId, onUpdate }) => {
             <th className="left-align">Product</th>
             <th>Quantity</th>
             <th className="right-align">Total</th>
-            <th></th>
+            <th className="center-align">Remove</th>
           </tr>
         </thead>
         <tbody>
           {items.map((item, index) => {
             const product = item.productId || {};
-            const productId = product._id || item.productId; // supports object or string
+            const productId = product._id || item.productId;
 
             return (
               <tr key={productId || index}>
@@ -76,6 +76,13 @@ const CartTable = ({ items = [], cartId, onUpdate }) => {
                           Color: {product.color}
                         </span>
                       )}
+                      <span className="product-meta">
+                        {item.addedBy
+                          ? `Added by ${item.addedBy} on ${new Date(
+                              item.addedAt,
+                            ).toLocaleDateString()}`
+                          : "Added by someone"}
+                      </span>
                     </div>
                   </div>
                 </td>
@@ -99,7 +106,7 @@ const CartTable = ({ items = [], cartId, onUpdate }) => {
                 <td className="center-align">
                   ${(product.price * item.quantity || 0).toFixed(2)}
                 </td>
-                <td>
+                <td className="center-align">
                   <button
                     className="remove-btn"
                     onClick={() => handleRemoveProduct(productId)}

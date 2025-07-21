@@ -182,6 +182,19 @@ export const getCartBySessionId = async (sessionId) => {
   return res.data;
 };
 
+export const getSessionSummary = async (sessionId) => {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("No token found");
+
+  const res = await axios.get(`${port}/api/sessions/${sessionId}/summary`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return res.data;
+};
+
 export const leaveSession = async (sessionId) => {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found");

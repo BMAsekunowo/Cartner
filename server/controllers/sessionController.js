@@ -631,6 +631,50 @@ exports.getCartById = async (req, res) => {
   }
 };
 
+exports.getSessionSummary = async (req, res) => {
+  const { sessionId } = req.params;
+
+  // ✅ Validate sessionId
+  if (!mongoose.Types.ObjectId.isValid(sessionId)) {
+    return res.status(400).json({ message: "Invalid or missing sessionId." });
+  }
+
+  try {
+    // ✅ Fetch session with invited users
+    const session = await Session.findById(sessionId)
+      .populate("invitedUsers.userId", "name email")
+      .lean();
+
+    // ✅ Fetch cart linked to the session
+    const cart = await Cart.findOne({ sessionId })
+      .populate("products.productId", "name price imageUrl")
+      .populate("userId", "name") // For fallback addedBy
+      .lean();
+
+    if (!session || !cart) {
+      return res.status(404).json({ message: "Session or cart not found" });
+    }
+
+    const response = {
+      sessionName: session.sessionName,
+      participants: session.invitedUsers.map((u) => ({
+        _id: u.userId._id,
+        name: u.userId.name,
+      })),
+      cartItems: cart.products.map((item) => ({
+        product: item.productId,
+        quantity: item.quantity,
+        addedBy: cart.userId?.name || "Unknown", // fallback until addedBy is per-product
+      })),
+    };
+
+    res.json(response);
+  } catch (err) {
+    console.error("❌ getSessionSummary error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 exports.leaveSession = async (req, res) => {
   const userId = req.user.id;
   const { sessionId } = req.params;

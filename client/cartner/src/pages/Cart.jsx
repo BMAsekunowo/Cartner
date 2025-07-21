@@ -146,7 +146,10 @@ const Cart = () => {
                 items={cart.products || []}
                 onUpdate={fetchCarts}
               />
-              <OrderSummary subtotal={calculateSubtotal(cart.products)} />
+              <OrderSummary
+                subtotal={calculateSubtotal(cart.products)}
+                sessionId={cart.sessionId?._id || cart.sessionId}
+              />
             </div>
           )}
         </div>

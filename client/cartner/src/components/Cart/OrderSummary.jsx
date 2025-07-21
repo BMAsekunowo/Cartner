@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../Reusables/Button";
-import "../../styles/OrderSummary.css";
+import "../../styles/OrderSummary.css"; // Assuming you have a CSS file for styling
 
-const OrderSummary = ({ subtotal = 0 }) => {
+const OrderSummary = ({ subtotal = 0, sessionId }) => {
+  const navigate = useNavigate();
+
   const feesRate = 0.01;
   const fees = subtotal * feesRate;
 
@@ -10,6 +13,15 @@ const OrderSummary = ({ subtotal = 0 }) => {
   const tax = (subtotal + fees) * taxRate;
 
   const total = subtotal + fees + tax;
+
+  // Function to handle checkout button click
+  const handleCheckout = () => {
+    if (sessionId) {
+      navigate(`/session-summary/${sessionId}`);
+    } else {
+      alert("Session ID is missing.");
+    }
+  };
 
   return (
     <div className="order-summary-card">
@@ -38,7 +50,7 @@ const OrderSummary = ({ subtotal = 0 }) => {
       </div>
 
       <div className="btno-wrap">
-        <Button className="checkout-button" size="lg">
+        <Button className="checkout-button" size="lg" onClick={handleCheckout}>
           Proceed to Checkout
         </Button>
       </div>

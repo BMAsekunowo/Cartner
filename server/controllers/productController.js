@@ -40,19 +40,15 @@ exports.createProduct = async (req, res) => {
     });
     await newProduct.save();
     console.log(`A New product added to database ✅:`, newProduct);
-    res
-      .status(201)
-      .json({
-        message: `You have added ${newProduct.name} to products successfully`,
-      });
+    res.status(201).json({
+      message: `You have added ${newProduct.name} to products successfully`,
+    });
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({
-        message:
-          "oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up",
-      });
+    res.status(500).json({
+      message:
+        "oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up",
+    });
   }
 };
 
@@ -65,12 +61,10 @@ exports.getAllProducts = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({
-        message:
-          "oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up",
-      });
+    res.status(500).json({
+      message:
+        "oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up",
+    });
   }
 };
 
@@ -88,11 +82,9 @@ exports.getProductByName = async (req, res) => {
     const product = await Product.findOne({ name });
 
     if (!product) {
-      return res
-        .status(404)
-        .json({
-          message: `Product with name ${name} was not found, Enter correct name`,
-        });
+      return res.status(404).json({
+        message: `Product with name ${name} was not found, Enter correct name`,
+      });
     }
 
     res.status(200).json({
@@ -101,12 +93,10 @@ exports.getProductByName = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({
-        message:
-          "oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up",
-      });
+    res.status(500).json({
+      message:
+        "oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up",
+    });
   }
 };
 
@@ -122,11 +112,9 @@ exports.getProductById = async (req, res) => {
   try {
     const product = await Product.findById(id);
     if (!product) {
-      return res
-        .status(404)
-        .json({
-          message: `Product with ID ${id} was not found, Enter correct ID`,
-        });
+      return res.status(404).json({
+        message: `Product with ID ${id} was not found, Enter correct ID`,
+      });
     }
     res.status(200).json({
       message: `Product with the ID: ${id} was found`,
@@ -134,12 +122,10 @@ exports.getProductById = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({
-        message:
-          "oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up",
-      });
+    res.status(500).json({
+      message:
+        "oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up",
+    });
   }
 };
 
@@ -198,10 +184,8 @@ exports.deleteProduct = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({
-        message: "Oops, something went wrong while deleting the product.",
-      });
+    res.status(500).json({
+      message: "Oops, something went wrong while deleting the product.",
+    });
   }
 };

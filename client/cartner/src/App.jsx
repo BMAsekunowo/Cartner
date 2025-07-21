@@ -20,6 +20,7 @@ import SessionDetails from "./pages/SessionDetails"; // Importing SessionDetails
 import useAutoRefreshToken from "./hooks/useAutoRefreshToken";
 import SessionSelector from "./components/Reusables/SessionSelector";
 import EditProfile from "./pages/EditProfile";
+import SessionSummary from "./pages/SessionSummary"; // Importing SessionSummary page
 
 function App() {
   //Checking token validity
@@ -71,6 +72,10 @@ function App() {
           <Route path="/session/:sessionId" element={<SessionDetails />} />
           <Route path="/cart/:sessionId" element={<Cart />} />
           <Route path="/cart/id/:cartId" element={<Cart />} />
+          <Route
+            path="/session-summary/:sessionId"
+            element={<SessionSummary />}
+          />
           {/* Route for client side invalid path Error */}
           <Route path="*" element={<Error404 />} />
         </Routes>

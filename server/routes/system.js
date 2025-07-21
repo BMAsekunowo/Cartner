@@ -9,12 +9,10 @@ router.get("/conhealth", (req, res) => {
 
 //protected route example
 router.get("/protected", protect, (req, res) => {
-  res
-    .status(200)
-    .json({
-      message: "This is a protected route and you have been granted access",
-      user: req.user,
-    });
+  res.status(200).json({
+    message: "This is a protected route and you have been granted access",
+    user: req.user,
+  });
 });
 
 module.exports = router;

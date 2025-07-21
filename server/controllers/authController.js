@@ -14,11 +14,9 @@ exports.registerUser = async (req, res) => {
     //Checking if the user already exists
     const userExists = await User.findOne({ email });
     if (userExists) {
-      return res
-        .status(409)
-        .json({
-          message: "oops, Looks like you already have an account with us",
-        });
+      return res.status(409).json({
+        message: "oops, Looks like you already have an account with us",
+      });
     }
 
     //Hashing the password
@@ -33,19 +31,15 @@ exports.registerUser = async (req, res) => {
     });
     await newUser.save();
     console.log("A New user added to database ✅ :", newUser);
-    res
-      .status(201)
-      .json({
-        message: "Congratulations You have been registered successfully",
-      });
+    res.status(201).json({
+      message: "Congratulations You have been registered successfully",
+    });
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({
-        message:
-          "oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up",
-      });
+    res.status(500).json({
+      message:
+        "oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up",
+    });
   }
 };
 
@@ -63,23 +57,19 @@ exports.loginUser = async (req, res) => {
     //Checking if the user exists
     const user = await User.findOne({ email });
     if (!user) {
-      return res
-        .status(401)
-        .json({
-          message:
-            "Oops, we cant find an account with that email or password. Double check your input",
-        });
+      return res.status(401).json({
+        message:
+          "Oops, we cant find an account with that email or password. Double check your input",
+      });
     }
 
     //Comparing the password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res
-        .status(401)
-        .json({
-          message:
-            "Oops, we cant find an account with that email or password. Double check your input",
-        });
+      return res.status(401).json({
+        message:
+          "Oops, we cant find an account with that email or password. Double check your input",
+      });
     }
 
     //Generating JWT token
@@ -100,12 +90,10 @@ exports.loginUser = async (req, res) => {
     console.log("MongoDB was accessed ✅ User logged in successfully ");
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({
-        message:
-          "oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up",
-      });
+    res.status(500).json({
+      message:
+        "oops, We are sorry 😞. Something went wrong, Its not you its us and we are fixing up",
+    });
   }
 };
 

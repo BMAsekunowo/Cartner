@@ -21,6 +21,8 @@ app.use("/api/products", require("./routes/product")); //Product Routes
 app.use("/api/carts", require("./routes/cart")); //Cart Routes
 app.use("/api/sessions", require("./routes/session")); //Session Routes
 app.use("/api/profile", require("./routes/profile")); //Profile Routes
+
+//Rendering Images Static Files
 const path = require("path");
 app.use("/api/uploads", express.static(path.join(__dirname, "uploads")));
 

@@ -70,21 +70,71 @@
 ✅ Project scaffolded and environment initialized with modular folder structure (Vite + CSS)
 ✅ Reusable NavBar and Footer components built and styled for consistent sitewide use
 ✅ Landing UI designed and implemented:
-  ✅ Hero, Features, Testimonials, Call-to-Action sections
+✅ Hero, Features, Testimonials, Call-to-Action sections
 ✅ Sign In & Register UIs fully designed and connected to backend authentication
 ✅ Explore Marketplace (Products Page) created with styled product cards (currently static)
 ✅ Sessions Page UI implemented for collaborative shopping structure (static)
 ✅ Cart Page UI fully developed:
-  ✅ CartTable component with responsive layout, image, name, quantity, price
-  ✅ Quantity adjusters styled with proper alignment
-  ✅ OrderSummary component showing subtotal, 13% tax, and total
+✅ CartTable component with responsive layout, image, name, quantity, price
+✅ Quantity adjusters styled with proper alignment
+✅ OrderSummary component showing subtotal, 13% tax, and total
 ✅ Placeholder Home Page added to simulate post-login landing flow
 ✅ Connected to server-side authentication:
-  ✅ Sign In and Register forms functional via backend API
-  ✅ JWT token storage and access confirmed
+✅ Sign In and Register forms functional via backend API
+✅ JWT token storage and access confirmed
 ✅ Responsiveness applied across all components using media queries:
-  ✅ Tablet (≤1024px), Mobile (≤768px), Extra Small (≤480px)
+✅ Tablet (≤1024px), Mobile (≤768px), Extra Small (≤480px)
 ✅ All UI pages and elements visually validated on multiple screen sizes
 ✅ Currently using static product/session data pending dynamic integration in Week 2
 
 // All components tested and responsive – Cleared for Frontend Week 2 (Session Flows, Product Detail, and Dynamic Data) on the 27th of June 2025
+
+=== WEEK 5: Frontend Week 2 Summary: Session Flows, Profile Pages & Cart Logic (Completed) ===
+
+✅ Profile Page UI completed:
+ • Displays user avatar, name, email, location, language, and occupation
+ • Components styled with consistent layout and mobile responsiveness
+ • Editable field placeholders prepared for backend integration
+
+✅ Product Details Page (/product/:id) built:
+ • Renders image, title, price, description, and static reviews
+ • Includes “Add to Cart” button with logic wired to backend
+ • Responsive layout for all screen sizes
+
+✅ Session View Page (/session/:id) implemented:
+ • Shows session name, participant avatars, and joined cart summary
+ • Join and Leave logic stubbed (mocked for now)
+ • Designed for real-time upgrade in Week 3
+
+✅ Cart Page logic completed:
+ • Dynamically displays user cart items
+ • Supports quantity increase/decrease and item removal
+ • Recalculates total and tax automatically
+ • Responsive CartTable UI and order summary integrated
+ • Delete column with styled trash icon added and functional
+
+✅ Cart Badge added to Navbar:
+ • Updates item count in real time on add/remove
+ • Linked directly to cart page
+
+✅ Create Session Page (/create-session) developed:
+ • Form captures session name, type, and optional passcode
+ • On submit, triggers session creation API and navigates to lobby
+
+✅ Session Lobby Page (/session-lobby/:sessionId) built:
+ • Displays session overview with participants and cart
+ • Prepares ground for real-time updates in Week 3
+
+✅ Backend Integration completed:
+ • Fetch products and individual product details
+ • Add/remove/update items in cart
+ • Create new sessions
+ • (Optional) Profile fetch logic prepared for live data
+
+✅ Testing and Mobile Polish:
+ • All routes verified and UI validated
+ • Thorough cart testing completed
+ • Mobile responsiveness applied across components
+ • Ready for real-time flows and interactive upgrades
+
+// All session, profile, and cart flows are complete – Cleared for Frontend Week 3 (Real-Time Interactions, Session Invites, and Live Syncing) starting 20th July 2025.
