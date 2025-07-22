@@ -1,4 +1,4 @@
-.session-actions-wrap {
+.session-actions-wrapp {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -104,7 +104,7 @@
 
 /* Mid Desktop (1025px–1499px) */
 @media (min-width: 1025px) and (max-width: 1499px) {
-  .session-actions-wrap {
+  .session-actions-wrapp {
     padding-left: 80px;
     padding-right: 80px;
     gap: 1.5rem; /* vertical spacing when stacked */
@@ -113,7 +113,7 @@
 
 /* Tablet (≤1024px) */
 @media (max-width: 1024px) {
-  .session-actions-wrap {
+  .session-actions-wrapp {
     flex-direction: column;
     padding-left: 60px;
     padding-right: 60px;
@@ -131,7 +131,7 @@
 
 /* Mobile (≤768px) */
 @media (max-width: 768px) {
-  .session-actions-wrap {
+  .session-actions-wrapp {
     padding-left: 30px;
     padding-right: 30px;
   }
@@ -139,7 +139,7 @@
 
 /* Small Mobile (≤480px) */
 @media (max-width: 480px) {
-  .session-actions-wrap {
+  .session-actions-wrapp {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -147,7 +147,7 @@
 
 /* Very Small (≤375px) */
 @media (max-width: 375px) {
-  .session-actions-wrap {
+  .session-actions-wrapp {
     padding-left: 12px;
     padding-right: 12px;
   }
@@ -155,7 +155,7 @@
 
 /* Ultra Small (≤320px) */
 @media (max-width: 320px) {
-  .session-actions-wrap {
+  .session-actions-wrapp {
     padding-left: 10px;
     padding-right: 10px;
   }

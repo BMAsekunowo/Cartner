@@ -1,12 +1,12 @@
+/* ===============================
+   Base Styles
+=============================== */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/*===============================
- Logo Styles 
-===============================*/
 .logocover {
   background-color: none;
   display: flex;
@@ -29,7 +29,6 @@
   width: 32px;
   height: 32px;
   background-color: #6366f1;
-  /* border: 2px solid #FB923C; */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -53,9 +52,6 @@
   color: #06b6d4;
 }
 
-/*===============================
- Navbar Styles 
-===============================*/
 nav {
   display: flex;
   align-items: center;
@@ -73,6 +69,7 @@ nav {
   height: 100%;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .nav-container ul {
@@ -111,9 +108,42 @@ nav {
   font-size: 14px;
 }
 
+.hamburger-menu {
+  display: none;
+  background: none;
+  margin-top: 10px;
+  border: none;
+  font-size: 1.8rem;
+  color: #0f172a;
+  cursor: pointer;
+}
+
 /* ===============================
-   Responsive: Tablet and Down
-   =============================== */
+   Mid-Desktop (1025px–1499px)
+=============================== */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  nav {
+    padding: 0 80px;
+  }
+
+  .logo-text {
+    font-size: 1.1rem;
+  }
+
+  .logo-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  .nav-container ul {
+    gap: 18px;
+  }
+}
+
+/* ===============================
+   Tablet (≤1024px)
+=============================== */
 @media (max-width: 1024px) {
   nav {
     padding: 0 60px;
@@ -144,8 +174,8 @@ nav {
 }
 
 /* ===============================
-     Responsive: Mobile
-  =============================== */
+   Small Tablet / Large Mobile (≤768px)
+=============================== */
 @media (max-width: 768px) {
   nav {
     padding: 0 30px;
@@ -185,58 +215,7 @@ nav {
   .nav-logout-btn {
     margin-left: 0px;
   }
-}
 
-/* ===============================
-     Responsive: Extra Small Devices
-     =============================== */
-@media (max-width: 480px) {
-  nav {
-    padding: 0 16px;
-  }
-
-  .logo-icon {
-    width: 24px;
-    height: 24px;
-    font-size: 14px;
-  }
-
-  .logo-text {
-    font-size: 0.9rem;
-  }
-
-  .nav-container ul {
-    gap: 10px;
-  }
-
-  .linkto {
-    font-size: 12px;
-  }
-
-  .nav-main {
-    flex-direction: column;
-    align-items: normal;
-  }
-
-  .nav-logout-btn {
-    margin-left: 0px;
-  }
-}
-
-/* ===============================
-     Mobile Hamburger Menu
-=============================== */
-.hamburger-menu {
-  display: none;
-  background: none;
-  margin-top: 10px;
-  border: none;
-  font-size: 1.8rem;
-  color: #0f172a;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
   .hamburger-menu {
     display: block;
     position: absolute;
@@ -282,8 +261,78 @@ nav {
     width: 100%;
     padding-left: 10px;
   }
+}
 
-  .nav-container {
-    position: relative;
+/* ===============================
+   Small Mobile (≤480px)
+=============================== */
+@media (max-width: 480px) {
+  nav {
+    padding: 0 16px;
+  }
+
+  .logo-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+
+  .logo-text {
+    font-size: 0.9rem;
+  }
+
+  .nav-container ul {
+    gap: 10px;
+  }
+
+  .linkto {
+    font-size: 12px;
+  }
+
+  .nav-main {
+    flex-direction: column;
+    align-items: normal;
+  }
+
+  .nav-logout-btn {
+    margin-left: 0px;
+  }
+}
+
+/* ===============================
+   Older iPhones (≤375px)
+=============================== */
+@media (max-width: 375px) {
+  .logo-text {
+    font-size: 0.85rem;
+  }
+
+  .logo-icon {
+    width: 22px;
+    height: 22px;
+    font-size: 13px;
+  }
+
+  .linkto {
+    font-size: 11px;
+  }
+}
+
+/* ===============================
+   Extra Small Screens (≤320px)
+=============================== */
+@media (max-width: 320px) {
+  .logo-text {
+    font-size: 0.8rem;
+  }
+
+  .logo-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+
+  .linkto {
+    font-size: 10px;
   }
 }

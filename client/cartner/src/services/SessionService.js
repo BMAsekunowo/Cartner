@@ -224,3 +224,16 @@ export const endSession = async (sessionId) => {
 
   return res.data;
 };
+
+export const syncUserSessions = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("No token found");
+
+  const res = await axios.get(`${port}/api/sessions/sync`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return res.data;
+};

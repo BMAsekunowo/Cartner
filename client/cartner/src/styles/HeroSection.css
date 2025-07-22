@@ -42,7 +42,8 @@
   gap: 10px;
 }
 
-.form-group {
+.form-group,
+.form-group2 {
   display: flex;
   flex-direction: column;
   border: 1px solid #e2e8f0;
@@ -50,7 +51,8 @@
   padding: 10px;
 }
 
-.form-group label {
+.form-group label,
+.form-group2 label {
   padding: 0 5px;
   font-weight: 600;
   color: #1e293b;
@@ -58,7 +60,8 @@
   font-size: 0.85rem;
 }
 
-.form-input {
+.form-input,
+.form-input2 {
   padding: 0 5px;
   border: none;
   border-radius: 10px;
@@ -67,12 +70,14 @@
   background: transparent;
 }
 
-.form-input:focus {
+.form-input:focus,
+.form-input2:focus {
   outline: none;
   border-color: #6366f1;
 }
 
-.form-group:has(.form-input:focus) {
+.form-group:has(.form-input:focus),
+.form-group2:has(.form-input2:focus) {
   border-color: #0f172a;
 }
 
@@ -83,35 +88,7 @@
 }
 
 .form-group2 {
-  display: flex;
-  flex-direction: column;
   width: 49%;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-.form-group2 label {
-  padding: 0 5px;
-  font-weight: 600;
-  color: #1e293b;
-  margin-bottom: 6px;
-  font-size: 0.95rem;
-}
-
-.form-input2 {
-  width: 100%;
-  padding: 0;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  color: #1e293b;
-  background: transparent;
-}
-
-.form-input2:focus {
-  outline: none;
-  border-color: #6366f1;
 }
 
 .submit-btn {
@@ -146,8 +123,30 @@
 }
 
 /* ===============================
-   Responsive: Tablet (1024px and below)
-   =============================== */
+   Mid-Desktop Screens (1025px–1499px)
+=============================== */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .hero-section {
+    padding: 60px 80px;
+  }
+
+  .session-card {
+    width: 420px;
+  }
+
+  .hero-image {
+    margin-left: 300px;
+    width: 900px;
+  }
+
+  .hero-image img {
+    max-height: 580px;
+  }
+}
+
+/* ===============================
+   Tablet (≤1024px)
+=============================== */
 @media (max-width: 1024px) {
   .hero-section {
     flex-direction: column-reverse;
@@ -178,20 +177,19 @@
 }
 
 /* ===============================
-     Responsive: Mobile (768px and below)
-     =============================== */
+   Small Tablet / Large Mobile (≤768px)
+=============================== */
 @media (max-width: 768px) {
   .hero-section {
     padding: 40px 30px;
-    height: auto;
-  }
-
-  .session-card h1 {
-    font-size: 1.5rem;
   }
 
   .session-card {
     padding: 20px;
+  }
+
+  .session-card h1 {
+    font-size: 1.5rem;
   }
 
   .hero-image img {
@@ -214,8 +212,8 @@
 }
 
 /* ===============================
-     Responsive: Extra Small Devices (480px and below)
-     =============================== */
+   Small Mobile (≤480px)
+=============================== */
 @media (max-width: 480px) {
   .hero-section {
     padding: 30px 20px;
@@ -242,5 +240,65 @@
 
   .hero-image img {
     max-height: 300px;
+  }
+}
+
+/* ===============================
+   Older iPhones (≤375px)
+=============================== */
+@media (max-width: 375px) {
+  .session-card h1 {
+    font-size: 1.2rem;
+  }
+
+  .form-group label,
+  .form-group2 label {
+    font-size: 0.75rem;
+  }
+
+  .form-input,
+  .form-input2 {
+    font-size: 0.88rem;
+  }
+
+  .submit-btn {
+    font-size: 0.88rem;
+    padding: 10px;
+  }
+
+  .hero-image img {
+    max-height: 260px;
+  }
+}
+
+/* ===============================
+   Extra Small Screens (≤320px)
+=============================== */
+@media (max-width: 320px) {
+  .hero-section {
+    padding: 20px;
+  }
+
+  .session-card h1 {
+    font-size: 1.1rem;
+  }
+
+  .form-group label,
+  .form-group2 label {
+    font-size: 0.7rem;
+  }
+
+  .form-input,
+  .form-input2 {
+    font-size: 0.85rem;
+  }
+
+  .submit-btn {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+
+  .hero-image img {
+    max-height: 220px;
   }
 }

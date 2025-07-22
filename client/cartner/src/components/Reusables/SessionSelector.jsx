@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useSession } from "../../context/SessionContext";
+import { useSession } from "../../contexts/SessionContext";
 import { getActiveSessionsByUser } from "../../services/SessionService";
 import "../../styles/SessionSelector.css";
 

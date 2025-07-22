@@ -63,8 +63,35 @@
 }
 
 /* ===============================
-   Tablet View (1024px and below)
-   =============================== */
+   Mid-Desktop Screens (1025px–1499px)
+=============================== */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .features-allwrap {
+    padding: 90px 80px;
+  }
+
+  .features-container {
+    padding: 45px 0;
+    gap: 28px;
+  }
+
+  .feature-wrap {
+    max-width: 25%;
+  }
+
+  .feature-icon {
+    width: 180px;
+    height: 180px;
+  }
+
+  .features-header {
+    font-size: 1.65em;
+  }
+}
+
+/* ===============================
+   Tablet (≤1024px)
+=============================== */
 @media (max-width: 1024px) {
   .features-allwrap {
     padding: 80px 60px;
@@ -90,8 +117,8 @@
 }
 
 /* ===============================
-     Mobile View (768px and below)
-     =============================== */
+   Small Tablet / Large Mobile (≤768px)
+=============================== */
 @media (max-width: 768px) {
   .features-allwrap {
     padding: 60px 30px;
@@ -129,8 +156,8 @@
 }
 
 /* ===============================
-     Extra Small Devices (480px and below)
-     =============================== */
+   Small Mobile (≤480px)
+=============================== */
 @media (max-width: 480px) {
   .features-allwrap {
     padding: 40px 16px;
@@ -152,5 +179,51 @@
 
   .feature-wrap p {
     font-size: 0.9rem;
+  }
+}
+
+/* ===============================
+   Older iPhones (≤375px)
+=============================== */
+@media (max-width: 375px) {
+  .features-header {
+    font-size: 1em;
+    gap: 10px;
+  }
+
+  .feature-icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .feature-wrap h3 {
+    font-size: 0.95rem;
+  }
+
+  .feature-wrap p {
+    font-size: 0.85rem;
+  }
+}
+
+/* ===============================
+   Extra Small Screens (≤320px)
+=============================== */
+@media (max-width: 320px) {
+  .features-header {
+    font-size: 0.95em;
+    gap: 8px;
+  }
+
+  .feature-icon {
+    width: 90px;
+    height: 90px;
+  }
+
+  .feature-wrap h3 {
+    font-size: 0.9rem;
+  }
+
+  .feature-wrap p {
+    font-size: 0.8rem;
   }
 }

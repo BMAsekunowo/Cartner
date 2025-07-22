@@ -31,12 +31,10 @@
   margin-bottom: 40px;
 }
 
-.product-category {
-  width: 100%;
-  /* margin-bottom: 20px; */
-}
-
-.product-category h3 {
+.product-category h3,
+.sortby h3,
+.cartner-express h3,
+.price-label {
   font-family: "Sora", sans-serif;
   font-size: 0.95rem;
   font-weight: 400;
@@ -44,14 +42,18 @@
   margin-bottom: 10px;
 }
 
-.category-options {
+.category-options,
+.sortby-options,
+.express-options {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 10px;
 }
 
-.category-options label {
+.category-options label,
+.sortby-options label,
+.express-options label {
   display: flex;
   gap: 10px;
   font-family: "Segoe UI", sans-serif;
@@ -59,7 +61,7 @@
   color: #64748b;
 }
 
-.category-options input[type="checkbox"] {
+input[type="checkbox"] {
   width: 15px;
   height: 15px;
   cursor: pointer;
@@ -76,14 +78,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-}
-
-.price-label {
-  font-family: "Sora", sans-serif;
-  font-size: 0.95rem;
-  font-weight: 400;
-  color: #0f172a;
-  margin-bottom: 10px;
 }
 
 .price-values {
@@ -103,14 +97,12 @@
   margin-bottom: 20px;
 }
 
-/* The filled part of the slider */
 .price-slider .track {
   background: #0f172a;
   height: 100%;
   border-radius: 2px;
 }
 
-/* Slider thumbs */
 .price-slider .thumb {
   height: 8px;
   width: 8px;
@@ -125,81 +117,11 @@
   transition: background-color 0.2s;
 }
 
-.price-slider .thumb:hover {
-  background-color: #0f172a;
-}
-
+.price-slider .thumb:hover,
 .price-slider .thumb:focus {
+  background-color: #0f172a;
   outline: none;
   box-shadow: 0 0 0 2px #0f172a;
-}
-
-.sortby {
-  width: 100%;
-  /* margin-bottom: 20px; */
-}
-
-.sortby h3 {
-  font-family: "Sora", sans-serif;
-  font-size: 0.95rem;
-  font-weight: 400;
-  color: #0f172a;
-  margin-bottom: 10px;
-}
-
-.sortby-options {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 10px;
-}
-
-.sortby-options label {
-  display: flex;
-  gap: 10px;
-  font-family: "Segoe UI", sans-serif;
-  font-size: 0.85rem;
-  color: #64748b;
-}
-
-.sortby-options input[type="checkbox"] {
-  width: 15px;
-  height: 15px;
-  cursor: pointer;
-}
-
-.cartner-express {
-  width: 100%;
-  /* margin-bottom: 20px; */
-}
-
-.cartner-express h3 {
-  font-family: "Sora", sans-serif;
-  font-size: 0.95rem;
-  font-weight: 400;
-  color: #0f172a;
-  margin-bottom: 10px;
-}
-
-.express-options {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 10px;
-}
-
-.express-options label {
-  display: flex;
-  gap: 10px;
-  font-family: "Segoe UI", sans-serif;
-  font-size: 0.85rem;
-  color: #64748b;
-}
-
-.express-options input[type="checkbox"] {
-  width: 15px;
-  height: 15px;
-  cursor: pointer;
 }
 
 .products-wrap {
@@ -216,7 +138,40 @@
 }
 
 /* =====================================
-   Medium Devices (Tablets - ≤1024px)
+   Mid-Desktop (1025px–1499px)
+   ===================================== */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .product-container {
+    padding: 10px 60px;
+    margin-bottom: 80px;
+  }
+
+  .product-content {
+    padding: 30px;
+  }
+
+  .product-filters h2 {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+
+  .product-category h3,
+  .sortby h3,
+  .cartner-express h3,
+  .price-label {
+    font-size: 0.9rem;
+  }
+
+  .category-options label,
+  .sortby-options label,
+  .express-options label,
+  .price-values {
+    font-size: 0.8rem;
+  }
+}
+
+/* =====================================
+   Tablet (≤1024px)
    ===================================== */
 @media (max-width: 1024px) {
   .product-container {
@@ -236,20 +191,17 @@
     gap: 20px;
   }
 
-  .products-wrap {
-    width: 100%;
-  }
-
+  .products-wrap,
   .search {
-    margin-left: 0;
     width: 100%;
+    margin-left: 0;
     margin-top: 20px;
   }
 }
 
 /* =====================================
-     Small Devices (Mobile - ≤768px)
-     ===================================== */
+   Small Tablet / Large Mobile (≤768px)
+   ===================================== */
 @media (max-width: 768px) {
   .product-container {
     padding: 10px 20px;
@@ -286,20 +238,14 @@
     font-size: 0.8rem;
   }
 
-  .products-wrap {
-    width: 100%;
-  }
-
   .search {
-    width: 100%;
-    margin-left: 0;
     margin-top: 16px;
   }
 }
 
 /* =====================================
-     Extra Small Devices (≤480px)
-     ===================================== */
+   Small Mobile (≤480px)
+   ===================================== */
 @media (max-width: 480px) {
   .product-container {
     padding: 10px 12px;
@@ -339,13 +285,53 @@
     width: 6px;
   }
 
-  .products-wrap {
-    width: 100%;
+  .search {
+    margin-top: 14px;
+  }
+}
+
+/* =====================================
+   Older iPhones (≤375px)
+   ===================================== */
+@media (max-width: 375px) {
+  .product-filters h2 {
+    font-size: 0.9rem;
   }
 
-  .search {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 14px;
+  .product-category h3,
+  .sortby h3,
+  .cartner-express h3,
+  .price-label {
+    font-size: 0.8rem;
+  }
+
+  .category-options label,
+  .sortby-options label,
+  .express-options label,
+  .price-values {
+    font-size: 0.7rem;
+  }
+}
+
+/* =====================================
+   Extra Small Screens (≤320px)
+   ===================================== */
+@media (max-width: 320px) {
+  .product-filters h2 {
+    font-size: 0.85rem;
+  }
+
+  .product-category h3,
+  .sortby h3,
+  .cartner-express h3,
+  .price-label {
+    font-size: 0.75rem;
+  }
+
+  .category-options label,
+  .sortby-options label,
+  .express-options label,
+  .price-values {
+    font-size: 0.65rem;
   }
 }

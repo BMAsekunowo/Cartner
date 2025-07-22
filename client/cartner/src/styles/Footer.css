@@ -1,3 +1,4 @@
+/* === Base Styles === */
 .footer-container {
   display: flex;
   flex-direction: column;
@@ -70,8 +71,39 @@
 }
 
 /* ===============================
-   Responsive: Tablet (1024px and below)
-   =============================== */
+   Mid-Desktop Screens (1025px–1499px)
+=============================== */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .footer-container {
+    padding: 50px 80px 30px 80px;
+  }
+
+  .footer-logo h3 {
+    font-size: 1.4rem;
+  }
+
+  .footer-div {
+    width: 23%;
+  }
+
+  .footer-div span {
+    font-size: 0.95rem;
+  }
+
+  .navlinks,
+  .support-links,
+  .social-links {
+    font-size: 0.9rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===============================
+   Tablet (≤1024px)
+=============================== */
 @media (max-width: 1024px) {
   .footer-container {
     padding: 50px 60px 30px 60px;
@@ -94,11 +126,15 @@
   .social-links {
     font-size: 0.9rem;
   }
+
+  .footer-bottom {
+    font-size: 0.88rem;
+  }
 }
 
 /* ===============================
-   Responsive: Mobile (768px and below)
-   =============================== */
+   Small Tablet / Large Mobile (≤768px)
+=============================== */
 @media (max-width: 768px) {
   .footer-section {
     flex-direction: column;
@@ -137,8 +173,8 @@
 }
 
 /* ===============================
-   Responsive: Extra Small Devices (480px and below)
-   =============================== */
+   Small Mobile (≤480px)
+=============================== */
 @media (max-width: 480px) {
   .footer-container {
     padding: 30px 20px 20px 20px;
@@ -160,5 +196,59 @@
 
   .footer-bottom {
     font-size: 0.8rem;
+  }
+}
+
+/* ===============================
+   Older iPhones (≤375px)
+=============================== */
+@media (max-width: 375px) {
+  .footer-container {
+    padding: 26px 16px 16px 16px;
+  }
+
+  .footer-logo h3 {
+    font-size: 1rem;
+  }
+
+  .footer-div span {
+    font-size: 0.9rem;
+  }
+
+  .navlinks,
+  .support-links,
+  .social-links {
+    font-size: 0.8rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.75rem;
+  }
+}
+
+/* ===============================
+   Extra Small Screens (≤320px)
+=============================== */
+@media (max-width: 320px) {
+  .footer-container {
+    padding: 20px 12px 12px 12px;
+  }
+
+  .footer-logo h3 {
+    font-size: 0.95rem;
+  }
+
+  .footer-div span {
+    font-size: 0.85rem;
+  }
+
+  .navlinks,
+  .support-links,
+  .social-links {
+    font-size: 0.75rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.7rem;
   }
 }

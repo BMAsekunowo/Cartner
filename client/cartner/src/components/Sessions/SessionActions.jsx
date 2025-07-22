@@ -10,20 +10,20 @@ import {
   getSessionInvites,
 } from "../../services/SessionService";
 import { toast } from "react-toastify";
+import { useSession } from "../../contexts/SessionContext";
 
 const SessionActions = () => {
   const navigate = useNavigate();
+  const { refreshSessions } = useSession();
   const user = JSON.parse(localStorage.getItem("user"));
   const [invites, setInvites] = useState([]);
   const [loadingInvites, setLoadingInvites] = useState(true);
-
   const [sessionData, setSessionData] = useState({
     sessionName: "",
     sessionType: "",
     participants: "",
     passcode: "",
   });
-
   const [joinData, setJoinData] = useState({
     joinSessionCode: "",
     joinPasscode: "",
@@ -40,7 +40,6 @@ const SessionActions = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-
     const cleaned = {
       ...sessionData,
       sessionName: sessionData.sessionName.trim(),
@@ -50,32 +49,24 @@ const SessionActions = () => {
 
     try {
       const data = await createSession(cleaned, token);
-
-      if (!data || !data.session || !data.session.id) {
+      if (!data?.session?.id)
         throw new Error("Session creation returned no ID");
-      }
 
       toast.success(`Congrats ${user.name}! Session created successfully`, {
         position: "top-center",
         autoClose: 10000,
       });
 
-      // Navigate to the new session
+      await refreshSessions(); // ✅ sync session data
       navigate(`/session/${data.session.id}`);
     } catch (err) {
       toast.error(
-        `Session creation failed: ${
-          err.response?.data?.message || err.message
-        }`,
-        {
-          position: "top-center",
-          autoClose: 10000,
-        },
+        `Session creation failed: ${err.response?.data?.message || err.message}`,
+        { position: "top-center", autoClose: 10000 },
       );
     }
   };
 
-  // Fetch invites on mount
   useEffect(() => {
     const fetchInvites = async () => {
       try {
@@ -91,7 +82,6 @@ const SessionActions = () => {
         setLoadingInvites(false);
       }
     };
-
     fetchInvites();
   }, []);
 
@@ -100,7 +90,7 @@ const SessionActions = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await joinSessionByCode(
+      await joinSessionByCode(
         {
           sessionCode: joinData.joinSessionCode.trim(),
           passcode: joinData.joinPasscode.trim(),
@@ -108,12 +98,12 @@ const SessionActions = () => {
         token,
       );
 
-      console.log("👉 About to join with:", joinData);
-
-      toast.success(res.message || "Join request sent", {
+      toast.success("Join request sent", {
         position: "top-center",
         autoClose: 8000,
       });
+
+      await refreshSessions();
     } catch (err) {
       toast.error(err.response?.data?.message || "Failed to join session", {
         position: "top-center",
@@ -122,19 +112,18 @@ const SessionActions = () => {
     }
   };
 
-  const handleAcceptInvite = async (sessionCode) => {
+  const handleAcceptInvite = async ({ sessionCode }) => {
     try {
       const res = await acceptInvite({ sessionCode });
       toast.success("Invite accepted! Redirecting...", {
         position: "top-center",
         autoClose: 6000,
       });
+      await refreshSessions();
       navigate(`/session/${res.sessionId}`);
     } catch (err) {
       toast.error(
-        `Failed to accept invite: ${
-          err.response?.data?.message || err.message
-        }`,
+        `Failed to accept invite: ${err.response?.data?.message || err.message}`,
         {
           position: "top-center",
           autoClose: 8000,
@@ -143,18 +132,17 @@ const SessionActions = () => {
     }
   };
 
-  const handleRejectInvite = async (sessionCode) => {
+  const handleRejectInvite = async ({ sessionCode }) => {
     try {
       await rejectInvite({ sessionCode });
       toast.info("Invite rejected", {
         position: "top-center",
         autoClose: 5000,
       });
+      await refreshSessions();
     } catch (err) {
       toast.error(
-        `Failed to reject invite: ${
-          err.response?.data?.message || err.message
-        }`,
+        `Failed to reject invite: ${err.response?.data?.message || err.message}`,
         {
           position: "top-center",
           autoClose: 8000,
@@ -162,8 +150,9 @@ const SessionActions = () => {
       );
     }
   };
+
   return (
-    <div className="session-actions-wrap">
+    <div className="session-actions-wrapp">
       {/* Create Session */}
       <div className="create-wrap">
         <form className="session-form" onSubmit={handleSubmit}>

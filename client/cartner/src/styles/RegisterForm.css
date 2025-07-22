@@ -1,5 +1,5 @@
 .register-wrapper {
-  height: 80vh; /* slightly longer than Login*/
+  height: 80vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -165,7 +165,6 @@
   font-family: "Sora", sans-serif;
   font-size: 1rem;
   font-weight: 600;
-  text-align: center;
   color: #64748b;
 }
 
@@ -183,10 +182,10 @@
   border-radius: 10px;
   padding: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease;
 }
 
 .register-oauth-btn:hover {
@@ -194,7 +193,29 @@
 }
 
 /* ===============================
-   Tablet View (1024px and below)
+   Mid-Desktop (1025px–1499px)
+=============================== */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .register-form {
+    width: 600px;
+    height: auto;
+  }
+
+  .register-title {
+    height: 90px;
+  }
+
+  .register-form-wrap {
+    height: 320px;
+  }
+
+  .register-form-l {
+    padding: 18px;
+  }
+}
+
+/* ===============================
+   Tablet (≤1024px)
 =============================== */
 @media (max-width: 1024px) {
   .register-wrapper {
@@ -226,14 +247,13 @@
 
   .register-form-l {
     width: 100%;
-    margin: 20px 0 0 0;
+    margin-top: 20px;
     padding: 20px 10px;
-    height: auto;
   }
 }
 
 /* ===============================
-     Mobile View (768px and below)
+   Small Tablet / Large Mobile (≤768px)
 =============================== */
 @media (max-width: 768px) {
   .register-title {
@@ -264,7 +284,7 @@
 }
 
 /* ===============================
-     Extra Small Devices (480px and below)
+   Small Mobile (≤480px)
 =============================== */
 @media (max-width: 480px) {
   .register-form {
@@ -304,5 +324,44 @@
   .register-oauth-btn {
     padding: 8px;
     font-size: 20px;
+  }
+}
+
+/* ===============================
+   Older iPhones (≤375px)
+=============================== */
+@media (max-width: 375px) {
+  .register-form-l {
+    padding: 8px;
+  }
+
+  .register-subtitle p {
+    font-size: 0.85rem;
+  }
+
+  .form-input {
+    font-size: 0.85rem;
+  }
+
+  .register-oauth-btn {
+    padding: 6px;
+  }
+}
+
+/* ===============================
+   Extra Small Screens (≤320px)
+=============================== */
+@media (max-width: 320px) {
+  .register-subtitle p {
+    font-size: 0.8rem;
+  }
+
+  .form-input {
+    font-size: 0.8rem;
+  }
+
+  .register-oauth-btn {
+    font-size: 18px;
+    padding: 5px;
   }
 }

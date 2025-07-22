@@ -8,7 +8,7 @@
 
 .cart-header h1 {
   font-family: "Sora", sans-serif;
-  font-size: rem;
+  font-size: 1.5rem;
   font-weight: 450;
   margin-bottom: 5px;
 }
@@ -24,52 +24,85 @@
 }
 
 /* ===============================
-   Responsive: Tablet (≤1024px)
+   Mid-Desktop (1025px–1499px)
 =============================== */
-@media (max-width: 1024px) {
-  .cart-header h1 {
-    font-size: 1.6rem;
-  }
-
-  .cart-header p {
-    font-size: 15px;
-  }
-
-  .back2products {
-    max-height: 45px;
-  }
-}
-
-/* ===============================
-     Responsive: Mobile (≤768px)
-  =============================== */
-@media (max-width: 768px) {
-  .cart-header h1 {
-    font-size: 1.5rem;
-  }
-
-  .cart-header p {
-    font-size: 14.5px;
-  }
-
-  .back2products {
-    max-height: 42px;
-  }
-}
-
-/* ===============================
-     Responsive: Extra Small Devices (≤480px)
-  =============================== */
-@media (max-width: 480px) {
+@media (min-width: 1025px) and (max-width: 1499px) {
   .cart-header h1 {
     font-size: 1.4rem;
   }
 
   .cart-header p {
-    font-size: 14px;
+    font-size: 15px;
+  }
+}
+
+/* ===============================
+   Tablet (≤1024px)
+=============================== */
+@media (max-width: 1024px) {
+  .carth-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 
-  .back2products {
-    max-height: 40px;
+  .cart-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .cart-header p {
+    font-size: 14px;
+  }
+}
+
+/* ===============================
+   Small Tablet / Large Mobile (≤768px)
+=============================== */
+@media (max-width: 768px) {
+  .cart-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .cart-header p {
+    font-size: 13.5px;
+  }
+}
+
+/* ===============================
+   Small Mobile (≤480px)
+=============================== */
+@media (max-width: 480px) {
+  .cart-header h1 {
+    font-size: 1.1rem;
+  }
+
+  .cart-header p {
+    font-size: 13px;
+  }
+}
+
+/* ===============================
+   Older iPhones (≤375px)
+=============================== */
+@media (max-width: 375px) {
+  .cart-header h1 {
+    font-size: 1rem;
+  }
+
+  .cart-header p {
+    font-size: 12.5px;
+  }
+}
+
+/* ===============================
+   Extra Small Screens (≤320px)
+=============================== */
+@media (max-width: 320px) {
+  .cart-header h1 {
+    font-size: 0.95rem;
+  }
+
+  .cart-header p {
+    font-size: 12px;
   }
 }

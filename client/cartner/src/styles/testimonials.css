@@ -107,25 +107,20 @@
 }
 
 /* ===============================
-   Tablet View (1024px and below)
-   =============================== */
-@media (max-width: 1024px) {
+   Mid-Desktop View (1025px–1499px)
+=============================== */
+@media (min-width: 1025px) and (max-width: 1499px) {
   .testimonial-section {
-    padding: 80px 60px;
+    padding: 90px 80px;
   }
 
   .testimonial-heading {
-    font-size: 1.75rem;
-  }
-
-  .testimonial-scroll {
-    gap: 20px;
-    padding-bottom: 12px;
+    font-size: 1.85rem;
   }
 
   .testimonial-card {
-    width: 250px;
-    padding: 26px 20px;
+    width: 260px;
+    padding: 28px 22px;
   }
 
   .testimonial-quote {
@@ -133,99 +128,86 @@
   }
 
   .testimonial-quote span {
-    font-size: 1.75rem;
+    font-size: 1.8rem;
   }
 }
 
 /* ===============================
-     Mobile View (768px and below)
-     =============================== */
-@media (max-width: 768px) {
+     Older iPhones (≤375px)
+=============================== */
+@media (max-width: 375px) {
+  .testimonial-heading {
+    font-size: 1.2rem;
+  }
+
+  .testimonial-card {
+    width: 190px;
+    padding: 18px 14px;
+  }
+
+  .testimonial-avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .testimonial-quote {
+    font-size: 0.8rem;
+  }
+
+  .testimonial-quote span {
+    font-size: 1.2rem;
+  }
+
+  .testimonial-name {
+    font-size: 0.85rem;
+  }
+
+  .testimonial-title {
+    font-size: 0.75rem;
+  }
+}
+
+/* ===============================
+     Extra Small Devices (≤320px)
+=============================== */
+@media (max-width: 320px) {
   .testimonial-section {
-    padding: 60px 30px;
+    padding: 30px 12px;
   }
 
   .testimonial-heading {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
+    font-size: 1.1rem;
+    margin-bottom: 24px;
   }
 
-  .testimonial-scroll-wrapper {
-    padding: 16px 0;
+  .testimonial-card {
+    width: 170px;
+    padding: 16px 12px;
+  }
+
+  .testimonial-avatar {
+    width: 44px;
+    height: 44px;
+  }
+
+  .testimonial-quote {
+    font-size: 0.75rem;
+  }
+
+  .testimonial-quote span {
+    font-size: 1.1rem;
+  }
+
+  .testimonial-name {
+    font-size: 0.8rem;
+  }
+
+  .testimonial-title {
+    font-size: 0.7rem;
   }
 
   .testimonial-scroll-btn {
-    font-size: 1.25rem;
-    padding: 8px;
-  }
-
-  .testimonial-card {
-    width: 220px;
-    padding: 22px 18px;
-  }
-
-  .testimonial-avatar {
-    width: 56px;
-    height: 56px;
-    margin-bottom: 12px;
-  }
-
-  .testimonial-quote {
-    font-size: 0.9rem;
-  }
-
-  .testimonial-quote span {
-    font-size: 1.5rem;
-  }
-
-  .testimonial-name {
-    font-size: 0.95rem;
-  }
-
-  .testimonial-title {
-    font-size: 0.85rem;
-  }
-}
-
-/* ===============================
-     Extra Small Devices (480px and below)
-     =============================== */
-@media (max-width: 480px) {
-  .testimonial-section {
-    padding: 40px 16px;
-  }
-
-  .testimonial-heading {
-    font-size: 1.3rem;
-  }
-
-  .testimonial-scroll {
-    gap: 16px;
-  }
-
-  .testimonial-card {
-    width: 200px;
-    padding: 20px 16px;
-  }
-
-  .testimonial-avatar {
-    width: 50px;
-    height: 50px;
-  }
-
-  .testimonial-quote {
-    font-size: 0.85rem;
-  }
-
-  .testimonial-quote span {
-    font-size: 1.3rem;
-  }
-
-  .testimonial-name {
-    font-size: 0.9rem;
-  }
-
-  .testimonial-title {
-    font-size: 0.8rem;
+    font-size: 1.1rem;
+    padding: 6px;
   }
 }

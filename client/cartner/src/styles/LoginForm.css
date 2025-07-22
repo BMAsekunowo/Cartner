@@ -38,7 +38,7 @@
   font-size: 0.95rem;
   font-family: "Sora", sans-serif;
   font-weight: 500;
-  color: #ef4444; /* Error red */
+  color: #ef4444;
   text-align: center;
 }
 
@@ -67,7 +67,6 @@
   gap: 10px;
   display: flex;
   flex-direction: column;
-  /* border: 1px solid #E2E8F0; */
   border-radius: 10px;
 }
 
@@ -78,7 +77,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: #6366F1; */
 }
 
 .subtitle p {
@@ -173,7 +171,20 @@
 }
 
 /* ===============================
-   Tablet View (1024px and below)
+   Mid-Desktop (1025px–1499px)
+=============================== */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .login-form {
+    width: 600px;
+  }
+
+  .form-l {
+    padding: 18px;
+  }
+}
+
+/* ===============================
+   Tablet (≤1024px)
 =============================== */
 @media (max-width: 1024px) {
   .login-wrapper {
@@ -212,8 +223,8 @@
 }
 
 /* ===============================
-     Mobile View (768px and below)
-     =============================== */
+   Small Tablet / Large Mobile (≤768px)
+=============================== */
 @media (max-width: 768px) {
   .title {
     height: auto;
@@ -243,8 +254,8 @@
 }
 
 /* ===============================
-     Extra Small Devices (480px and below)
-     =============================== */
+   Small Mobile (≤480px)
+=============================== */
 @media (max-width: 480px) {
   .login-form {
     width: 100%;
@@ -279,5 +290,51 @@
   .oauth-icon-btn {
     padding: 8px;
     font-size: 20px;
+  }
+}
+
+/* ===============================
+   Older iPhones (≤375px)
+=============================== */
+@media (max-width: 375px) {
+  .subtitle p {
+    font-size: 0.85rem;
+  }
+
+  .form-input {
+    font-size: 0.85rem;
+  }
+
+  .feedback-text,
+  .oauth-text {
+    font-size: 0.8rem;
+  }
+
+  .oauth-icon-btn {
+    font-size: 18px;
+    padding: 6px;
+  }
+}
+
+/* ===============================
+   Extra Small Screens (≤320px)
+=============================== */
+@media (max-width: 320px) {
+  .subtitle p {
+    font-size: 0.8rem;
+  }
+
+  .form-input {
+    font-size: 0.8rem;
+  }
+
+  .feedback-text,
+  .oauth-text {
+    font-size: 0.75rem;
+  }
+
+  .oauth-icon-btn {
+    padding: 5px;
+    font-size: 16px;
   }
 }

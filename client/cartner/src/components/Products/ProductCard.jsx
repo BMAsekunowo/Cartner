@@ -8,7 +8,7 @@ import {
   FaEye,
   FaCartPlus,
 } from "react-icons/fa";
-import { useSession } from "../../context/SessionContext";
+import { useSession } from "../../contexts/SessionContext";
 import Button from "../Reusables/Button";
 import { addProductToCart } from "../../services/CartService";
 import { toast } from "react-toastify";

@@ -23,9 +23,7 @@ import EditProfile from "./pages/EditProfile";
 import SessionSummary from "./pages/SessionSummary"; // Importing SessionSummary page
 
 function App() {
-  //Checking token validity
   const navigate = useNavigate();
-
   //Custom Hooks
   useAutoRefreshToken(); // Custom hook for auto-refreshing token
 

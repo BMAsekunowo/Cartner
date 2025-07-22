@@ -33,9 +33,28 @@
   margin-bottom: 20px;
 }
 
-/* ================================
-   Medium Devices (Tablets ≤1024px)
-   ================================ */
+/* =====================================
+   Mid-Desktop (1025px–1499px)
+===================================== */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .phero-container {
+    height: 280px;
+    padding: 0 40px;
+  }
+
+  .phero-content h1 {
+    font-size: 2.1rem;
+  }
+
+  .phero-content p {
+    font-size: 1.15rem;
+    margin-bottom: 18px;
+  }
+}
+
+/* =====================================
+   Tablet (≤1024px)
+===================================== */
 @media (max-width: 1024px) {
   .phero-container {
     height: 260px;
@@ -52,9 +71,9 @@
   }
 }
 
-/* ================================
-     Small Devices (Mobile ≤768px)
-     ================================ */
+/* =====================================
+   Small Tablet / Large Mobile (≤768px)
+===================================== */
 @media (max-width: 768px) {
   .phero-container {
     height: 220px;
@@ -71,9 +90,9 @@
   }
 }
 
-/* ================================
-     Extra Small Devices (≤480px)
-     ================================ */
+/* =====================================
+   Small Mobile (≤480px)
+===================================== */
 @media (max-width: 480px) {
   .phero-container {
     height: 200px;
@@ -91,5 +110,43 @@
   .phero-content p {
     font-size: 0.95rem;
     margin-bottom: 14px;
+  }
+}
+
+/* =====================================
+   Older iPhones (≤375px)
+===================================== */
+@media (max-width: 375px) {
+  .phero-container {
+    height: 180px;
+    padding: 0 12px;
+  }
+
+  .phero-content h1 {
+    font-size: 1.45rem;
+  }
+
+  .phero-content p {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+}
+
+/* =====================================
+   Extra Small Screens (≤320px)
+===================================== */
+@media (max-width: 320px) {
+  .phero-container {
+    height: 160px;
+    padding: 0 10px;
+  }
+
+  .phero-content h1 {
+    font-size: 1.3rem;
+  }
+
+  .phero-content p {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
   }
 }

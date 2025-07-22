@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../Reusables/Button";
-import { useSession } from "../../context/SessionContext";
+import { useSession } from "../../contexts/SessionContext";
 import {
   getCartBySessionId,
   leaveSession,

@@ -6,10 +6,10 @@ import CartTable from "../components/Cart/CartTable";
 import OrderSummary from "../components/Cart/OrderSummary";
 import {
   getCartByUserId,
-  getSingleCart,
   clearCart,
   deleteCart,
 } from "../services/CartService";
+import { useSession } from "../contexts/SessionContext";
 import { Trash2 } from "lucide-react";
 import "../styles/Cart.css";
 
@@ -17,7 +17,9 @@ const Cart = () => {
   const [carts, setCarts] = useState([]);
   const [expandedCartId, setExpandedCartId] = useState(null);
   const userId = JSON.parse(localStorage.getItem("user"))?._id;
-  const { sessionId } = useParams(); // <-- route param
+  const { sessionId } = useParams();
+
+  const { refreshSessions } = useSession(); // ✅ session sync
 
   const fetchCarts = async () => {
     try {
@@ -27,25 +29,22 @@ const Cart = () => {
       );
       setCarts(sorted);
 
-      // Prioritize expanding based on route sessionId
+      // Auto-expand relevant cart
       if (sessionId) {
         const match = sorted.find((cart) => cart.sessionId?._id === sessionId);
-        if (match) {
-          setExpandedCartId(match._id);
-        } else if (sorted.length > 0) {
-          setExpandedCartId(sorted[0]._id); // fallback
-        }
+        setExpandedCartId(match?._id || sorted[0]?._id);
       } else if (sorted.length > 0) {
-        setExpandedCartId(sorted[0]._id); // fallback
+        setExpandedCartId(sorted[0]._id);
       }
     } catch (error) {
-      console.error("  Failed to load carts:", error);
+      console.error("❌ Failed to load carts:", error);
     }
   };
 
   useEffect(() => {
     fetchCarts();
-  }, [sessionId]); // listen to param change
+    refreshSessions(); // ✅ trigger sync on load
+  }, [sessionId]);
 
   const toggleCart = (id) => {
     setExpandedCartId((prev) => (prev === id ? null : id));
@@ -58,14 +57,12 @@ const Cart = () => {
     }, 0);
 
   const handleDeleteCart = async (cartId) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this cart?",
-    );
-    if (!confirmDelete) return;
+    if (!window.confirm("Are you sure you want to delete this cart?")) return;
 
     try {
       await deleteCart(cartId);
       fetchCarts();
+      refreshSessions(); // ✅ sync sessions again
       toast.success("Cart deleted successfully.");
     } catch (error) {
       toast.error("Failed to delete cart.");
@@ -73,12 +70,12 @@ const Cart = () => {
   };
 
   const handleClearCart = async (cartId) => {
-    const confirmClear = window.confirm("Clear all products from this cart?");
-    if (!confirmClear) return;
+    if (!window.confirm("Clear all products from this cart?")) return;
 
     try {
       await clearCart(cartId);
       fetchCarts();
+      refreshSessions(); // ✅ sync sessions again
       toast.success("Cart cleared successfully.");
     } catch (error) {
       toast.error("Failed to clear cart.");

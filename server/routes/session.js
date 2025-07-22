@@ -17,6 +17,7 @@ const {
   getSessionSummary,
   leaveSession,
   endSession,
+  syncUserSessions,
 } = require("../controllers/sessionController");
 const protect = require("../middleware/authMiddleware");
 
@@ -47,6 +48,15 @@ router.post("/approve/:sessionCode", protect, approveJoinRequest);
 //Reject a user's join request (creator only)
 router.post("/reject/:sessionCode", protect, rejectJoinRequest);
 
+//Get all sessions the logged-in user is involved in
+router.get("/my", protect, getMySessions);
+
+//Get all active sessions the user is involved in (creator or participant)
+router.get("/mysessions/actives", protect, getActiveSessionsByUser);
+
+//Sync user sessions (to update session data in the frontend)
+router.get("/sync", protect, syncUserSessions);
+
 //Get cart details by session ID (for session creator)
 router.get("/:sessionId/cart", protect, getCartById);
 
@@ -56,16 +66,10 @@ router.delete("/:sessionId/leave", protect, leaveSession);
 //End a session (creator only — sets status to 'ended')
 router.put("/:sessionId/end", protect, endSession);
 
-//Get all sessions the logged-in user is involved in
-router.get("/my", protect, getMySessions);
-
 //Get session summary by session ID (for creator)
 router.get("/:sessionId/summary", protect, getSessionSummary);
 
 //Get full details of a specific session by ID
 router.get("/:sessionId", protect, getSessionById);
-
-//Get all active sessions the user is involved in (creator or participant)
-router.get("/mysessions/actives", protect, getActiveSessionsByUser);
 
 module.exports = router;

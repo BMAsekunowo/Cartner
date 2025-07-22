@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getSessionSummary } from "../../services/SessionService";
+import Button from "../Reusables/Button";
 import "../../styles/SummaryContainer.css";
 
 const SummaryContainer = ({ sessionId }) => {
@@ -100,6 +101,12 @@ const SummaryContainer = ({ sessionId }) => {
                 .reduce((acc, val) => acc + val, 0)
                 .toFixed(2)}
             </span>
+          </div>
+
+          <div className="btno-wrap">
+            <Button className="checkout-button" size="lg" onClick={() => {}}>
+              Proceed to Payment
+            </Button>
           </div>
         </div>
       </div>

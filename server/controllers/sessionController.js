@@ -753,3 +753,40 @@ exports.endSession = async (req, res) => {
       .json({ message: "Something went wrong while ending the session" });
   }
 };
+
+//Sync User Sessions
+exports.syncUserSessions = async (req, res) => {
+  try {
+    if (!req.user || !req.user.id) {
+      return res
+        .status(400)
+        .json({ message: "Invalid or missing user from token" });
+    }
+
+    const userId = req.user.id;
+
+    const sessions = await Session.find({ "invitedUsers.userId": userId })
+      .select("_id sessionName updatedAt")
+      .sort({ updatedAt: -1 })
+      .lean();
+
+    const sessionSummaries = await Promise.all(
+      sessions.map(async (session) => {
+        const cart = await Cart.findOne({ sessionId: session._id })
+          .select("totalPrice updatedAt")
+          .lean();
+
+        return {
+          ...session,
+          totalPrice: cart?.totalPrice || 0,
+          lastCartUpdate: cart?.updatedAt || null,
+        };
+      }),
+    );
+
+    res.json({ sessions: sessionSummaries });
+  } catch (error) {
+    console.error("Sync error:", error);
+    res.status(500).json({ message: "Failed to sync sessions." });
+  }
+};

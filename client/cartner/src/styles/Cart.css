@@ -115,8 +115,22 @@
 }
 
 /* ===============================
-   Responsive: Tablet (≤1024px)
+   Mid-Desktop (1025px–1499px)
    =============================== */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .cartp-wrap {
+    padding: 0 60px;
+  }
+
+  .main-cart {
+    flex-direction: column;
+    gap: 28px;
+  }
+}
+
+/* ===============================
+     Tablet (≤1024px)
+     =============================== */
 @media (max-width: 1024px) {
   .cartp-wrap {
     padding: 0 50px;
@@ -129,7 +143,7 @@
 }
 
 /* ===============================
-     Responsive: Mobile (≤768px)
+     Small Tablet / Large Mobile (≤768px)
      =============================== */
 @media (max-width: 768px) {
   .cartp-wrap {
@@ -144,7 +158,7 @@
 }
 
 /* ===============================
-     Responsive: Extra Small Devices (≤480px)
+     Small Mobile (≤480px)
      =============================== */
 @media (max-width: 480px) {
   .cartp-wrap {
@@ -155,5 +169,35 @@
     flex-direction: column;
     padding: 14px 0;
     gap: 16px;
+  }
+}
+
+/* ===============================
+     Older iPhones (≤375px)
+     =============================== */
+@media (max-width: 375px) {
+  .cartp-wrap {
+    padding: 0 12px;
+  }
+
+  .main-cart {
+    flex-direction: column;
+    padding: 12px 0;
+    gap: 14px;
+  }
+}
+
+/* ===============================
+     Extra Small Screens (≤320px)
+     =============================== */
+@media (max-width: 320px) {
+  .cartp-wrap {
+    padding: 0 10px;
+  }
+
+  .main-cart {
+    flex-direction: column;
+    padding: 10px 0;
+    gap: 12px;
   }
 }

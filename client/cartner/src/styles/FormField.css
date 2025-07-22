@@ -1,3 +1,4 @@
+/* === Base Styles === */
 .formflex-group {
   margin-bottom: 10px;
   border: 1px solid #e2e8f0;
@@ -20,7 +21,6 @@
   font-family: "DM Sans", sans-serif;
 }
 
-/* Common input styles */
 .formflex-input {
   width: 100%;
   padding: 0.65rem;
@@ -37,7 +37,6 @@
   background-color: #ffffff;
 }
 
-/* Size variations */
 .formflex-input.sm {
   padding: 0.5rem;
   font-size: 0.9rem;
@@ -53,14 +52,12 @@
   font-size: 1.1rem;
 }
 
-/* Textarea specific */
 .formflex-textarea {
   resize: vertical;
   min-height: 100px;
   font-family: "DM Sans", sans-serif;
 }
 
-/* Radio and checkbox */
 .formflex-options {
   display: flex;
   flex-wrap: wrap;
@@ -83,11 +80,143 @@
   cursor: pointer;
 }
 
-/* File input */
 .formflex-file {
   padding: 0.5rem;
   background-color: #f9fafb;
   border-radius: 8px;
   font-size: 0.95rem;
   color: #0f172a;
+}
+
+/* ===============================
+   Mid-Desktop Screens (1025px–1499px)
+=============================== */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .formflex-label {
+    font-size: 0.95rem;
+  }
+
+  .formflex-input {
+    font-size: 0.98rem;
+  }
+
+  .formflex-option-label {
+    font-size: 0.93rem;
+  }
+}
+
+/* ===============================
+   Tablet (≤1024px)
+=============================== */
+@media (max-width: 1024px) {
+  .formflex-label {
+    font-size: 0.92rem;
+  }
+
+  .formflex-input {
+    padding: 0.6rem;
+    font-size: 0.95rem;
+  }
+
+  .formflex-input.lg {
+    font-size: 1.05rem;
+  }
+
+  .formflex-option-label {
+    font-size: 0.9rem;
+  }
+
+  .formflex-file {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===============================
+   Small Tablet / Large Mobile (≤768px)
+=============================== */
+@media (max-width: 768px) {
+  .formflex-label {
+    font-size: 0.9rem;
+  }
+
+  .formflex-input {
+    padding: 0.55rem;
+    font-size: 0.93rem;
+  }
+
+  .formflex-input.lg {
+    font-size: 1.03rem;
+  }
+
+  .formflex-option-label {
+    font-size: 0.88rem;
+  }
+
+  .formflex-file {
+    font-size: 0.88rem;
+  }
+}
+
+/* ===============================
+   Small Mobile (≤480px)
+=============================== */
+@media (max-width: 480px) {
+  .formflex-label {
+    font-size: 0.88rem;
+  }
+
+  .formflex-input {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .formflex-option-label {
+    font-size: 0.85rem;
+  }
+
+  .formflex-file {
+    font-size: 0.85rem;
+  }
+}
+
+/* ===============================
+   Older iPhones (≤375px)
+=============================== */
+@media (max-width: 375px) {
+  .formflex-label {
+    font-size: 0.85rem;
+  }
+
+  .formflex-input {
+    font-size: 0.88rem;
+  }
+
+  .formflex-option-label {
+    font-size: 0.83rem;
+  }
+
+  .formflex-file {
+    font-size: 0.83rem;
+  }
+}
+
+/* ===============================
+   Extra Small Screens (≤320px)
+=============================== */
+@media (max-width: 320px) {
+  .formflex-label {
+    font-size: 0.82rem;
+  }
+
+  .formflex-input {
+    font-size: 0.85rem;
+  }
+
+  .formflex-option-label {
+    font-size: 0.8rem;
+  }
+
+  .formflex-file {
+    font-size: 0.8rem;
+  }
 }

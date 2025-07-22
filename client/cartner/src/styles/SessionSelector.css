@@ -43,6 +43,15 @@
 }
 
 /* Responsive Padding Based on Navbar Sizes */
+/* ===============================
+   Mid-Desktop Devices (1025px–1499px)
+=============================== */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .session-selector-container {
+    padding: 20px 80px;
+  }
+}
+
 @media (max-width: 1024px) {
   .session-selector-container {
     padding: 20px 60px;
@@ -60,5 +69,41 @@
 @media (max-width: 480px) {
   .session-selector-container {
     padding: 20px 16px;
+  }
+}
+
+/* ===============================
+   Older iPhones (≤375px)
+=============================== */
+@media (max-width: 375px) {
+  .session-selector-container {
+    padding: 20px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .session-label,
+  .session-select {
+    font-size: 0.95rem;
+  }
+}
+
+/* ===============================
+   Extra Small Screens (≤320px)
+=============================== */
+@media (max-width: 320px) {
+  .session-selector-container {
+    padding: 16px 8px;
+    gap: 12px;
+  }
+
+  .session-label,
+  .session-select {
+    font-size: 0.9rem;
+  }
+
+  .session-select {
+    padding: 8px 12px;
   }
 }

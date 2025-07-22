@@ -28,20 +28,23 @@
   width: 50%;
 }
 
+.cart-table thead th:nth-child(2),
+.cart-table thead th:nth-child(3),
+.cart-table thead th:nth-child(4) {
+  text-align: right;
+}
+
 .cart-table thead th:nth-child(2) {
   width: 20%;
-  text-align: right;
 }
 
 .cart-table thead th:nth-child(3) {
   width: 20%;
-  text-align: right;
   padding-right: 20px;
 }
 
 .cart-table thead th:nth-child(4) {
   width: 10%;
-  text-align: right;
 }
 
 .cart-table tbody td {
@@ -143,21 +146,50 @@
   width: 50%;
 }
 
+.cart-table tfoot td:nth-child(2),
+.cart-table tfoot td:nth-child(3),
+.cart-table tfoot td:nth-child(4) {
+  text-align: right;
+}
+
 .cart-table tfoot td:nth-child(2) {
   width: 20%;
-  text-align: right;
 }
 
 .cart-table tfoot td:nth-child(3) {
   width: 20%;
-  text-align: right;
 }
 
 .cart-table tfoot td:nth-child(4) {
   width: 10%;
 }
 
-/* Tablet */
+/* ===============================
+   Mid-Desktop (1025px–1499px)
+=============================== */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .product-img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .qty-btn {
+    padding: 0 12px;
+    font-size: 17px;
+  }
+
+  .qty-value {
+    font-size: 15.5px;
+  }
+
+  .product-meta {
+    font-size: 0.72rem;
+  }
+}
+
+/* ===============================
+   Tablet (≤1024px)
+=============================== */
 @media (max-width: 1024px) {
   .product-img {
     width: 60px;
@@ -179,11 +211,12 @@
   }
 }
 
-/* Mobile */
+/* ===============================
+   Small Tablet / Large Mobile (≤768px)
+=============================== */
 @media (max-width: 768px) {
   .cart-table-container {
     padding: 16px;
-    overflow-x: auto;
   }
 
   .product-img {
@@ -204,15 +237,53 @@
   }
 }
 
-/* Extra Small Devices */
+/* ===============================
+   Small Mobile (≤480px)
+=============================== */
 @media (max-width: 480px) {
   .product-info-wrap {
     gap: 12px;
   }
 
   .product-meta {
-    display: block;
     font-size: 0.6rem;
     line-height: 1.2;
+  }
+}
+
+/* ===============================
+   Older iPhones (≤375px)
+=============================== */
+@media (max-width: 375px) {
+  .product-img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .qty-value {
+    font-size: 13.5px;
+  }
+
+  .product-meta {
+    font-size: 0.58rem;
+  }
+}
+
+/* ===============================
+   Extra Small Screens (≤320px)
+=============================== */
+@media (max-width: 320px) {
+  .qty-btn {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  .qty-value {
+    font-size: 13px;
+    padding: 0 10px;
+  }
+
+  .product-meta {
+    font-size: 0.55rem;
   }
 }

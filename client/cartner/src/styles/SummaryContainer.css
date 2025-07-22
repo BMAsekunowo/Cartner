@@ -159,4 +159,169 @@
   font-size: 16px;
   font-weight: 600;
   color: #0f172a;
+  border-bottom: 2px solid #e0f2fe;
+}
+
+/* === Responsive Breakpoints === */
+
+/* Mid-Desktop Screens (1025px–1499px) */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .sum-wrap {
+    width: 700px;
+  }
+
+  .sum-header {
+    font-size: 23px;
+    padding: 20px;
+  }
+
+  .sum-session {
+    font-size: 20px;
+    padding: 18px;
+  }
+
+  .itemm-wrap h3 {
+    font-size: 18px;
+    padding: 18px 24px;
+  }
+
+  .items-table {
+    margin: 10px 24px;
+  }
+
+  .cost-div {
+    padding: 18px 24px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .sum-wrap {
+    width: 90%;
+    margin: 40px auto;
+  }
+
+  .sum-header {
+    font-size: 22px;
+    padding: 18px 24px;
+  }
+
+  .sum-session {
+    font-size: 18px;
+    padding: 16px;
+  }
+
+  .itemm-wrap h3 {
+    font-size: 17px;
+    padding: 18px 20px;
+  }
+
+  .items-table {
+    margin: 10px 20px;
+  }
+
+  .cost-div {
+    padding: 18px 20px;
+  }
+}
+
+/* Small Tablet / Large Mobile */
+@media (max-width: 768px) {
+  .sum-header {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 20px;
+    padding: 16px 20px;
+  }
+
+  .sum-session {
+    font-size: 17px;
+    padding: 14px;
+  }
+
+  .itemm-wrap h3 {
+    font-size: 16px;
+    padding: 16px 18px;
+  }
+
+  .items-table th,
+  .items-table tr td {
+    font-size: 14px;
+  }
+
+  .items-table {
+    margin: 8px 18px;
+  }
+
+  .cost-div {
+    padding: 16px 18px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .sum-wrap {
+    width: 95%;
+    margin: 30px auto;
+  }
+
+  .sum-header {
+    font-size: 18px;
+    padding: 14px 16px;
+  }
+
+  .sum-session {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .itemm-wrap h3 {
+    font-size: 15px;
+    padding: 14px 16px;
+  }
+
+  .items-table {
+    margin: 8px 14px;
+  }
+
+  .items-table th,
+  .items-table tr td {
+    font-size: 13px;
+  }
+
+  .cost-div {
+    padding: 14px 16px;
+  }
+}
+
+/* Older iPhones */
+@media (max-width: 375px) {
+  .sum-header,
+  .cost-div h3,
+  .participant-item {
+    font-size: 16px;
+  }
+
+  .sum-session {
+    font-size: 15px;
+  }
+
+  .items-table th,
+  .items-table tr td {
+    font-size: 12.5px;
+  }
+}
+
+/* Extra Small Screens */
+@media (max-width: 320px) {
+  .sum-header,
+  .cost-div h3,
+  .participant-item {
+    font-size: 15px;
+  }
+
+  .items-table th,
+  .items-table tr td {
+    font-size: 12px;
+  }
 }

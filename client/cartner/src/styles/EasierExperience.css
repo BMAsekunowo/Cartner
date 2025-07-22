@@ -43,7 +43,7 @@
 }
 
 .check-icon {
-  color: #6366f1; /* Blue tone consistent with your brand */
+  color: #6366f1;
   margin-right: 10px;
   font-size: 1.2rem;
 }
@@ -64,7 +64,37 @@
 }
 
 /* ===============================
-   Tablet View (1024px and below)
+   Mid-Desktop Screens (1025px–1499px)
+=============================== */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .easier-container {
+    padding: 50px 80px;
+    gap: 50px;
+  }
+
+  .easier-heading {
+    font-size: 1.75em;
+  }
+
+  .easier-text {
+    font-size: 1rem;
+  }
+
+  .check-icon {
+    font-size: 1.1rem;
+  }
+
+  .easier-list li {
+    font-size: 0.95rem;
+  }
+
+  .easier-image {
+    max-height: 550px;
+  }
+}
+
+/* ===============================
+   Tablet (≤1024px)
 =============================== */
 @media (max-width: 1024px) {
   .easier-container {
@@ -92,11 +122,15 @@
     justify-content: center;
     font-size: 0.95rem;
   }
+
+  .easier-image {
+    max-height: 500px;
+  }
 }
 
 /* ===============================
-     Mobile View (768px and below)
-     =============================== */
+   Small Tablet / Large Mobile (≤768px)
+=============================== */
 @media (max-width: 768px) {
   .easier-container {
     padding: 50px 30px;
@@ -126,8 +160,8 @@
 }
 
 /* ===============================
-     Extra Small Devices (480px and below)
-     =============================== */
+   Small Mobile (≤480px)
+=============================== */
 @media (max-width: 480px) {
   .easier-container {
     padding: 40px 20px;
@@ -152,5 +186,55 @@
 
   .easier-image {
     max-height: 300px;
+  }
+}
+
+/* ===============================
+   Older iPhones (≤375px)
+=============================== */
+@media (max-width: 375px) {
+  .easier-heading {
+    font-size: 1.3em;
+  }
+
+  .easier-text {
+    font-size: 0.88rem;
+  }
+
+  .easier-list li {
+    font-size: 0.8rem;
+  }
+
+  .check-icon {
+    font-size: 0.95rem;
+  }
+
+  .easier-image {
+    max-height: 260px;
+  }
+}
+
+/* ===============================
+   Extra Small Screens (≤320px)
+=============================== */
+@media (max-width: 320px) {
+  .easier-heading {
+    font-size: 1.2em;
+  }
+
+  .easier-text {
+    font-size: 0.85rem;
+  }
+
+  .easier-list li {
+    font-size: 0.75rem;
+  }
+
+  .check-icon {
+    font-size: 0.9rem;
+  }
+
+  .easier-image {
+    max-height: 240px;
   }
 }

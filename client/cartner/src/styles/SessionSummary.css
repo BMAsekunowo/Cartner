@@ -6,3 +6,45 @@
   margin: 0 100px;
   height: auto;
 }
+
+/* Mid-Desktop Screens (1025px–1499px) */
+@media (min-width: 1025px) and (max-width: 1499px) {
+  .cont-holder {
+    margin: 0 80px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .cont-holder {
+    margin: 0 60px;
+  }
+}
+
+/* Small Tablet / Large Mobile */
+@media (max-width: 768px) {
+  .cont-holder {
+    margin: 0 40px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .cont-holder {
+    margin: 0 20px;
+  }
+}
+
+/* Older iPhones */
+@media (max-width: 375px) {
+  .cont-holder {
+    margin: 0 16px;
+  }
+}
+
+/* Extra Small Screens */
+@media (max-width: 320px) {
+  .cont-holder {
+    margin: 0 12px;
+  }
+}
