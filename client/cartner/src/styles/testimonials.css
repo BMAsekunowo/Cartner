@@ -107,6 +107,130 @@
 }
 
 /* ===============================
+   Tablet View (1024px and below)
+   =============================== */
+@media (max-width: 1024px) {
+  .testimonial-section {
+    padding: 80px 60px;
+  }
+
+  .testimonial-heading {
+    font-size: 1.75rem;
+  }
+
+  .testimonial-scroll {
+    gap: 20px;
+    padding-bottom: 12px;
+  }
+
+  .testimonial-card {
+    width: 250px;
+    padding: 26px 20px;
+  }
+
+  .testimonial-quote {
+    font-size: 0.95rem;
+  }
+
+  .testimonial-quote span {
+    font-size: 1.75rem;
+  }
+}
+
+/* ===============================
+     Mobile View (768px and below)
+     =============================== */
+@media (max-width: 768px) {
+  .testimonial-section {
+    padding: 60px 30px;
+  }
+
+  .testimonial-heading {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+
+  .testimonial-scroll-wrapper {
+    padding: 16px 0;
+  }
+
+  .testimonial-scroll-btn {
+    font-size: 1.25rem;
+    padding: 8px;
+  }
+
+  .testimonial-card {
+    width: 220px;
+    padding: 22px 18px;
+  }
+
+  .testimonial-avatar {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 12px;
+  }
+
+  .testimonial-quote {
+    font-size: 0.9rem;
+  }
+
+  .testimonial-quote span {
+    font-size: 1.5rem;
+  }
+
+  .testimonial-name {
+    font-size: 0.95rem;
+  }
+
+  .testimonial-title {
+    font-size: 0.85rem;
+  }
+}
+
+/* ===============================
+     Extra Small Devices (480px and below)
+     =============================== */
+@media (max-width: 480px) {
+  .testimonial-section {
+    padding: 40px 16px;
+  }
+
+  .testimonial-heading {
+    font-size: 1.3rem;
+  }
+
+  .testimonial-scroll {
+    gap: 16px;
+  }
+
+  .testimonial-card {
+    width: 200px;
+    padding: 20px 16px;
+  }
+
+  .testimonial-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .testimonial-quote {
+    font-size: 0.85rem;
+  }
+
+  .testimonial-quote span {
+    font-size: 1.3rem;
+  }
+
+  .testimonial-name {
+    font-size: 0.9rem;
+  }
+
+  .testimonial-title {
+    font-size: 0.8rem;
+  }
+}
+
+/* ===============================
    Mid-Desktop View (1025px–1499px)
 =============================== */
 @media (min-width: 1025px) and (max-width: 1499px) {

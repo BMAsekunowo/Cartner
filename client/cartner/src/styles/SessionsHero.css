@@ -33,6 +33,67 @@
 }
 
 /* ===============================
+   Responsive: Tablet (≤1024px)
+  =============================== */
+@media (max-width: 1024px) {
+  .shero-container {
+    height: 260px;
+    padding: 0 40px;
+  }
+
+  .shero-content h1 {
+    font-size: 2rem;
+  }
+
+  .shero-content p {
+    font-size: 1.1rem;
+  }
+}
+
+/* ===============================
+    Responsive: Mobile (≤768px)
+  =============================== */
+@media (max-width: 768px) {
+  .shero-container {
+    height: 220px;
+    padding: 0 30px;
+  }
+
+  .shero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .shero-content p {
+    font-size: 1rem;
+  }
+}
+
+/* ===============================
+  Responsive: Extra Small Devices (≤480px)
+=============================== */
+@media (max-width: 480px) {
+  .shero-container {
+    height: auto;
+    padding: 20px 16px;
+  }
+
+  .shero-content {
+    padding: 10px 0;
+  }
+
+  .shero-content h1 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .shero-content p {
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+  }
+}
+
+/* Extras */
+/* ===============================
    Mid-Desktop Devices (1025px–1499px)
 =============================== */
 @media (min-width: 1025px) and (max-width: 1499px) {

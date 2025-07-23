@@ -36,6 +36,82 @@
 }
 
 /* ===============================
+   Responsive: Tablet (≤1024px)
+   =============================== */
+@media (max-width: 1024px) {
+  .session-container {
+    padding: 10px 60px;
+    margin-bottom: 80px;
+  }
+
+  .session-content {
+    padding: 30px;
+    gap: 18px;
+    border-radius: 16px;
+  }
+
+  .title-bar h1 {
+    font-size: 1.75rem;
+  }
+}
+
+/* ===============================
+    Responsive: Mobile (≤768px)
+  =============================== */
+@media (max-width: 768px) {
+  .session-container {
+    padding: 10px 30px;
+    margin-bottom: 40px;
+  }
+
+  .session-content {
+    padding: 25px;
+    gap: 16px;
+    border-radius: 14px;
+  }
+
+  .title-bar {
+    gap: 12px;
+  }
+
+  .title-bar h1 {
+    font-size: 1.6rem;
+    text-align: left;
+  }
+}
+
+/* ===============================
+  Responsive: Extra Small Devices (≤480px)
+=============================== */
+@media (max-width: 480px) {
+  .session-container {
+    padding: 10px 16px;
+    margin-bottom: 20px;
+  }
+
+  .session-content {
+    padding: 20px;
+    gap: 14px;
+    border-radius: 12px;
+  }
+
+  .title-bar {
+    gap: 10px;
+  }
+
+  .title-bar h1 {
+    font-size: 1.4rem;
+    line-height: 1.3;
+    text-align: left;
+  }
+
+  .btns-wrap {
+    width: 40%;
+    height: 40px;
+  }
+}
+
+/* ===============================
    Mid-Desktop Devices (1025px–1499px)
 =============================== */
 @media (min-width: 1025px) and (max-width: 1499px) {

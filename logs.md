@@ -138,3 +138,53 @@
  • Ready for real-time flows and interactive upgrades
 
 // All session, profile, and cart flows are complete – Cleared for Frontend Week 3 (Real-Time Interactions, Session Invites, and Live Syncing) starting 20th July 2025.
+
+
+=== WEEK 6: Frontend Week 3 Summary: Real-Time Sessions, Sync Logic & Session Join Flow (Completed) ===
+
+✅ Join Session by Code UI implemented:
+ • New form added to SessionActions for joining a session
+ • Fields: Session Code & Passcode with basic validation
+ • On submit, triggers backend joinSession API and redirects to /session/:id
+ • Integrated into existing session UI cleanly
+
+✅ Invited Sessions Display Built:
+ • Displays all sessions user was invited to, along with inviter details
+ • Included as third block in SessionActions under the join form
+ • Styled consistently with scroll-safe responsive layout
+
+✅ Session Sync Context Created:
+ • New independent context file added to manage live session data
+ • Set up groundwork for polling, socket, or interval sync
+ • Clean separation from existing SessionContext (which tracks current session only)
+ • Ready for real-time updates, cart sync, and live participant view
+
+✅ Cart Page Enhancements:
+ • Each cart now shows:
+  - Who added each product
+  - When it was added (timestamp)
+ • Added .product-meta line under product name in CartTable
+ • CartTable updated to display delete icon and maintain mobile responsiveness
+
+✅ Expanded Cart Interactions:
+ • Delete Cart button added to cart header
+ • Clear Cart button added inside each expanded cart
+ • Both trigger backend endpoints and refresh the UI accordingly
+ • Deletion safeguarded with confirmation logic (stubbed for now)
+
+✅ Session Code + Passcode validation tested:
+ • Proper backend connection verified
+ • Handles invalid codes and error messages
+ • Smooth transition to session view on successful join
+
+✅ Mobile Responsiveness and UI Polish:
+ • All new components (join form, invite list, cart enhancements) made responsive
+ • Cross-device testing done (Tablet, Mobile, Extra Small)
+ • Maintained visual consistency with Cartner’s design system
+
+✅ Preparations for Live Data in Sessions:
+ • Sync context isolated for flexibility (polling or WebSocket ready)
+ • /session/:id now structured to receive and display dynamic participant/cart updates
+ • Set the stage for full real-time shopping experience in Week 4
+
+// Real-time foundations are solid – Cleared for Frontend Week 4 (Profile Upgrades, Session History, Order Confirmation, Notifications, and Endpoint Integration) starting 23rd July 2025.
