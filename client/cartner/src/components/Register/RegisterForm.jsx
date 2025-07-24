@@ -11,7 +11,7 @@ import {
   FaFacebookF,
 } from "react-icons/fa6";
 import Button from "../Reusables/Button";
-import SignUpImage from "../../assets/register/signup.png";
+import SignUpImage from "../../assets/Register/signup.png";
 import "../../styles/RegisterForm.css";
 import Logo from "../Reusables/Logo";
 import { signup } from "../../services/AuthService";

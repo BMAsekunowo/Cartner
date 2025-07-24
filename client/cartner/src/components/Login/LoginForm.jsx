@@ -10,7 +10,7 @@ import {
   FaFacebookF,
 } from "react-icons/fa6";
 import Button from "../Reusables/Button";
-import SignInImage from "../../assets/login/signinn.jpeg";
+import SignInImage from "../../assets/Login/signinn.jpeg";
 import "../../styles/LoginForm.css";
 import Logo from "../Reusables/Logo";
 import { login } from "../../services/AuthService";
