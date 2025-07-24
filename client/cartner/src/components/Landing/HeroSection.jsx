@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/HeroSection.css";
-import HeroImage from "../../assets/landing/cartner-hero.PNG";
+import HeroImage from "../../assets/landing/cartner-hero.png";
 import Button from "../Reusables/Button";
 import { createSession } from "../../services/SessionService";
 
