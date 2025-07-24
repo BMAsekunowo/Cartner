@@ -13,7 +13,7 @@ const HeroSection = () => {
     sessionName: "",
     sessionType: "",
     participants: "",
-    passcode: "",
+    passcode: "", //add this
   });
 
   const handleChange = (e) => {
