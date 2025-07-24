@@ -1,5 +1,4 @@
 import React from "react";
-import SessionImg from "../../assets/sessions/shero-img.png";
 import "../../styles/SessionsHero.css";
 const SessionsHero = () => {
   return (
