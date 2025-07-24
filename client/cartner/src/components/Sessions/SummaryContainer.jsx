@@ -18,8 +18,6 @@ const SummaryContainer = ({ sessionId }) => {
         }
 
         const summary = await getSessionSummary(sessionId);
-        console.log("✅ Session ID:", sessionId);
-        console.log("📦 Summary fetched:", summary);
 
         setSessionName(summary.sessionName || "Session");
         setParticipants(summary.participants || []);

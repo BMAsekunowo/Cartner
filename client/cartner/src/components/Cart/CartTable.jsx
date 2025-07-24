@@ -78,7 +78,7 @@ const CartTable = ({ items = [], cartId, onUpdate }) => {
                       )}
                       <span className="product-meta">
                         {item.addedBy
-                          ? `Added by ${item.addedBy} on ${new Date(
+                          ? `Added by ${item.addedBy.name} on ${new Date(
                               item.addedAt,
                             ).toLocaleDateString()}`
                           : "Added by someone"}

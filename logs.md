@@ -139,7 +139,6 @@
 
 // All session, profile, and cart flows are complete – Cleared for Frontend Week 3 (Real-Time Interactions, Session Invites, and Live Syncing) starting 20th July 2025.
 
-
 === WEEK 6: Frontend Week 3 Summary: Real-Time Sessions, Sync Logic & Session Join Flow (Completed) ===
 
 ✅ Join Session by Code UI implemented:

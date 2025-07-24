@@ -53,6 +53,11 @@ const ProfileMain = () => {
                 Edit profile
               </Link>
             </span>
+            <span className="edit-profile">
+              <Link to="/editpass" className="linkto">
+                Change Email and or Password
+              </Link>
+            </span>
           </p>
         </div>
 

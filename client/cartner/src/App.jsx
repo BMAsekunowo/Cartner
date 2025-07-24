@@ -21,6 +21,7 @@ import useAutoRefreshToken from "./hooks/useAutoRefreshToken";
 import SessionSelector from "./components/Reusables/SessionSelector";
 import EditProfile from "./pages/EditProfile";
 import SessionSummary from "./pages/SessionSummary"; // Importing SessionSummary page
+import EditCredentials from "./pages/EditCredentials";
 
 function App() {
   const navigate = useNavigate();
@@ -64,6 +65,7 @@ function App() {
           <Route path="/sessions" element={<Sessions />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/editme" element={<EditProfile />} />
+          <Route path="/editpass" element={<EditCredentials />} />
           {/* Dynamic Routes */}
           <Route path="/user/:userId" element={<PublicProfile />} />
           <Route path="/product/:id" element={<ProductDetails />} />

@@ -22,3 +22,21 @@ export const login = async (credentials) => {
     throw error.response ? error.response.data : error.message;
   }
 };
+
+export const updateUserCredentials = async (updateCrendentials) => {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("User not authenticated");
+
+  const res = await axios.patch(
+    `${port}/api/auth/update-credentials`,
+    updateCrendentials,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+
+  return res.data;
+};

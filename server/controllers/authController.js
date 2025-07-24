@@ -1,6 +1,7 @@
 const User = require("../models/user"); //User Model
 const JWT = require("jsonwebtoken"); //Handling Authentication
 const bcrypt = require("bcryptjs"); //Hashing and Comparison
+const { sendWelcomeEmail } = require("../utils/email/emailService");
 
 exports.registerUser = async (req, res) => {
   const { name, email, password } = req.body; //Destructuring the request body
@@ -31,9 +32,11 @@ exports.registerUser = async (req, res) => {
     });
     await newUser.save();
     console.log("A New user added to database ✅ :", newUser);
+    await sendWelcomeEmail(user.email, user.name);
     res.status(201).json({
       message: "Congratulations You have been registered successfully",
     });
+    
   } catch (error) {
     console.error(error);
     res.status(500).json({
@@ -109,4 +112,73 @@ exports.validateToken = (req, res) => {
   });
   console.log("Token refreshed successfully ✅");
   res.json({ token: newToken });
+};
+
+exports.updateUserCredentials = async (req, res) => {
+  const userId = req.user.id;
+  const { email, password, currentPassword } = req.body;
+
+  if (!email && !password) {
+    return res.status(400).json({
+      message: "Provide at least one field to update: email or password",
+    });
+  }
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    //  Email update
+    if (email && email !== user.email) {
+      const existing = await User.findOne({ email });
+      if (existing && existing._id.toString() !== userId) {
+        return res.status(400).json({
+          message: "This email is already in use by another account",
+        });
+      }
+      user.email = email;
+    }
+
+    //  Password update
+    if (password) {
+      if (!currentPassword) {
+        return res.status(400).json({
+          message: "Provide your current password to update password",
+        });
+      }
+
+      const isMatch = await bcrypt.compare(currentPassword, user.password);
+      if (!isMatch) {
+        return res
+          .status(401)
+          .json({ message: "Current password is incorrect" });
+      }
+
+      if (password.length < 6) {
+        return res.status(400).json({
+          message: "Password must be at least 6 characters long",
+        });
+      }
+
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(password, salt);
+    }
+
+    await user.save();
+
+    return res.status(200).json({
+      message: "Account updated successfully",
+      updatedFields: {
+        ...(email && { email }),
+        ...(password && { password: true }),
+      },
+    });
+  } catch (error) {
+    console.error("❌ updateUserCredentials error:", error);
+    return res.status(500).json({
+      message: "Something went wrong while updating credentials",
+    });
+  }
 };

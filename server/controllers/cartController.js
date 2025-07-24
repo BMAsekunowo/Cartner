@@ -72,7 +72,6 @@ exports.createCart = async (req, res) => {
 exports.getCartByUserId = async (req, res) => {
   const userId = req.user.id;
 
-  // Validate MongoDB ObjectId
   if (!mongoose.Types.ObjectId.isValid(userId)) {
     return res.status(400).json({ message: "Invalid user ID format" });
   }
@@ -83,6 +82,11 @@ exports.getCartByUserId = async (req, res) => {
       .populate({
         path: "products.productId",
         model: "Product",
+      })
+      .populate({
+        path: "products.addedBy",
+        model: "User",
+        select: "name avatar",
       })
       .populate({
         path: "sessionId",
@@ -111,7 +115,7 @@ exports.getCartByUserId = async (req, res) => {
       carts,
     });
   } catch (error) {
-    console.error("  getCartByUserId error:", error);
+    console.error("getCartByUserId error:", error);
     res.status(500).json({
       message:
         "Oops, something went wrong. It’s not you, it’s us and we’re fixing it.",
@@ -282,9 +286,14 @@ exports.addProductToCart = async (req, res) => {
 
     await cart.save();
 
+    const populatedCart = await Cart.findById(cart._id)
+      .populate("products.productId", "title price image")
+      .populate("products.addedBy", "name email");
+
+    console.log(`✅ Product added to cart:`, populatedCart);
     res.status(200).json({
       message: "Product added to cart successfully",
-      cart,
+      cart: populatedCart,
     });
   } catch (error) {
     console.error("➕ addProductToCart error:", error);

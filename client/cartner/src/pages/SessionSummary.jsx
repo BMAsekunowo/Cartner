@@ -6,8 +6,6 @@ import "../styles/SessionSummary.css";
 const SessionSummary = () => {
   const { sessionId } = useParams();
 
-  console.log("📦 Route param sessionId:", sessionId); // Add this to confirm route is working
-
   return (
     <div className="cont-holder">
       <SummaryContainer sessionId={sessionId} />
