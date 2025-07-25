@@ -15,7 +15,7 @@ import { useSession } from "../../contexts/SessionContext";
 const SessionActions = () => {
   const navigate = useNavigate();
   const { refreshSessions } = useSession();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user") || "null");
   const [invites, setInvites] = useState([]);
   const [loadingInvites, setLoadingInvites] = useState(true);
   const [sessionData, setSessionData] = useState({

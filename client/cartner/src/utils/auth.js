@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-const user = JSON.parse(localStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem("user") || "null");
 // Logout utility function
 export const handleLogout = (navigate) => {
   // Clear saved auth data

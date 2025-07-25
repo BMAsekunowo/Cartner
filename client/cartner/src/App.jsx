@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { handleLogout } from "./utils/auth";
 // import Navbar from "./components/Reusables/Navbar";
 import Error404 from "./pages/Error404";
@@ -22,6 +22,7 @@ import SessionSelector from "./components/Reusables/SessionSelector";
 import EditProfile from "./pages/EditProfile";
 import SessionSummary from "./pages/SessionSummary"; // Importing SessionSummary page
 import EditCredentials from "./pages/EditCredentials";
+import Otp from "./pages/Otp"; // Importing Otp page
 
 function App() {
   const navigate = useNavigate();
@@ -51,6 +52,11 @@ function App() {
       .then((res) => console.log(res.data));
   }, []);
 
+  const location = useLocation();
+  const hideFooterRoutes = ["/verify-otp"];
+
+  const shouldHideFooter = hideFooterRoutes.includes(location.pathname);
+
   return (
     <div className="outer-wrapper">
       <div className="app-wrapper">
@@ -66,6 +72,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/editme" element={<EditProfile />} />
           <Route path="/editpass" element={<EditCredentials />} />
+          <Route path="/verify-otp" element={<Otp />} />
           {/* Dynamic Routes */}
           <Route path="/user/:userId" element={<PublicProfile />} />
           <Route path="/product/:id" element={<ProductDetails />} />

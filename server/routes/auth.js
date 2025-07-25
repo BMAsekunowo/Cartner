@@ -5,6 +5,7 @@ const {
   loginUser,
   validateToken,
   updateUserCredentials,
+  verifyOtp,
 } = require("../controllers/authController"); //Controller'
 const protect = require("../middleware/authMiddleware"); //Authentication middleware
 
@@ -12,6 +13,7 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.post("/refresh-token", protect, validateToken);
 router.patch("/update-credentials", protect, updateUserCredentials);
+router.post("/verify-otp", verifyOtp);
 
 //Token validation route
 router.get("/validate-token", protect, (req, res) => {

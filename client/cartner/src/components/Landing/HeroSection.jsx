@@ -8,7 +8,7 @@ import Button from "../Reusables/Button";
 import { createSession } from "../../services/SessionService";
 
 const HeroSection = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user") || "null");
   const [sessionData, setsessionData] = useState({
     sessionName: "",
     sessionType: "",
@@ -56,7 +56,7 @@ const HeroSection = () => {
     }
 
     try {
-      const user = JSON.parse(localStorage.getItem("user"));
+      const user = JSON.parse(localStorage.getItem("user") || "null");
       const data = await createSession(cleaned);
 
       toast.success(

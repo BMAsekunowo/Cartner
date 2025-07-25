@@ -91,6 +91,7 @@ const Cart = () => {
           {carts.length === 1 ? "cart" : "carts"}.
         </div>
       )}
+
       {carts.map((cart) => (
         <div key={cart._id} className="cart-section">
           <div className="cart-collapsible-header">
@@ -151,6 +152,10 @@ const Cart = () => {
           )}
         </div>
       ))}
+
+      {carts.length === 0 && (
+        <div className="empty-cart-message">You have no carts yet.</div>
+      )}
     </div>
   );
 };

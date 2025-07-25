@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaMapMarkerAlt, FaGlobe, FaBriefcase } from "react-icons/fa";
 import { getMyProfile } from "../../services/ProfileService";
 import "../../styles/ProfileMain.css";
@@ -7,23 +7,68 @@ import "../../styles/ProfileMain.css";
 const ProfileMain = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [profile, setProfile] = useState(null);
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  const user = JSON.parse(localStorage.getItem("user") || "null");
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem("token");
         const data = await getMyProfile(token);
-        setProfile(data); // Ensure we're accessing `.profile`
+        setProfile(data);
       } catch (err) {
         console.error("Failed to load profile:", err);
+        setProfile(null);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProfile();
   }, []);
 
-  if (!profile) return <div className="loading">Loading profile...</div>;
+  const isProfileEmpty =
+    !profile?.bio &&
+    !profile?.location &&
+    !profile?.occupation &&
+    (!profile?.languages || profile.languages.length === 0);
+
+  // Prompt user if profile is clearly empty
+  useEffect(() => {
+    if (!loading && profile && isProfileEmpty) {
+      setTimeout(() => {
+        navigate("/editme");
+      }, 2000);
+    }
+  }, [loading, profile, isProfileEmpty, navigate]);
+
+  if (loading) return <div className="loading">Loading profile...</div>;
+
+  if (!profile)
+    return (
+      <div className="loading">
+        We couldn’t load your profile.
+        <br />
+        <Link className="linkto" to="/editme">
+          Create your profile here
+        </Link>
+      </div>
+    );
+
+  if (isProfileEmpty)
+    return (
+      <div className="loading">
+        Your profile is currently empty.
+        <br />
+        Redirecting you to{" "}
+        <Link className="linkto" to="/editme">
+          Edit Profile
+        </Link>
+        ...
+      </div>
+    );
 
   return (
     <div>
@@ -36,7 +81,9 @@ const ProfileMain = () => {
             </button>
             {showMenu && (
               <ul className="menu-dropdown">
-                <li>Edit Profile</li>
+                <li>
+                  <Link to="/editme">Edit Profile</Link>
+                </li>
                 <li>My Orders</li>
                 <li>My Sessions</li>
                 <li>FAQs</li>

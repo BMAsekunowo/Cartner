@@ -27,7 +27,7 @@ export const updateUserCredentials = async (updateCrendentials) => {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("User not authenticated");
 
-  const res = await axios.patch(
+  const response = await axios.patch(
     `${port}/api/auth/update-credentials`,
     updateCrendentials,
     {
@@ -39,4 +39,14 @@ export const updateUserCredentials = async (updateCrendentials) => {
   );
 
   return res.data;
+};
+
+export const verifyOtp = async (otpData) => {
+  try {
+    const response = await axios.post(`${port}/api/auth/verify-otp`, otpData);
+    return response.data;
+  } catch (error) {
+    console.error("Error during OTP verification:", error);
+    throw error.response ? error.response.data : error.message;
+  }
 };

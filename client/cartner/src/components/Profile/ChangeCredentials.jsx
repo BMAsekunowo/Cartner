@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import "../../styles/ChangeCredentials.css";
 import Button from "../Reusables/Button";
 import { updateUserCredentials } from "../../services/AuthService";
+import { useNavigate } from "react-router-dom";
 
 const ChangeCredentials = () => {
   const [editEmail, setEditEmail] = useState(false);
@@ -11,6 +12,7 @@ const ChangeCredentials = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,15 +45,34 @@ const ChangeCredentials = () => {
     try {
       setLoading(true);
       const res = await updateUserCredentials(payload);
-      toast.success(res.message || "Credentials updated successfully.");
-      setEmail("");
-      setCurrentPassword("");
-      setNewPassword("");
-      setEditEmail(false);
-      setEditPassword(false);
+
+      if (editPassword && res.message?.toLowerCase().includes("otp")) {
+        // Password change requires OTP
+        toast.success(
+          "OTP sent to your email. Verify to complete password change.",
+        );
+
+        if (res.userId) {
+          localStorage.setItem("userId", res.userId);
+          sessionStorage.setItem("otpOrigin", "update");
+          navigate("/verify-otp");
+        } else {
+          toast.error("Missing user ID for verification. Please try again.");
+        }
+      } else {
+        // Email-only change or successful password change without OTP
+        toast.success(res.message || "Credentials updated successfully.");
+        setEmail("");
+        setCurrentPassword("");
+        setNewPassword("");
+        setEditEmail(false);
+        setEditPassword(false);
+      }
     } catch (err) {
       console.error("Update error:", err);
-      toast.warning(err.response?.data?.message || "Something went wrong.");
+      toast.warning(
+        err.response?.data?.message || err.message || "Something went wrong.",
+      );
     } finally {
       setLoading(false);
     }

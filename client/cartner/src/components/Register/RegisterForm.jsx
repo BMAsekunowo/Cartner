@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -15,7 +15,6 @@ import SignUpImage from "../../assets/Register/signup.png";
 import "../../styles/RegisterForm.css";
 import Logo from "../Reusables/Logo";
 import { signup } from "../../services/AuthService";
-import { createSession } from "../../services/SessionService";
 
 const RegisterForm = () => {
   const [formData, setformData] = useState({
@@ -34,34 +33,35 @@ const RegisterForm = () => {
     e.preventDefault();
     try {
       const data = await signup(formData);
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+
+      // Store userId for OTP verification
+      localStorage.setItem("userId", data.userId);
+
+      // Only store user if backend includes it
+      if (data.user) {
+        localStorage.setItem("user", JSON.stringify(data.user));
+      }
+
+      // Flag this flow as coming from register
+      sessionStorage.setItem("fromRegister", true);
 
       toast.success(
-        `Congratulations ${data.user.name}! You've signed up successfully. Enjoy your journey with Cartner!`,
+        `Hi ${formData.name}! We've sent an OTP to your email for verification.`,
         {
           position: "top-center",
           autoClose: 10000,
         },
       );
 
-      const pending = localStorage.getItem("pendingSession");
-
-      if (pending) {
-        const sessionData = JSON.parse(pending);
-        await createSession(sessionData);
-        localStorage.removeItem("pendingSession");
-
-        toast.success("Session created after signup!", {
-          position: "top-center",
-        });
-
-        navigate("/sessions");
-      } else {
-        navigate("/editme");
-      }
+      navigate("/verify-otp");
     } catch (err) {
-      alert("Signup failed: " + err.response?.data?.message || err.message);
+      toast.warning(
+        `Signup failed: ${err?.response?.data?.message || err?.message || "Unknown error occurred."}`,
+        {
+          position: "top-center",
+          autoClose: 10000,
+        },
+      );
     }
   };
 
@@ -71,7 +71,6 @@ const RegisterForm = () => {
         <div className="register-title">
           <Logo />
           <div className="register-feedback-message">
-            {/* Example message: replace dynamically using state later */}
             <p className="feedback-text"></p>
           </div>
         </div>

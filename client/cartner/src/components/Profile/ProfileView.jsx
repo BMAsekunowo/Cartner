@@ -6,7 +6,7 @@ import { getMyProfile } from "../../services/ProfileService";
 function ProfileView() {
   const [showMenu, setShowMenu] = useState(false);
   const [profile, setProfile] = useState(null);
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user") || "null");
 
   useEffect(() => {
     const fetchProfile = async () => {

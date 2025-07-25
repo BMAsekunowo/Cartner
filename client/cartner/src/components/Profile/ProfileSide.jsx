@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { getMyProfile } from "../../services/ProfileService";
 
 const ProfileSide = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user") || "null");
   const [profile, setProfile] = useState(null);
 
   useEffect(() => {
