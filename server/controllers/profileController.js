@@ -3,7 +3,6 @@ const User = require("../models/user.js");
 const Cart = require("../models/cart.js");
 const Session = require("../models/session.js");
 const mongoose = require("mongoose");
-const { send } = require("vite");
 const {
   sendProfileUpdatedEmail,
 } = require("../utils/email/sendNotificationsEmail.js");
