@@ -38,7 +38,7 @@ function App() {
     const isPublic = PUBLIC_ROUTES.includes(pathname);
     if (!token || isPublic) return;
 
-    const url = `${API_BASE}/api/auth/validate-token`;
+    const url = `${port}/api/auth/validate-token`;
 
     (async () => {
       try {
