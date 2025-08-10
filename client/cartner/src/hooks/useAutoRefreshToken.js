@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 const useAutoRefreshToken = () => {
   const navigate = useNavigate();
   const activityDetected = useRef(false); // Track interaction only, not initial load
-  const port = import.meta.env.BACKEND_URL || "http://localhost:5005";
+  const port = import.meta.env.VITE_BACKEND_URL || "http://localhost:5005";
 
 
   useEffect(() => {
