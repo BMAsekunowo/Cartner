@@ -3,6 +3,10 @@ const User = require("../models/user.js");
 const Cart = require("../models/cart.js");
 const Session = require("../models/session.js");
 const mongoose = require("mongoose");
+const { send } = require("vite");
+const {
+  sendProfileUpdatedEmail,
+} = require("../utils/email/sendNotificationsEmail.js");
 
 // Create or Update Profile
 exports.createOrUpdateProfile = async (req, res) => {
@@ -56,8 +60,12 @@ exports.createOrUpdateProfile = async (req, res) => {
       profile = await Profile.findOneAndUpdate({ user: userId }, profileData, {
         new: true,
       });
+      // Notify only if this is an actual update and user already had a profile
+      await sendProfileUpdatedEmail(req.user.email, req.user.name);
     } else {
       profile = await Profile.create(profileData);
+      // Notify on initial creation
+      await sendProfileUpdatedEmail(req.user.email, req.user.name);
     }
 
     res.status(200).json(profile);

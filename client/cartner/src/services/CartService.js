@@ -1,7 +1,8 @@
 import axios from "axios";
 
 //This is the base URL for local server
-const port = "http://localhost:5005";
+const port = import.meta.env.VITE_BACKEND_URL || "http://localhost:5005";
+
 
 export const getCartByUserId = async () => {
   const token = localStorage.getItem("token");
@@ -92,3 +93,15 @@ export const deleteCart = async (cartId) => {
     },
   });
 };
+
+export const getUserCartHistory = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("No token found");
+
+  const response = await axios.get(`${port}/api/carts/history`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}

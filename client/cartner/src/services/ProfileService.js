@@ -1,7 +1,8 @@
 import axios from "axios";
 
 //This is the base URL for local server
-const port = "http://localhost:5005";
+const port = import.meta.env.VITE_BACKEND_URL || "http://localhost:5005";
+
 
 export const getMyProfile = async (token) => {
   const res = await axios.get(`${port}/api/profile/me`, {

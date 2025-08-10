@@ -10,7 +10,16 @@ dotenv.config(); // Load Environment Var
 connectDB(); //MongoDB connection
 
 //Core Middleware
-app.use(cors());
+//CORS setup 
+const allowed = [
+  'http://localhost:5173',
+  'https://cartnerhq.vercel.app',
+  'https://cartnerhq.shop',
+  'https://www.cartnerhq.shop',
+  'cartnerhq.shop',
+  'cartnerhq.vercel.app'
+];
+app.use(cors({ origin: allowed, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

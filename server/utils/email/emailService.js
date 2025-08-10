@@ -60,18 +60,18 @@ const sendOrderConfirmationEmail = async (to, orderDetailsHtml) => {
         <p style="margin-top: 1rem;">You can always track, revisit, or reorder from your Cartner dashboard anytime.</p>
 
         <p style="margin-top: 2rem; text-align: center;">
-          <a href="https://cartnerhq.com/orders" style="background-color: #1f2937; color: #ffffff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+          <a href="https://cartnerhq.shop/orders" style="background-color: #1f2937; color: #ffffff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold;">
             View My Order
           </a>
         </p>
 
-        <p style="margin-top: 2rem;">If you have any questions about your order or need assistance, please don’t hesitate to <a href="mailto:support@cartnerhq.com">contact our support team</a>.</p>
+        <p style="margin-top: 2rem;">If you have any questions about your order or need assistance, please don’t hesitate to <a href="mailto:support@cartnerhq.shop">contact our support team</a>.</p>
 
         <hr style="margin: 2rem 0; border: none; border-top: 1px solid #e5e7eb;" />
 
         <p style="font-size: 0.9rem; color: #6b7280;">
           This is an automated confirmation sent by Cartner. If you did not place this order or believe this was sent in error, please contact us immediately at
-          <a href="mailto:support@cartnerhq.com">support@cartnerhq.com</a>.
+          <a href="mailto:support@cartnerhq.shop">support@cartnerhq.shop</a>.
         </p>
 
         <p style="margin-top: 1.5rem;">

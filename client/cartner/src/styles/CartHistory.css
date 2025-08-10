@@ -1,0 +1,83 @@
+.receipt-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+  
+  .download-receipt-btn {
+    background-color: #1f2937;
+    color: #ffffff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transition: background-color 0.2s ease;
+  }
+  
+  .download-receipt-btn:hover {
+    opacity: 1;
+  }
+  
+  /* Mid-Desktop */
+  @media (min-width: 1025px) and (max-width: 1499px) {
+    .download-receipt-btn {
+      font-size: 0.85rem;
+      padding: 9px 14px;
+    }
+  }
+  
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .receipt-bar {
+      padding: 0.9rem 1.2rem;
+    }
+  
+    .download-receipt-btn {
+      font-size: 0.85rem;
+      padding: 8px 12px;
+    }
+  }
+  
+  /* Small Tablet / Large Mobile */
+  @media (max-width: 768px) {
+    .download-receipt-btn {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .receipt-bar {
+      justify-content: center;
+    }
+  }
+  
+  /* Small Mobile */
+  @media (max-width: 480px) {
+    .download-receipt-btn {
+      font-size: 0.8rem;
+      padding: 8px 10px;
+    }
+  }
+  
+  /* Older iPhones */
+  @media (max-width: 375px) {
+    .download-receipt-btn {
+      font-size: 0.78rem;
+      padding: 7px 10px;
+    }
+  }
+  
+  /* Extra Small Screens */
+  @media (max-width: 320px) {
+    .download-receipt-btn {
+      font-size: 0.75rem;
+      padding: 7px 8px;
+    }
+  }

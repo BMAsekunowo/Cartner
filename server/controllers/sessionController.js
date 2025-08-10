@@ -2,6 +2,16 @@ const Session = require("../models/session"); //Session Model
 const Cart = require("../models/cart"); //Cart Model
 const User = require("../models/user"); //User Model
 const mongoose = require("mongoose"); //Database
+const {
+  sendSessionCreationEmail,
+  sendInviteUserEmail,
+  sendAcceptInviteEmail,
+  sendRejectInviteEmail,
+  sendSessionJoinRequestEmail,
+  sendJoinReqApprovedEmail,
+  sendRejectJoinReqEmail,
+  sendSessionEndedEmail,
+} = require("../utils/email/sendNotificationsEmail"); //Email utility
 
 // Utility to generate readable session codes
 const generateCode = () => {
@@ -56,6 +66,12 @@ exports.createSession = async (req, res) => {
     });
 
     await newSession.save();
+    await sendSessionCreationEmail(
+      req.user.email,
+      req.user.name,
+      sessionName,
+      sessionCode,
+    );
 
     // Step 4: Link sessionId to cart
     newCart.sessionId = newSession._id;
@@ -138,6 +154,13 @@ exports.inviteUser = async (req, res) => {
       $push: { sessionUsers: { userId, role: "participant" } },
     });
 
+    // Send invitation email
+    await sendInviteUserEmail(
+      email,
+      req.user.name, // inviter name from logged-in user
+      session.sessionName,
+    );
+
     res.status(200).json({
       message: `✅ ${
         invitedUser.sessionName || invitedUser.email
@@ -185,7 +208,9 @@ exports.acceptInvite = async (req, res) => {
   const userId = req.user.id;
 
   try {
-    const session = await Session.findOne({ sessionCode });
+    const session = await Session.findOne({ sessionCode }).populate(
+      "createdBy",
+    );
     if (!session) {
       return res.status(404).json({ message: "Session not found" });
     }
@@ -205,6 +230,13 @@ exports.acceptInvite = async (req, res) => {
       $addToSet: { sessionUsers: { userId, role: invited.role } },
     });
 
+    // Send acceptance email to creator
+    await sendAcceptInviteEmail(
+      session.createdBy.email,
+      req.user.name,
+      session.sessionName,
+    );
+
     res.status(200).json({
       message: "You have joined the session successfully",
       sessionId: session._id,
@@ -222,7 +254,9 @@ exports.rejectSessionInvite = async (req, res) => {
   const { sessionCode } = req.body;
 
   try {
-    const session = await Session.findOne({ sessionCode });
+    const session = await Session.findOne({ sessionCode }).populate(
+      "createdBy",
+    );
     if (!session) {
       return res.status(404).json({ message: "Session not found" });
     }
@@ -249,6 +283,13 @@ exports.rejectSessionInvite = async (req, res) => {
       $pull: { sessionUsers: { userId } },
     });
 
+    // Send rejection email to creator
+    await sendRejectInviteEmail(
+      session.createdBy.email,
+      req.user.name,
+      session.sessionName,
+    );
+
     res.status(200).json({ message: "You have declined the session invite" });
   } catch (error) {
     console.error("  rejectSessionInvite error:", error);
@@ -270,7 +311,9 @@ exports.joinSessionByCode = async (req, res) => {
   }
 
   try {
-    const session = await Session.findOne({ sessionCode });
+    const session = await Session.findOne({ sessionCode }).populate(
+      "createdBy",
+    );
     console.log("📦 Session fetched:", session);
 
     if (!session) {
@@ -298,15 +341,23 @@ exports.joinSessionByCode = async (req, res) => {
 
     console.log("📌 User is new, updating invitedUsers and cart...");
 
-    // ✅ Safe DB-level update without triggering full validation
+    // Add to invitedUsers as pending
     await Session.updateOne(
       { _id: session._id },
       { $addToSet: { invitedUsers: { userId, role: "pending" } } },
     );
 
+    // Add to sessionUsers in cart
     await Cart.updateOne(
       { _id: session.cartId },
       { $addToSet: { sessionUsers: { userId, role: "participant" } } },
+    );
+
+    // 🔔 Send email to session creator
+    await sendSessionJoinRequestEmail(
+      session.createdBy.email,
+      req.user.name,
+      session.sessionName,
     );
 
     res.status(202).json({
@@ -382,7 +433,6 @@ exports.approveJoinRequest = async (req, res) => {
       return res.status(404).json({ message: "Session not found" });
     }
 
-    // Ensure only creator can approve
     if (String(session.createdBy) !== requesterId) {
       return res
         .status(403)
@@ -394,7 +444,6 @@ exports.approveJoinRequest = async (req, res) => {
       return res.status(404).json({ message: "No user found with that email" });
     }
 
-    // Check if user is in pending state
     const invitedEntry = session.invitedUsers.find(
       (u) =>
         String(u.userId) === String(userToApprove._id) && u.role === "pending",
@@ -406,11 +455,9 @@ exports.approveJoinRequest = async (req, res) => {
         .json({ message: "No pending request from this user" });
     }
 
-    // Approve the request
     invitedEntry.role = "participant";
     await session.save();
 
-    // Reflect it in the cart
     await Cart.findByIdAndUpdate(session.cartId, {
       $push: {
         sessionUsers: {
@@ -420,11 +467,18 @@ exports.approveJoinRequest = async (req, res) => {
       },
     });
 
+    // 🔔 Notify approved user
+    await sendJoinReqApprovedEmail(
+      userToApprove.email,
+      session.sessionName,
+      req.user.name,
+    );
+
     res.status(200).json({
       message: `${email} has been approved and added to the session.`,
     });
   } catch (error) {
-    console.error("  approveJoinRequest error:", error);
+    console.error("approveJoinRequest error:", error);
     res.status(500).json({
       message: "Something went wrong while approving the join request",
     });
@@ -447,7 +501,6 @@ exports.rejectJoinRequest = async (req, res) => {
       return res.status(404).json({ message: "Session not found" });
     }
 
-    // Ensure only the creator can reject
     if (String(session.createdBy) !== requesterId) {
       return res.status(403).json({ message: "Unauthorized access" });
     }
@@ -470,11 +523,18 @@ exports.rejectJoinRequest = async (req, res) => {
 
     await session.save();
 
+    // 🔔 Notify rejected user
+    await sendRejectJoinReqEmail(
+      userToReject.email,
+      session.sessionName,
+      req.user.name,
+    );
+
     res.status(200).json({
       message: `User ${email} has been rejected from the session`,
     });
   } catch (error) {
-    console.error("  rejectJoinRequest error:", error);
+    console.error("rejectJoinRequest error:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -684,7 +744,9 @@ exports.leaveSession = async (req, res) => {
   }
 
   try {
-    const session = await Session.findById(sessionId);
+    const session = await Session.findById(sessionId).populate(
+      "invitedUsers.userId",
+    );
     if (!session) return res.status(404).json({ message: "Session not found" });
 
     // Prevent creator from leaving
@@ -695,9 +757,15 @@ exports.leaveSession = async (req, res) => {
       });
     }
 
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const sessionName = session.sessionName;
+    const leaverName = user.name || user.email;
+
     // Filter out user from invitedUsers
     session.invitedUsers = session.invitedUsers.filter(
-      (entry) => String(entry.userId) !== userId,
+      (entry) => String(entry.userId._id) !== userId,
     );
     await session.save();
 
@@ -705,6 +773,12 @@ exports.leaveSession = async (req, res) => {
     await Cart.findByIdAndUpdate(session.cartId, {
       $pull: { sessionUsers: { userId: userId } },
     });
+
+    // Notify all remaining participants
+    const recipients = session.invitedUsers.map((entry) => entry.userId.email);
+    for (const email of recipients) {
+      await sendLeaveSessionEmail(email, leaverName, sessionName);
+    }
 
     res.status(200).json({ message: "You have left the session successfully" });
   } catch (error) {
@@ -733,7 +807,6 @@ exports.endSession = async (req, res) => {
         .json({ message: "Only the session creator can end the session" });
     }
 
-    // Already ended?
     if (session.status === "ended") {
       return res.status(400).json({ message: "Session is already ended" });
     }
@@ -741,6 +814,17 @@ exports.endSession = async (req, res) => {
     session.status = "ended";
     await Cart.findOneAndDelete({ sessionId: session._id });
     await session.save();
+
+    // 🔔 Notify all users (creator + invited)
+    const allUserIds = session.invitedUsers.map((u) => u.userId);
+    const allUsers = await User.find({ _id: { $in: allUserIds } });
+
+    const notifyEmails = allUsers.map((u) => u.email);
+    const creatorName = req.user.name || "The session creator";
+
+    for (let email of notifyEmails) {
+      await sendSessionEndedEmail(email, session.sessionName, creatorName);
+    }
 
     res.status(200).json({
       message: "Session ended successfully",

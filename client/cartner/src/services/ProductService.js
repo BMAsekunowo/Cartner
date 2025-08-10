@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const port = "http://localhost:5005";
+const port = import.meta.env.VITE_BACKEND_URL || "http://localhost:5005";
+
 
 export const getAllProducts = async () => {
   const token = localStorage.getItem("token");

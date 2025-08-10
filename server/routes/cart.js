@@ -10,6 +10,7 @@ const {
   getSingleCart,
   clearCart,
   deleteCart,
+  getUserCartHistory,
 } = require("../controllers/cartController"); //Cart Controller connection
 const protect = require("../middleware/authMiddleware"); //Auth Middleware connection
 
@@ -18,6 +19,9 @@ router.post("/", protect, createCart);
 
 // Get cart by user ID
 router.get("/", protect, getCartByUserId);
+
+// Get user cart history
+router.get("/history", protect, getUserCartHistory);
 
 // Update cart by cart ID
 router.put("/:cartId", protect, updateCart);

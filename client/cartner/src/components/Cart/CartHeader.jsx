@@ -15,9 +15,12 @@ const CartHeader = () => {
         <h1>Cart</h1>
         <p>
           <Link to="/" className="linkto">
-            Home
+            Home {" "}
           </Link>{" "}
-          / Cart
+            / {" "}
+          <Link to="/cart-history" className="linkto">
+            Cart History
+          </Link>
         </p>
       </div>
 

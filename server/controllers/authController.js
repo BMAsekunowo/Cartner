@@ -4,6 +4,9 @@ const bcrypt = require("bcryptjs"); //Hashing and Comparison
 const OTP = require("../models/otp"); //OTP Model for Two-Factor Authentication
 const { sendWelcomeEmail } = require("../utils/email/emailService");
 const { sendOTPEmail } = require("../utils/email/sendOtpEmail");
+const {
+  sendProfileUpdatedEmail,
+} = require("../utils/email/sendNotificationsEmail");
 
 exports.registerUser = async (req, res) => {
   const { name, email, password } = req.body;
@@ -151,6 +154,7 @@ exports.updateUserCredentials = async (req, res) => {
 
       user.email = email;
       await user.save();
+      await sendProfileUpdatedEmail(user.email, user.name);
 
       return res.status(200).json({
         message: "Email updated successfully",

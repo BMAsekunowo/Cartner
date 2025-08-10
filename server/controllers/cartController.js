@@ -374,3 +374,21 @@ exports.deleteCart = async (req, res) => {
     });
   }
 };
+
+exports.getUserCartHistory = async (req, res) => {
+  const userId = req.user.id;
+
+  try {
+    const historyCarts = await Cart.find({
+      "sessionUsers.userId": userId,
+      status: { $in: ["completed", "inactive"] },
+    })
+      .populate("sessionId", "sessionName invitedUsers")
+      .populate("products.productId");
+
+    res.status(200).json({ carts: historyCarts });
+  } catch (error) {
+    console.error("getUserCartHistory error:", error);
+    res.status(500).json({ message: "Failed to fetch cart history" });
+  }
+};

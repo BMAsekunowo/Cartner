@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 const useAutoRefreshToken = () => {
   const navigate = useNavigate();
   const activityDetected = useRef(false); // Track interaction only, not initial load
+  const port = import.meta.env.VITE_BACKEND_URL || "http://localhost:5005";
+
 
   useEffect(() => {
     let interval;
@@ -20,7 +22,7 @@ const useAutoRefreshToken = () => {
 
       try {
         const res = await fetch(
-          "http://localhost:5005/api/auth/refresh-token",
+          `${port}/api/auth/refresh-token`,
           {
             method: "POST",
             headers: {

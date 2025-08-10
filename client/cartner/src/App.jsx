@@ -23,9 +23,11 @@ import EditProfile from "./pages/EditProfile";
 import SessionSummary from "./pages/SessionSummary"; // Importing SessionSummary page
 import EditCredentials from "./pages/EditCredentials";
 import Otp from "./pages/Otp"; // Importing Otp page
+import CartHistoty from "./pages/CartHistory"; // Importing CartHistory page
 
 function App() {
   const navigate = useNavigate();
+  const port = import.meta.env.VITE_BACKEND_URL
   //Custom Hooks
   useAutoRefreshToken(); // Custom hook for auto-refreshing token
 
@@ -48,7 +50,7 @@ function App() {
   // useEffect to fetch data from the backend
   useEffect(() => {
     axios
-      .get("http://localhost:5005/api/conhealth")
+      .get(`${port}/api/conhealth`)
       .then((res) => console.log(res.data));
   }, []);
 
@@ -73,6 +75,7 @@ function App() {
           <Route path="/editme" element={<EditProfile />} />
           <Route path="/editpass" element={<EditCredentials />} />
           <Route path="/verify-otp" element={<Otp />} />
+          <Route path="cart-history" element={<CartHistoty />} />
           {/* Dynamic Routes */}
           <Route path="/user/:userId" element={<PublicProfile />} />
           <Route path="/product/:id" element={<ProductDetails />} />
