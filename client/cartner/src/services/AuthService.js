@@ -1,7 +1,7 @@
 import axios from "axios";
 
 //This is the base URL for local server
-const port = import.meta.env.VITE_BACKEND_URL || "http://localhost:5005";
+const port = import.meta.env.BACKEND_URL || "http://localhost:5005";
 
 export const signup = async (userData) => {
   try {

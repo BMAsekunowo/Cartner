@@ -23,7 +23,7 @@ const ProfileSide = () => {
 
   if (!profile) return <div className="loading">Loading...</div>;
 
-  const port = import.meta.env.VITE_BACKEND_URL || "http://localhost:5005";
+  const port = import.meta.env.BACKEND_URL || "http://localhost:5005";
 
   return (
     <aside className="profile-sidebar">

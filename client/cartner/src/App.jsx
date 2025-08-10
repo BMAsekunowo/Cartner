@@ -27,7 +27,7 @@ import CartHistoty from "./pages/CartHistory"; // Importing CartHistory page
 
 function App() {
   const navigate = useNavigate();
-  const port = import.meta.env.VITE_BACKEND_URL
+  const port = import.meta.env.BACKEND_URL
   //Custom Hooks
   useAutoRefreshToken(); // Custom hook for auto-refreshing token
 

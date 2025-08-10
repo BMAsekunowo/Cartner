@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const port = import.meta.env.VITE_BACKEND_URL || "http://localhost:5005";
+const port = import.meta.env.BACKEND_URL || "http://localhost:5005";
 
 
 export const getAllProducts = async () => {
