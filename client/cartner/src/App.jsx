@@ -26,6 +26,7 @@ import Otp from "./pages/Otp"; // Importing Otp page
 import CartHistoty from "./pages/CartHistory"; // Importing CartHistory page
 
 function App() {
+  console.log("VITE_BACKEND_URL from Vercel:", import.meta.env.VITE_BACKEND_URL);
   const navigate = useNavigate();
   const port = import.meta.env.VITE_BACKEND_URL
   //Custom Hooks
@@ -33,7 +34,7 @@ function App() {
 
   useEffect(() => {
     const checkToken = async () => {
-      const res = await fetch("/api/auth/validate-token", {
+      const res = await fetch(`${port}/api/auth/validate-token`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
