@@ -26,27 +26,32 @@ import Otp from "./pages/Otp"; // Importing Otp page
 import CartHistoty from "./pages/CartHistory"; // Importing CartHistory page
 
 function App() {
-  console.log("VITE_BACKEND_URL from Vercel:", import.meta.env.VITE_BACKEND_URL);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const port = import.meta.env.VITE_BACKEND_URL
+  const PUBLIC_ROUTES = ["/", "/login", "/register", "/verify-otp"];
   //Custom Hooks
   useAutoRefreshToken(); // Custom hook for auto-refreshing token
 
-  useEffect(() => {
-    const checkToken = async () => {
-      const res = await fetch(`${port}/api/auth/validate-token`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+   useEffect(() => {
+    const token = localStorage.getItem("token");
+    const isPublic = PUBLIC_ROUTES.includes(pathname);
+    if (!token || isPublic) return;
 
-      if (res.status === 401) {
-        handleLogout(navigate); // Auto logout
+    const url = `${API_BASE}/api/auth/validate-token`;
+
+    (async () => {
+      try {
+        const res = await fetch(url, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (res.status === 401) handleLogout(navigate);
+      } catch (err) {
+        // Don’t kick users out on network/CORS hiccups
+        console.warn("Token check skipped:", err?.message || err);
       }
-    };
-
-    checkToken();
-  }, [navigate]);
+    })();
+  }, [pathname, navigate]);
 
   // useEffect to fetch data from the backend
   useEffect(() => {
@@ -55,10 +60,9 @@ function App() {
       .then((res) => console.log(res.data));
   }, []);
 
-  const location = useLocation();
   const hideFooterRoutes = ["/verify-otp"];
 
-  const shouldHideFooter = hideFooterRoutes.includes(location.pathname);
+  const shouldHideFooter = hideFooterRoutes.includes(pathname);
 
   return (
     <div className="outer-wrapper">
