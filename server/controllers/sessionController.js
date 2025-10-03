@@ -304,7 +304,6 @@ exports.joinSessionByCode = async (req, res) => {
   const sessionCode = req.body.sessionCode || req.body.joinSessionCode;
   const passcode = req.body.passcode || req.body.joinPasscode;
 
-  console.log("🔐 Received join request:", { sessionCode, passcode });
 
   if (!sessionCode) {
     return res.status(400).json({ message: "Session code is required" });
@@ -314,7 +313,6 @@ exports.joinSessionByCode = async (req, res) => {
     const session = await Session.findOne({ sessionCode }).populate(
       "createdBy",
     );
-    console.log("📦 Session fetched:", session);
 
     if (!session) {
       return res.status(404).json({ message: "Session not found" });
@@ -338,8 +336,6 @@ exports.joinSessionByCode = async (req, res) => {
             : "You have already requested to join this session",
       });
     }
-
-    console.log("📌 User is new, updating invitedUsers and cart...");
 
     // Add to invitedUsers as pending
     await Session.updateOne(
@@ -620,8 +616,6 @@ exports.getSessionById = async (req, res) => {
 };
 
 exports.getActiveSessionsByUser = async (req, res) => {
-  console.log("💡 Incoming request to /my-actives");
-  console.log("🔐 req.user:", req.user);
 
   try {
     const userId = req.user.id;
@@ -643,8 +637,6 @@ exports.getActiveSessionsByUser = async (req, res) => {
     })
       .sort({ updatedAt: -1 })
       .populate("cartId");
-
-    console.log("✅ Sessions found:", sessions.length);
 
     res.status(200).json({
       message: `Found ${sessions.length} active session(s) for user`,

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { syncUserSessions } from "../services/SessionService";
+import { useLocation } from "react-router-dom";
 
 const SessionContext = createContext();
 
@@ -7,8 +8,14 @@ export const SessionProvider = ({ children }) => {
   const [activeSession, setActiveSession] = useState(null);
   const [syncedSessions, setSyncedSessions] = useState([]);
   const [loadingSessions, setLoadingSessions] = useState(true);
+  const location = useLocation();
+  const PUBLIC_ROUTES = ["/", "/login", "/register", "/verify-otp"];
+
 
   const fetchSessions = async () => {
+      const token = localStorage.getItem("token");
+      const isPublic = PUBLIC_ROUTES.includes(location.pathname);
+      if (!token || isPublic) return;
     try {
       const res = await syncUserSessions(); // must return { sessions: [...] }
 

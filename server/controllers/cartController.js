@@ -55,7 +55,6 @@ exports.createCart = async (req, res) => {
       });
     }
 
-    console.log(`✅ New cart added:`, newCart);
 
     res.status(201).json({
       message: `You have created a cart successfully`,
@@ -290,7 +289,7 @@ exports.addProductToCart = async (req, res) => {
       .populate("products.productId", "title price image")
       .populate("products.addedBy", "name email");
 
-    console.log(`✅ Product added to cart:`, populatedCart);
+    
     res.status(200).json({
       message: "Product added to cart successfully",
       cart: populatedCart,
