@@ -24,6 +24,7 @@ import SessionSummary from "./pages/SessionSummary"; // Importing SessionSummary
 import EditCredentials from "./pages/EditCredentials";
 import Otp from "./pages/Otp"; // Importing Otp page
 import CartHistoty from "./pages/CartHistory"; // Importing CartHistory page
+import ProtectedRoute from "./components/Reusables/ProtectedRoute"; // Importing ProtectedRoute component
 
 function App() {
   const navigate = useNavigate();
@@ -73,24 +74,27 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/sessions" element={<Sessions />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/editme" element={<EditProfile />} />
-          <Route path="/editpass" element={<EditCredentials />} />
-          <Route path="/verify-otp" element={<Otp />} />
-          <Route path="cart-history" element={<CartHistoty />} />
-          {/* Dynamic Routes */}
-          <Route path="/user/:userId" element={<PublicProfile />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="/session/:sessionId" element={<SessionDetails />} />
-          <Route path="/cart/:sessionId" element={<Cart />} />
-          <Route path="/cart/id/:cartId" element={<Cart />} />
-          <Route
-            path="/session-summary/:sessionId"
-            element={<SessionSummary />}
-          />
+          {/* Protected Routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/products" element={<Products />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/sessions" element={<Sessions />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/editme" element={<EditProfile />} />
+            <Route path="/editpass" element={<EditCredentials />} />
+            <Route path="/verify-otp" element={<Otp />} />
+            <Route path="cart-history" element={<CartHistoty />} />
+            {/* Dynamic Routes */}
+            <Route path="/user/:userId" element={<PublicProfile />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/session/:sessionId" element={<SessionDetails />} />
+            <Route path="/cart/:sessionId" element={<Cart />} />
+            <Route path="/cart/id/:cartId" element={<Cart />} />
+            <Route
+              path="/session-summary/:sessionId"
+              element={<SessionSummary />}
+            />
+          </Route>
           {/* Route for client side invalid path Error */}
           <Route path="*" element={<Error404 />} />
         </Routes>
